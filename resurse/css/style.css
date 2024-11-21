@@ -1,7 +1,7 @@
 .inside-header {
   --dim-latime-maxima: 1230px;
   --dim-margine-sus: 24px;
-  width: var(--dim-latime-maxima);
+  max-width: var(--dim-latime-maxima);
   padding: 18px;
   margin: auto;
   display: flex;
@@ -21,6 +21,9 @@
 .linkuri-sus li {
   position: relative;
   margin-left: 15px;
+}
+.linkuri-sus li:first-child {
+  margin-left: 0;
 }
 .linkuri-sus li::after {
   content: "|";
@@ -45,34 +48,6 @@
   height: auto;
   object-fit: contain;
 }
-.img-search {
-  height: 550px;
-  background-image: url("../imagini/interior05_wide.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.img-search * {
-  height: 10%;
-}
-.search-box {
-  width: 35%;
-  padding: 0 0 0 10px;
-  border: none;
-  margin: none;
-  font-size: 1.05rem;
-}
-.search-btn {
-  background-color: #1a2e49;
-  border: none;
-  width: 70px;
-}
-.search-btn .fa-search {
-  color: #eccfa4;
-  font-size: 30px;
-}
 .container-meniu {
   flex: 65%;
   align-items: center;
@@ -83,4 +58,97 @@
 header > .site-logo,
 header > .container-meniu {
   display: inline-flex;
+}
+.img-search {
+  height: 550px;
+  background-image: url("../imagini/interior05_wide.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-search * {
+  height: 40px;
+}
+.search-box {
+  width: 450px;
+  padding: 0 0 0 10px;
+  border: none;
+  margin: none;
+  font-size: 1.05rem;
+}
+.search-btn {
+  background-color: var(--culoare-prim-albastru-inchis);
+  border: none;
+  width: 60px;
+  padding: 0;
+}
+.search-btn .fa-search {
+  color: #eccfa4;
+  font-size: 28px;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .inside-header {
+    --dim-latime-maxima: 1100px;
+    --dim-margine-sus: 18px;
+    display: grid;
+    grid-gap: 17px;
+    grid-template-areas:
+      "logo  logo  lsus"
+      "meniu meniu meniu";
+  }
+  .linkuri-sus {
+    grid-area: lsus;
+    display: flex;
+    align-self: flex-start;
+  }
+  .site-logo {
+    grid-area: logo;
+    display: inline-block;
+    width: 100%;
+  }
+  .header-logo > img {
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+  }
+  .container-meniu {
+    grid-area: meniu;
+    margin-top: 0;
+    align-self: center;
+  }
+  .img-search {
+    height: 350px;
+    background-image: url("../imagini/interior05_wide_1200.png");
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .inside-header {
+    --dim-latime-maxima: 768px;
+    --dim-margine-sus: 10px;
+    display: block;
+    margin-bottom: calc(1.5 * var(--dim-margine-sus));
+  }
+  .linkuri-sus {
+    justify-content: center;
+  }
+  .header-logo {
+    display: flex;
+    justify-content: center;
+    margin-top: calc(2 * var(--dim-margine-sus));
+    margin-bottom: calc(2 * var(--dim-margine-sus));
+  }
+  .header-logo > img {
+    width: 80%;
+    height: auto;
+  }
+  .img-search {
+    height: 300px;
+    background-image: url("../imagini/interior05_wide_800.png");
+  }
 }

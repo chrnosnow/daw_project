@@ -6,6 +6,7 @@ html {
 }
 body {
   --culoare-text: #011627; /*#333 */
+  --culoare-prim-albastru-inchis: #1a2e49;
   --culoare-hover: goldenrod;
   --culoare-fundal: #f9f9f9;
   --culoare-fundal-secundara: #feffff;
@@ -73,6 +74,13 @@ footer {
   }
   body {
     --dim-spatiere: 8px;
+  }
+  .linkuri-sus {
+    font-size: 1.05rem;
+  }
+  .ls-meniu > li,
+  .ls-meniu {
+    font-size: 1.1em;
   }
 }
 

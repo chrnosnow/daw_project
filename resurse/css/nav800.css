@@ -1,0 +1,157 @@
+nav {
+  --inaltime-meniu: 2.5rem;
+  --top: 3.7px;
+  --timp_i: 0.7s;
+  --delay: 0.35s;
+  --culoare-linii-hamburger: #745e47;
+}
+
+#hamburger {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+#hamburger-text {
+  font-size: 15px;
+  align-items: center;
+  margin-right: var(--dim-spatiere);
+}
+#hamburger-bars {
+  display: block;
+  list-style-type: none;
+}
+#hamburger-bars > span {
+  position: relative;
+  display: block;
+  align-items: center;
+  top: var(--top);
+  left: 2px;
+  width: calc(5 * var(--top));
+  height: calc(0.5 * var(--top));
+  background-color: var(--culoare-linii-hamburger);
+  border-radius: 5px;
+  margin-top: 0.2rem;
+  animation: spinBars ease forwards;
+}
+#hamburger-bars span:nth-child(1) {
+  animation-duration: calc(var(--timp_i) + var(--delay) * (1 - 1));
+  /* margin-top: 0; */
+}
+#hamburger-bars span:nth-child(2) {
+  animation-duration: calc(var(--timp_i) + var(--delay) * (2 - 1));
+}
+#hamburger-bars span:nth-child(3) {
+  animation-duration: calc(var(--timp_i) + var(--delay) * (3 - 1));
+}
+
+@keyframes spinBars {
+  0% {
+    top: 0.8rem;
+    transform: translate(500%, -50%) rotate(0deg);
+    opacity: 0;
+  }
+  35% {
+    top: 0.8rem;
+    transform: translateY(-50%) rotate(1080deg);
+    opacity: 100%;
+    background-color: grey;
+  }
+  70% {
+    top: 0.8rem;
+    transform: translateY(-50%) rotate(1080deg);
+    opacity: 100%;
+    background-color: #eec290;
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(1080deg);
+    opacity: 100%;
+    background-color: var(--culoare-linii-hamburger);
+  }
+}
+/*implicit meniul e ascuns*/
+ul.meniu {
+  display: none;
+  position: absolute;
+  width: 100%;
+}
+
+.meniu li:hover {
+  background-color: var(--culoare-linii-hamburger);
+}
+.meniu li:hover > a,
+.meniu li:hover > div {
+  color: unset;
+}
+
+#ch-menu:checked + ul.meniu {
+  /*facem vizibil meniul cand facem click pe hamburger menu*/
+  position: relative;
+  top: var(--top);
+  background-color: var(--culoare-fundal-sublista);
+  display: block;
+  z-index: 2;
+  transform-origin: 0 0;
+  animation-name: aparitie_meniu_p;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-duration: 1s;
+}
+#ch-menu:checked + ul.meniu > li > div,
+#ch-menu:checked + ul.meniu > li > a {
+  height: var(--inaltime-meniu);
+  line-height: var(--inaltime-meniu);
+  z-index: 2;
+  animation-name: aparitie_meniu_p_btn;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+#ch-menu:checked + ul.meniu > li ul > * {
+  position: relative;
+  z-index: 100;
+}
+
+nav ul.meniu li {
+  width: 100%; /*optiunile se intind pe toata latimea containerului*/
+}
+nav ul.meniu > li ul {
+  /*meniul sa vina deasupra continutului de mai jos, fara sa impinga continutul*/
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  transform: scale(1, 1);
+}
+nav ul.meniu > li:hover > ul {
+  z-index: 200; /*o valoare pozitiva, pentru a veni in fata, peste celelalte elemente din pagina*/
+  animation: none;
+  opacity: 1;
+  transform: scale(1, 1);
+}
+
+.bara-meniu::before {
+  display: none;
+}
+
+@keyframes aparitie_meniu_p {
+  0% {
+    opacity: 0;
+    /* transform: scale(0,0); */
+    clip-path: circle(0% at 0 0);
+  }
+  100% {
+    opacity: 1;
+    /* transform: scale(1,1); */
+    clip-path: circle(100%);
+  }
+}
+@keyframes aparitie_meniu_p_btn {
+  0% {
+    transform: scale(0, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}

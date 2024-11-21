@@ -1,0 +1,11 @@
+nav {
+  --inaltime-meniu: 2.5rem;
+}
+
+#acasa {
+  display: none;
+}
+
+#acasa-mediu {
+  display: block;
+}
