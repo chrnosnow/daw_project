@@ -5,11 +5,13 @@ html {
   color: var(--culoare-text);
 }
 body {
-  --culoare-text: #011627; /*#333 */
+  --culoare-text: #011627;
   --culoare-prim-albastru-inchis: #1a2e49;
-  --culoare-hover: goldenrod;
+  --culoare-hover: #707788;
   --culoare-fundal: #f9f9f9;
   --culoare-fundal-secundara: #feffff;
+  --dim-spatiere: 10px;
+
   --culoare-border: #f79f6d70;
   --culoare-border-alt: #f79f6d60;
   --culoare-border-iframe: #f38f55;
@@ -17,7 +19,6 @@ body {
   --culoare-footer: #b8704650;
   --culoare-header-1: #602605;
   --culoare-link-vizitat: #b87046;
-  --dim-spatiere: 10px;
 
   background-color: var(--culoare-fundal);
   padding-left: var(--dim-spatiere);

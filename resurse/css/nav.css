@@ -1,7 +1,7 @@
 @charset "UTF-8";
 nav {
-  --culoare-text-meniu: #fff8ec; /*#fff7d6, #f1f1e6*/
-  --culoare-fundal-tab: #bd8700; /*#daa21c,#2c2f37, #794f59, #402e32*/
+  --culoare-text-meniu: #fff8ec;
+  --culoare-fundal-tab: #794f59;
   --culoare-fundal-sublista: #f3f9ff;
   --inaltime-meniu: 3rem;
   --inaltime-bara-buton-meniu: 0.3em;

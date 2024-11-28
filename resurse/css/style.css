@@ -54,14 +54,17 @@
   align-self: flex-end;
 }
 
-/* Stilizare pentru a afișa logo-ul și meniul pe același rând */
 header > .site-logo,
 header > .container-meniu {
   display: inline-flex;
 }
 .img-search {
   height: 550px;
-  background-image: url("../imagini/interior05_wide.png");
+  background-image: url("../imagini/interior05_wide.avif");
+  background-image: image-set(
+    url("../imagini/interior05_wide.avif") type("image/avif"),
+    url("../imagini/interior05_wide.png") type("image/png")
+  );
   background-repeat: no-repeat;
   background-size: 100% 100%;
   display: flex;
@@ -123,7 +126,11 @@ header > .container-meniu {
   }
   .img-search {
     height: 350px;
-    background-image: url("../imagini/interior05_wide_1200.png");
+    background-image: url("../imagini/interior05_wide_1200.avif");
+    background-image: image-set(
+      url("../imagini/interior05_wide_1200.avif") type("image/avif"),
+      url("../imagini/interior05_wide_1200.png") type("image/png")
+    );
   }
 }
 
@@ -149,6 +156,10 @@ header > .container-meniu {
   }
   .img-search {
     height: 300px;
-    background-image: url("../imagini/interior05_wide_800.png");
+    background-image: url("../imagini/interior05_wide_800.avif");
+    background-image: image-set(
+      url("../imagini/interior05_wide_800.avif") type("image/avif"),
+      url("../imagini/interior05_wide_800.png") type("image/png")
+    );
   }
 }

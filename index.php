@@ -68,7 +68,7 @@
       <div class="inside-header">
         <div class="linkuri-sus">
           <ul>
-            <li><a href="user/auth.php">Cont utilizator</a></li>
+            <li><a href="autentificare.php">Cont utilizator</a></li>
             <li><a href="">Obține un permis</a></li>
             <li><a href="">Contact</a></li>
           </ul>

@@ -68,7 +68,7 @@ nav {
     background-color: var(--culoare-linii-hamburger);
   }
 }
-/*implicit meniul e ascuns*/
+
 ul.meniu {
   display: none;
   position: absolute;
@@ -84,7 +84,6 @@ ul.meniu {
 }
 
 #ch-menu:checked + ul.meniu {
-  /*facem vizibil meniul cand facem click pe hamburger menu*/
   position: relative;
   top: var(--top);
   background-color: var(--culoare-fundal-sublista);
@@ -115,17 +114,16 @@ ul.meniu {
 }
 
 nav ul.meniu li {
-  width: 100%; /*optiunile se intind pe toata latimea containerului*/
+  width: 100%;
 }
 nav ul.meniu > li ul {
-  /*meniul sa vina deasupra continutului de mai jos, fara sa impinga continutul*/
   position: absolute;
   width: 100%;
   z-index: 2;
   transform: scale(1, 1);
 }
 nav ul.meniu > li:hover > ul {
-  z-index: 200; /*o valoare pozitiva, pentru a veni in fata, peste celelalte elemente din pagina*/
+  z-index: 200;
   animation: none;
   opacity: 1;
   transform: scale(1, 1);
@@ -138,12 +136,10 @@ nav ul.meniu > li:hover > ul {
 @keyframes aparitie_meniu_p {
   0% {
     opacity: 0;
-    /* transform: scale(0,0); */
     clip-path: circle(0% at 0 0);
   }
   100% {
     opacity: 1;
-    /* transform: scale(1,1); */
     clip-path: circle(100%);
   }
 }
