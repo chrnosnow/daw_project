@@ -1,0 +1,34 @@
+hr {
+  border: none;
+  margin: auto;
+  width: 30%;
+  height: 10px;
+  background-image: linear-gradient(
+      to right,
+      transparent 17%,
+      var(--culoare-auriu-inchis) 18%,
+      var(--culoare-auriu-inchis) 68%,
+      transparent 69%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 24%,
+      var(--culoare-crem-deschis) 25%,
+      var(--culoare-crem-deschis) 75%,
+      transparent 76%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 13%,
+      var(--culoare-prim-albastru-inchis) 14%,
+      var(--culoare-prim-albastru-inchis) 65%,
+      transparent 66%,
+      transparent 100%
+    );
+  background-position-x: 0;
+  background-position-y: top, center, bottom;
+  background-size: 10% 33%, 10% 34%, 10% 33%;
+  background-repeat: repeat-x;
+}

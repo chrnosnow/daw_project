@@ -19,3 +19,22 @@ function is_get_req()
 {
     return strtoupper($_SERVER['REQUEST_METHOD']) === 'GET';
 }
+
+function display_alert(string $key)
+{
+    if (!isset($key) || !isset($_SESSION[$key])) {
+        return;
+    }
+
+    $messages = $_SESSION[$key];
+    unset($_SESSION[$key]);
+    foreach ($messages as $msg_key => $msg_string) {
+        echo '<div class="' . $key . '">' . '<p>' . $msg_string . '</p></div>';
+    }
+}
+
+function redirect_to(string $url): void
+{
+    header('Location:' . $url);
+    exit;
+}

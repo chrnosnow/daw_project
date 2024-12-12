@@ -42,22 +42,30 @@ require __DIR__ . '/../lib/common.php';
         <!-- Login form -->
         <div class="form-box login <?= $loginClass; ?>">
           <h2>Autentificare utilizator</h2>
-          <form action="auth.php">
+          <?php
+          if (isset($_SESSION['errors_login'])) {
+            display_alert('errors_login');
+          }
+          if (isset($_SESSION['registration'])) {
+            display_alert('registration');
+          }
+          ?>
+          <form action="../user/login.php" method="post">
             <div class="input-box">
               <span class="icon"><i class="fa-solid fa-user"></i></span>
-              <input type="text" required />
+              <input type="text" placeholder=" " name="uname" />
               <label>Nume utilizator</label>
             </div>
             <div class="input-box">
               <span class="icon"><i class="fa-solid fa-lock"></i></span>
-              <input type="password" required />
+              <input type="password" placeholder=" " name="pass" />
               <label>Parola</label>
             </div>
-            <div class="remember-forgot">
+            <!-- <div class="remember-forgot">
               <label><input type="checkbox" />Tine-ma minte</label>
               <a href="#">Ai uitat parola?</a>
-            </div>
-            <button type="submit" class="btn">Accesare cont</button>
+            </div> -->
+            <input type="submit" class="btn" name="signin" value="Accesare cont"></input>
             <div class="login-register">
               <p>
                 Nu ai un cont?
@@ -71,122 +79,43 @@ require __DIR__ . '/../lib/common.php';
         <div class="form-box register <?= $registerClass; ?>">
           <h2>Inregistrare</h2>
           <?php
-          if (isset($_SESSION['registration_success'])) {
-            echo '<div class="registration_success">' .
-              '<p>' . $_SESSION['registration_success'] . '</p>' .
-              '</div>';
-            unset($_SESSION['registration_success']);
+          if (isset($_SESSION['errors'])) {
+            display_alert('errors');
           }
-          if (isset($errors['uniq_email'])) {
-            echo '<div class="error-uniq-email">' .
-              '<p>' . $errors['uniq_email'] . '</p>' .
-              '</div>';
-            unset($errors['uniq_email']);
-          }
-          if (isset($errors['uniq_username'])) {
-            echo '<div class="error-uniq-uname">' .
-              '<p>' . $errors['uniq_username'] . '</p>' .
-              '</div>';
-            unset($errors['uniq_username']);
-          }
-          if (isset($errors['all_required'])) {
-            echo '<div class="error-uniq-email">' .
-              '<p>' . $errors['all_required'] . '</p>' .
-              '</div>';
-            unset($errors['all_required']);
-          }
+          // if (isset($_SESSION['registration'])) {
+          //   display_alert('registration');
+          // }
           ?>
           <form action="../user/register.php" method="post" autocomplete="off">
-            <!-- <div class="input-box">
-              <span class="icon"><i class="fa-solid fa-user"></i></span>
-              <input type="text" name="lname" required />
-              <label>Nume</label>
-            </div>
-            <div class="input-box">
-              <span class="icon"><i class="fa-solid fa-user"></i></span>
-              <input type="text" name="fname" required />
-              <label>Prenume</label>
-            </div> -->
             <div class="input-box">
               <span class="icon"><i class="fa-solid fa-user-tag"></i></span>
-              <input type="text" name="uname" />
+              <input type="text" name="uname" placeholder=" " />
               <label>Nume utilizator*</label>
-              <?php
-              if (isset($errors['username_required'])) {
-                echo '<div class="error">' .
-                  '<p>' . $errors['username'] . '</p>' .
-                  '</div>';
-                unset($errors['username_required']);
-              }
 
-              if (isset($errors['username_len'])) {
-                echo '<div class="error">' .
-                  '<p>' . $errors['username_len'] . '</p>' .
-                  '</div>';
-                unset($errors['username_len']);
-              }
-
-              if (isset($errors['username_alphanum'])) {
-                echo '<div class="error">' .
-                  '<p>' . $errors['username_alphanum'] . '</p>' .
-                  '</div>';
-                unset($errors['username_alphanum']);
-              }
-
-              ?>
             </div>
             <div class="input-box">
               <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-              <input type="email" name="email" />
+              <input type="email" name="email" placeholder=" " />
               <label>Email*</label>
-              <?php
-              if (isset($errors['email_required'])) {
-                echo '<div class="error">' .
-                  '<p>' . $errors['email_required'] . '</p>' .
-                  '</div>';
-                unset($errors['email_required']);
-              }
-              if (isset($errors['email'])) {
-                echo '<div class="error">' .
-                  '<p>' . $errors['email'] . '</p>' .
-                  '</div>';
-                unset($errors['email']);
-              }
-              ?>
+
             </div>
             <div class="input-box">
               <span class="icon"><i class="fa-solid fa-lock"></i></span>
-              <input type="password" name="pass" />
+              <input type="password" name="pass" placeholder=" " />
               <label>Parola*</label>
-              <?php
-              if (isset($errors['passw'])) {
-                echo '<div class="error">' .
-                  '<p>' . $errors['passw'] . '</p>' .
-                  '</div>';
-                unset($errors['passw']);
-              }
-              ?>
+
             </div>
             <div class="input-box">
               <span class="icon"><i class="fa-solid fa-lock"></i></span>
-              <input type="password" name="pass2" />
+              <input type="password" name="pass2" placeholder=" " />
               <label>Confirma parola*</label>
-              <?php
-              if (isset($errors['passw2'])) {
-                echo '<div class="error">' .
-                  '<p>' . $errors['passw2'] . '</p>' .
-                  '</div>';
-                unset($errors['passw2']);
-              }
-              ?>
             </div>
-            <div class="remember-forgot">
-              <label><input type="checkbox" />Sunt de acord cu Termenii si
-                conditiile si cu Politica de confidentialitate
+            <div class="gdpr-wrapper">
+              <label><input type="checkbox" name="gdpr" />Sunt de acord cu <a href="politica-de-confidentialitate.php"><b>Politica de confidentialitate</b></a>
               </label>
             </div>
 
-            <button type="submit" class="btn" name="signup">Creeaza cont</button>
+            <input type="submit" class="btn" name="signup" value="Creeaza cont"></input>
             <div class="login-register">
               <p>
                 Ai deja un cont?

@@ -2,28 +2,19 @@
 
 require __DIR__ . '/../lib/common.php';
 
-
+$success = [];
 $errors = [];
 
-$username = $_POST['uname'];
-$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-$passw = $_POST['pass'];
-$passw2 = $_POST['pass2'];
+if (is_post_req() && isset($_POST['signup'])) {
+    var_dump($_POST);
+    $username = sanitize_text($_POST['uname']);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $passw = $_POST['pass'];
+    $passw2 = $_POST['pass2'];
+    $gdpr = isset($_POST['gdpr']) ? true : false;
 
-if (is_post_req()) {
-
-    $username = sanitize_text($username);
-
-    if (empty($username) && empty($email) && empty($passw) && empty($pass2)) {
+    if (empty($username) || empty($email) || empty($passw) || empty($passw2)) {
         $errors['all_required'] = 'Toate campurile sunt obligatorii.';
-    } elseif (empty($username)) {
-        $errors['username_required'] = sprintf(DEFAULT_VALIDATION_ERRORS['required'], 'Campul NUME UTILIZATOR');
-    } elseif (empty($email)) {
-        $errors['email_required'] = sprintf(DEFAULT_VALIDATION_ERRORS['required'], 'Campul EMAIL');
-    } elseif (empty($passw)) {
-        $errors['passw_required'] = sprintf(DEFAULT_VALIDATION_ERRORS['required'], 'Campul PAROLA');
-    } elseif (empty($passw2)) {
-        $errors['passw2_required'] = sprintf(DEFAULT_VALIDATION_ERRORS['required'], 'Campul CONFIRMA PAROLA');
     }
 
     $min_len = 3;
@@ -37,7 +28,7 @@ if (is_post_req()) {
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = sprintf(DEFAULT_VALIDATION_ERRORS['email'], $email);
+        $errors['valid_email'] = sprintf(DEFAULT_VALIDATION_ERRORS['email'], $email);
     }
 
     if (!validate_password($passw)) {
@@ -48,23 +39,22 @@ if (is_post_req()) {
         $errors['passw2'] = sprintf(DEFAULT_VALIDATION_ERRORS['same'], 'Campurile PAROLA', 'CONFIRMA PAROLA');
     }
 
-    if (is_unique($email, 'accounts', 'email')) {
-        $errors['uniq_email'] = sprintf(DEFAULT_VALIDATION_ERRORS['unique'], 'Utilizatorul');
+    if (!$gdpr) {
+        $errors['gdpr'] = 'Trebuie sa fiti de acord cu politica de confidentialitate.';
     }
 
-    if (is_unique($email, 'accounts', 'username')) {
-        $errors['uniq_username'] = sprintf(DEFAULT_VALIDATION_ERRORS['unique'], 'Utilizatorul');
+    if (!is_unique($username, 'accounts', 'username') || !is_unique($email, 'accounts', 'email')) {
+        $errors['uniq_user'] = sprintf(DEFAULT_VALIDATION_ERRORS['unique'], 'Utilizatorul');
     }
 
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
-        header('Location: ../pagini/auth.php');
-        exit;
+        redirect_to('../pagini/auth.php?form=register');
     }
 
-    if (register_user("$email", "$username", "$passw")) {
-        $_SESSION['registration_success'] = 'Inregistrarea s-a realizat cu succes.';
-        header('Location: ../pagini/auth.php');
-        exit;
+    if (register_user("$email", "$username", "$passw", $gdpr)) {
+        $success['registration_success'] = 'Inregistrarea s-a realizat cu succes. Puteti accesa contul.';
+        $_SESSION['registration'] = $success;
+        redirect_to('../pagini/auth.php?form=login');
     }
 }
