@@ -82,9 +82,9 @@ require __DIR__ . '/../lib/common.php';
           if (isset($_SESSION['errors'])) {
             display_alert('errors');
           }
-          // if (isset($_SESSION['registration'])) {
-          //   display_alert('registration');
-          // }
+          if (isset($_SESSION['errors_activation'])) {
+            display_alert('errors');
+          }
           ?>
           <form action="../user/register.php" method="post" autocomplete="off">
             <div class="input-box">

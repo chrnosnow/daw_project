@@ -38,3 +38,14 @@ function redirect_to(string $url): void
     header('Location:' . $url);
     exit;
 }
+
+function randomNumber($length)
+{
+    //half the length because each byte is 
+    //represented by two hexadecimal characters
+    $bytes = random_bytes($length / 2);
+    //convert bytes to hexadecimal string
+    $rnd = bin2hex($bytes);
+
+    return $rnd;
+}

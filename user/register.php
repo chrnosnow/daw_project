@@ -27,7 +27,7 @@ if (is_post_req() && isset($_POST['signup'])) {
         $errors['username_alphanum'] = sprintf(DEFAULT_VALIDATION_ERRORS['alphanumeric'], 'Campul NUME UTILIZATOR');
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!validate_email($email)) {
         $errors['valid_email'] = sprintf(DEFAULT_VALIDATION_ERRORS['email'], $email);
     }
 
@@ -43,7 +43,7 @@ if (is_post_req() && isset($_POST['signup'])) {
         $errors['gdpr'] = 'Trebuie sa fiti de acord cu politica de confidentialitate.';
     }
 
-    if (!is_unique($username, 'accounts', 'username') || !is_unique($email, 'accounts', 'email')) {
+    if (!is_unique($username, 'users', 'username') || !is_unique($email, 'users', 'email')) {
         $errors['uniq_user'] = sprintf(DEFAULT_VALIDATION_ERRORS['unique'], 'Utilizatorul');
     }
 
@@ -52,9 +52,8 @@ if (is_post_req() && isset($_POST['signup'])) {
         redirect_to('../pagini/auth.php?form=register');
     }
 
-    if (register_user("$email", "$username", "$passw", $gdpr)) {
-        $success['registration_success'] = 'Inregistrarea s-a realizat cu succes. Puteti accesa contul.';
-        $_SESSION['registration'] = $success;
-        redirect_to('../pagini/auth.php?form=login');
+    $activation_code = generate_activation_code();
+    if (register_user("$email", "$username", "$passw", $gdpr, "$activation_code")) {
+        send_activation_email($email, $username, $activation_code);
     }
 }
