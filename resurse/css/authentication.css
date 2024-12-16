@@ -158,32 +158,42 @@ header {
   text-decoration: underline;
 }
 .registration,
-.error,
-.errors_login {
+.errors,
+.errors_login,
+.errors_activation,
+.alerts {
   border-radius: 12px;
   width: 100%;
   margin-bottom: 0.5em;
 }
 .registration p,
 .errors p,
-.errors_login p {
+.errors_login p,
+.errors_activation p,
+.alerts p {
   font-weight: 600;
   text-align: center;
   padding: 0.7em 0.5em;
 }
 .errors,
-.errors_login {
+.errors_login,
+.errors_activation {
   background-color: var(--culoare-rosu-deschis);
 }
 .errors p,
-.errors_login p {
+.errors_login p,
+.errors_activation p {
   font-size: 0.8rem;
   color: var(--culoare-purple);
 }
 .registration {
   background-color: var(--culoare-verde-deschis);
 }
-.registration p {
+.alerts {
+  background-color: blueviolet;
+}
+.registration p,
+.alerts p {
   color: var(--culoare-fundal);
   font-size: 0.9rem;
 }

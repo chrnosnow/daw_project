@@ -10,6 +10,7 @@ nav {
   display: flex;
   justify-content: center;
   align-content: center;
+  cursor: pointer;
 }
 #hamburger-text {
   font-size: 15px;

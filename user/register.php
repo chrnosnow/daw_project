@@ -4,6 +4,7 @@ require __DIR__ . '/../lib/common.php';
 
 $success = [];
 $errors = [];
+$alerts = [];
 
 if (is_post_req() && isset($_POST['signup'])) {
     var_dump($_POST);
@@ -54,6 +55,11 @@ if (is_post_req() && isset($_POST['signup'])) {
 
     $activation_code = generate_activation_code();
     if (register_user("$email", "$username", "$passw", $gdpr, "$activation_code")) {
+        $alerts['msg-activare-cont'] = "Va rugam sa va verificati emailul si sa urmati pasii necesari pentru activarea contului de utilizator.";
+        $_SESSION['alerts'] = $alerts;
+
         send_activation_email($email, $username, $activation_code);
+
+        redirect_to('../pagini/auth.php?form=register');
     }
 }

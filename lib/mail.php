@@ -11,7 +11,7 @@ function send_mail($email, $nume = '', $subject, $message)
 
     // În caz că vreun rând depășește N caractere, trebuie să utilizăm
     // wordwrap()
-    $message = wordwrap($message, 160, "<br />\n");
+    $message = wordwrap($message, 360, "<br />\n");
 
     try {
 
@@ -36,6 +36,7 @@ function send_mail($email, $nume = '', $subject, $message)
         $mail->SetFrom(SEND_FROM, SEND_FROM_NAME);
         $mail->Subject = $subject;
         $mail->MsgHTML($message);
+        $mail->AddEmbeddedImage("../resurse/imagini/logo_mba.jpg", "mba-logo", "logo_mba.jpg");
         /*providing a plain text alternative to the HTML version of our email. 
           This is important for compatibility with email clients that may not support or display HTML content. 
           In such cases, the email client will display the plain text content instead of the HTML content.*/

@@ -83,7 +83,10 @@ require __DIR__ . '/../lib/common.php';
             display_alert('errors');
           }
           if (isset($_SESSION['errors_activation'])) {
-            display_alert('errors');
+            display_alert('errors_activation');
+          }
+          if (isset($_SESSION['alerts'])) {
+            display_alert('alerts');
           }
           ?>
           <form action="../user/register.php" method="post" autocomplete="off">
@@ -111,7 +114,7 @@ require __DIR__ . '/../lib/common.php';
               <label>Confirma parola*</label>
             </div>
             <div class="gdpr-wrapper">
-              <label><input type="checkbox" name="gdpr" />Sunt de acord cu <a href="politica-de-confidentialitate.php"><b>Politica de confidentialitate</b></a>
+              <label><input type="checkbox" name="gdpr" />* Sunt de acord cu <a href="politica-de-confidentialitate.php"><b>Politica de confidentialitate</b></a>
               </label>
             </div>
 

@@ -39,6 +39,11 @@ function redirect_to(string $url): void
     exit;
 }
 
+/**
+ * Generate a random alphanumeric string
+ * @param mixed $length (prefferably even number; odd number will floor to even number)
+ * @return string
+ */
 function randomNumber($length)
 {
     //half the length because each byte is 

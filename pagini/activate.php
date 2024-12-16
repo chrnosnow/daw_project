@@ -8,7 +8,7 @@ if (is_get_req()) {
     $activation_code = sanitize_text($_GET['activation_code']);
 
     $err = [];
-    if (empty($email) || empty($activation_code)) {
+    if (!isset($email) || empty($email) || !isset($activation_code) || empty($activation_code)) {
         $errors['all_req_activation'] = 'Toate campurile sunt obligatorii in linkul de activare.';
     }
 

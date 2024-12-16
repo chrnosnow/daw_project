@@ -151,7 +151,7 @@ header > .container-meniu {
     margin-bottom: calc(2 * var(--dim-margine-sus));
   }
   .header-logo > img {
-    width: 80%;
+    width: 55%;
     height: auto;
   }
   .img-search {
