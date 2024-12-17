@@ -3,7 +3,7 @@ require_once __DIR__ . '/../config/mail_config.php';
 require_once __DIR__ . '/../module/phpmailer/class.phpmailer.php';
 
 
-function send_mail($email, $nume = '', $subject, $message)
+function send_mail($email, $nume = '', $subject, $message, $alt_message = 'To view this post you need a compatible HTML viewer!')
 {
     $mail = new PHPMailer(true);
 
@@ -37,10 +37,8 @@ function send_mail($email, $nume = '', $subject, $message)
         $mail->Subject = $subject;
         $mail->MsgHTML($message);
         $mail->AddEmbeddedImage("../resurse/imagini/logo_mba.jpg", "mba-logo", "logo_mba.jpg");
-        /*providing a plain text alternative to the HTML version of our email. 
-          This is important for compatibility with email clients that may not support or display HTML content. 
-          In such cases, the email client will display the plain text content instead of the HTML content.*/
-        $mail->AltBody = 'To view this post you need a compatible HTML viewer!';
+        //plain text alternative for when HTML content is not supported
+        $mail->AltBody = $alt_message;
         $mail->Send();
         echo "Message Sent OK</p>\n";
     } catch (phpmailerException $e) {

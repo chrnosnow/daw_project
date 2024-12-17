@@ -15,11 +15,11 @@ if (is_get_req()) {
     if (!validate_email(trim($_GET['email']))) {
         $err['valid_email_activation'] = sprintf(DEFAULT_VALIDATION_ERRORS['email'], $email);
     }
-
+    print_r($err);
     if (empty($err)) {
         $user = find_unactivated_user($activation_code, $email);
 
-        if ($user && activate_user($user['id'])) {
+        if ($user && activate_user($user[0]['id'])) {
             $success['registration_success'] = 'Activarea contului s-a realizat cu succes. Puteti accesa contul.';
             $_SESSION['registration'] = $success;
             redirect_to('../pagini/auth.php?form=login');

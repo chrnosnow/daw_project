@@ -20,6 +20,69 @@ function is_get_req()
     return strtoupper($_SERVER['REQUEST_METHOD']) === 'GET';
 }
 
+
+/**
+ * Execute prepared SQL queries
+ *
+ * @param string $query - Interogarea SQL.
+ * @param string $types - Tipurile de date pentru parametri (ex: "sdi" pentru string, double, int).
+ * @param array $params - Valorile pentru parametri.
+ * @return bool - Rezultatul metodei execute().
+ */
+function execute_query(string $query, string $types = '', array $params = [])
+{
+    $stmt = db()->prepare($query);
+
+    if (!empty($types) && !empty($params)) {
+        // Creează referinte pentru fiecare element din $params (bind_param are nevoie de referinte)
+        $param_references = [];
+        foreach ($params as $key => $value) {
+            $param_references[$key] = &$params[$key];
+        }
+
+        $stmt->bind_param($types, ...$param_references);
+    }
+
+    return $stmt->execute();
+}
+
+
+/**
+ * Returns a nested array having an enumerated index from a select query
+ * 
+ * @param string $query
+ * @param string $types
+ * @param array $params
+ * @param int $arrayType - constant for fetch_all() method; e.g. MYSQLI_ASSOC for associative array, MYSQLI_NUM for array with enumerated index 
+ * @return array
+ */
+function execute_query_and_fetch(string $query, string $types = '', array $params = [], int $fetchMode = MYSQLI_ASSOC)
+{
+    $stmt = db()->prepare($query);
+
+    if (!empty($types) && !empty($params)) {
+        // Creează referinte pentru fiecare element din $params (bind_param are nevoie de referinte)
+        // $param_references = [];
+        // foreach ($params as $key => $value) {
+        //     $param_references[$key] = &$params[$key];
+        // }
+
+        // $stmt->bind_param($types, ...$param_references);
+        $stmt->bind_param($types, ...$params);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $data = [];
+    if ($result) {
+        $data = $result->fetch_all($fetchMode);
+    }
+
+    return $data;
+}
+
+
 function display_alert(string $key)
 {
     if (!isset($key) || !isset($_SESSION[$key])) {

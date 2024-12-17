@@ -4,6 +4,8 @@ require_once __DIR__ . '/../config/mail_config.php';
 require_once __DIR__ . '/mail.php';
 
 const EXPIRY_TIME = 20 * 60; // in secunde
+
+
 /**
  * Register a user
  * 
@@ -28,36 +30,30 @@ function register_user(string $email, string $username, string $password, bool $
   $pass = password_hash($password, PASSWORD_BCRYPT);
   $card_no = generate_card_number();
   $act_code = password_hash($activation_code, PASSWORD_DEFAULT);
-  // $act_expiry = date('Y-m-d H:i:s',  time() + $expiry);
   $current_time = new DateTime('now', new DateTimeZone('Europe/Bucharest'));
   $act_expiry = $current_time->add(new DateInterval('PT20M'));
   $act_expiry = $act_expiry->format('Y-m-d H:i:s');
-  $query = 'INSERT INTO users(username, email, password, gdpr, card_no, is_admin, activation_code, activation_expiry)
-    VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
+  $params = [$username, $email, $pass, $gdpr, $card_no, $is_admin, $act_code, $act_expiry];
+  $query = 'INSERT INTO users(username, email, password, gdpr, card_no, is_admin, activation_code, activation_expiry) VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
 
-  $statement = db()->prepare($query);
-
-  $statement->bind_param("sssisiss", $username, $email, $pass, $gdpr, $card_no, $is_admin, $act_code, $act_expiry);
-
-  return $statement->execute();
+  return execute_query($query, "sssisiss", $params);
 }
+
 
 function generate_card_number()
 {
   $card_number = 'MBA-' . strtoupper(randomNumber(6));
-
   $query = 'SELECT card_no FROM users WHERE card_no = UPPER(?)';
-  $statement = db()->prepare($query);
-  $statement->bind_param('s', $card_number);
-  $statement->execute();
-  $result = $statement->get_result();
+  $param = [$card_number];
+  $card_no_from_db = execute_query_and_fetch($query, "s", $param);
 
-  if (empty($result)) {
+  if (!empty($card_no_from_db)) {
     generate_card_number();
   }
 
   return $card_number;
 }
+
 
 /**
  * Find a user by username in the database
@@ -68,44 +64,44 @@ function generate_card_number()
  */
 function find_user_by_uname(string $username)
 {
-
   $query = 'SELECT * FROM users WHERE username = ?';
-  $statement = db()->prepare($query);
-  $statement->bind_param("s", $username);
-  $statement->execute();
-  $result = $statement->get_result();
-  return $result->fetch_assoc();
+  $param = [$username];
+  return execute_query_and_fetch($query, "s", $param);
 }
+
 
 function is_user_active($user)
 {
-  return (int) $user['active'] === 1;
+  return (int) $user[0]['active'] === 1;
 }
+
 
 function login_user(string $username, string $password)
 {
   $user = find_user_by_uname($username);
-  if ($user && is_user_active($user) && password_verify($password, $user['password'])) {
+  if ($user && is_user_active($user) && password_verify($password, $user[0]['password'])) {
     //prevent session fixation attack
     session_regenerate_id();
     //set user details in the session
     $_SESSION['user'] = [
-      'id' => $user['id'],
-      'username' => $user['username'],
-      'email' => $user['email'],
-      'card_no' => $user['card_no']
+      'id' => $user[0]['id'],
+      'username' => $user[0]['username'],
+      'email' => $user[0]['email'],
+      'card_no' => $user[0]['card_no']
     ];
     return true;
   }
   return false;
 }
 
+
 function generate_activation_code()
 {
   return randomNumber(16);
 }
 
-function send_activation_email(string $email, string $name = '', string $activation_code)
+
+function send_activation_email(string $email, string $name = '', string $activation_code, string $alt_message = '')
 {
   $activation_link = WEBSITE_URL . '/pagini/activate.php?email=' . $email . '&activation_code=' . $activation_code;
   $subject = 'Activare cont';
@@ -129,69 +125,67 @@ function send_activation_email(string $email, string $name = '', string $activat
                 </tr>
                 <tr>
                   <td style='font-size: 1.2em'>
-                    <p>Bun gasit!</p>
-                    <br />
+                    <p>Bun gasit!</p><br />
                     <p>
                       Multumim pentru inregistrarea pe site-ul Bibliotecii \"Mica
                       Bufnita a Atenei\".
                     </p>
                     <p>
                       Te rugam sa iti activezi contul accesand linkul de mai
-                      jos, care este valabil " . EXPIRY_TIME / 60 . " de minute:
-                    </p>
+                      jos, care este valabil " . EXPIRY_TIME / 60 . " de minute:</p>
                     <p><a href=$activation_link> $activation_link</a></p>
-                    <br>
-                    <p line-height='1.5'>Spor la citit,</p>
-                    <p line-height='1.5'>Echipa MBA</p>
-                    <p></p>
+                    <br />
+                    <p> Spor la citit,</p>
+                    <p line-height='1.3'> Echipa MBA</p>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
     ";
-  send_mail($email, $name, $subject, $message);
+  $alt_message = "Bun gasit!\n Multumim pentru inregistrarea pe site-ul Bibliotecii \"Mica
+                      Bufnita a Atenei\".\n Te rugam sa iti activezi contul accesand linkul de mai jos, care este valabil " . EXPIRY_TIME / 60 . " de minute: $activation_link .\n Spor la citit,\n Echipa MBA";
+  send_mail($email, $name, $subject, $message, $alt_message);
 }
+
 
 function find_unactivated_user(string $activation_code, string $email)
 {
   $query = 'SELECT id, activation_code, activation_expiry < now() AS expired FROM users WHERE active = 0 AND email=?';
-  $stmt = db()->prepare($query);
-  $stmt->bind_param('s', $email);
-  $stmt->execute();
-  $res = $stmt->get_result();
-  $user = $res->fetch_assoc();
-
+  $param = [$email];
+  $user = execute_query_and_fetch($query, "s", $param);
+  var_dump($user);
   if ($user) {
     // already expired, delete the inactive user with expired activation code
-    if ((int)$user['expired'] === 1) {
+    if ((int)$user[0]["expired"] === 1) {
 
-      delete_user_by_id($user['id']);
+      delete_user_by_id($user[0]["id"]);
       return null;
     }
     //verify the password
-    if (password_verify($activation_code, $user['activation_code'])) {
+    if (password_verify($activation_code, $user[0]['activation_code'])) {
       return $user;
     }
   }
   return null;
 }
 
+
 function delete_user_by_id(int $id, int $active = 0)
 {
   $query = 'DELETE FROM users WHERE id = ? AND active = ?';
-  $stmt = db()->prepare($query);
-  $stmt->bind_param('ii', $id, $active);
-  return $stmt->execute();
+  $params = [$id, $active];
+  return execute_query($query, "ii", $params);
 }
+
 
 function activate_user(int $user_id)
 {
   $query = 'UPDATE users SET active = 1, activated_at = CURRENT_TIMESTAMP WHERE id = ?';
-  $stmt = db()->prepare($query);
-  $stmt->bind_param('i', $user_id);
-  return $stmt->execute();
+  $param = [$user_id];
+  return execute_query($query, "i", $param);
 }
+
 
 function is_user_logged_in()
 {
