@@ -11,4 +11,7 @@ const DEFAULT_VALIDATION_ERRORS = [
     'success' => '%s s-a realizat cu succes.',
     'invalid_login' => 'Numele de utilizator sau parola nu se potrivesc.',
     'invalid_activation' => 'Activarea contului nu s-a realizat. Va rugam sa va inregistrati din nou.',
+    'all_required' => 'Toate campurile * sunt obligatorii.',
+    'add_author' => 'Nu s-a putut adauga autorul in baza de date',
+    'add_author_to_book' => 'Nu s-a putut asocia autorul cu cartea in baza de date',
 ];

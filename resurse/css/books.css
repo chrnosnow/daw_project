@@ -1,0 +1,28 @@
+body {
+  display: block;
+}
+header {
+  position: unset;
+}
+h1 {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  font-weight: 600;
+}
+
+.errors,
+.success {
+  max-width: 40vw;
+  display: block;
+  margin: auto;
+}
+.container {
+  margin: 0 auto;
+  max-width: 40vw;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

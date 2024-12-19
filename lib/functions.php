@@ -41,6 +41,7 @@ function execute_query(string $query, string $types = '', array $params = [])
         }
 
         $stmt->bind_param($types, ...$param_references);
+        // $stmt->bind_param($types, $params);
     }
 
     return $stmt->execute();

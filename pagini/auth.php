@@ -27,7 +27,7 @@ require __DIR__ . '/../lib/common.php';
         </picture>
       </a>
     </div>
-    <p id="watermark" style="display: none">Chihaitei<br />Irina</p>
+
   </header>
   <main>
     <div class="wrapper">

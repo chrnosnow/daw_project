@@ -12,9 +12,9 @@ $results_per_page = 3;
 $current_page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $offset = ($current_page - 1) * $results_per_page;
 
-if (is_get_req() && !empty($_GET['query'])) {
+if (is_get_req() && !empty($_GET['search'])) {
 
-    $search_term = sanitize_text($_GET['query']);
+    $search_term = sanitize_text($_GET['search']);
 
 
     if (!empty($search_term)) {
@@ -47,7 +47,6 @@ if (is_get_req() && !empty($_GET['query'])) {
 //numarul total de carti rezultate
 $total_books = count($books);
 $total_pages = ceil($total_books / $results_per_page);
-
 
 
 include __DIR__ . "/../fragmente/search_results.php";

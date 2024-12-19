@@ -7,7 +7,7 @@ $errors = [];
 $alerts = [];
 
 if (is_post_req() && isset($_POST['signup'])) {
-    var_dump($_POST);
+
     $username = sanitize_text($_POST['uname']);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $passw = $_POST['pass'];
@@ -15,7 +15,7 @@ if (is_post_req() && isset($_POST['signup'])) {
     $gdpr = isset($_POST['gdpr']) ? true : false;
 
     if (empty($username) || empty($email) || empty($passw) || empty($passw2)) {
-        $errors['all_required'] = 'Toate campurile sunt obligatorii.';
+        $errors['all_required'] = DEFAULT_VALIDATION_ERRORS['all_required'];
     }
 
     $min_len = 3;

@@ -49,6 +49,9 @@ require __DIR__ . '/lib/common.php';
     media="screen and
     (max-width:800px)" />
 
+  <link rel="stylesheet" href="../resurse/css/search.css" type="text/css">
+
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -137,17 +140,17 @@ require __DIR__ . '/lib/common.php';
   <main>
     <div id="grid-pagina">
       <section>
-        <div class="img-search">
-          <input
-            class="search-box"
-            type="text"
-            name="lookfor"
-            placeholder="Cautare in catalog..." />
-          <button class="btn search-btn">
-            <i class="fa fa-search"></i>
-          </button>
+        <div class="img-search container mt-4">
+          <form action="./pagini/list_books.php" method="get" class="mb-3">
+            <div class="form-group">
+              <input type="text" class="form-control search-box" name="search" placeholder="Cauta in catalog...">
+            </div>
+            <button type="submit" class="btn btn-primary search-btn"><i class="fa fa-search"></i>
+            </button>
+          </form>
         </div>
       </section>
+
       <section id="home">
         <h2>Acasa</h2>
         <p>

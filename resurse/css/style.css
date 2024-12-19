@@ -86,12 +86,48 @@ header > .container-meniu {
   border: none;
   width: 60px;
   padding: 0;
+  cursor: pointer;
 }
 .search-btn .fa-search {
   color: #eccfa4;
   font-size: 28px;
   display: inline-flex;
   align-items: center;
+}
+.errors,
+.alerts,
+.success {
+  border-radius: 12px;
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+.errors p,
+.alerts p,
+.success p {
+  font-weight: 600;
+  text-align: center;
+  padding: 0.7em 0.5em;
+}
+.errors {
+  background-color: var(--culoare-rosu-deschis);
+}
+.errors p {
+  font-size: 0.8rem;
+  color: var(--culoare-purple);
+}
+.alerts {
+  background-color: blueviolet;
+}
+.alerts p {
+  color: var(--culoare-fundal);
+  font-size: 0.9rem;
+}
+.success {
+  background-color: var(--culoare-verde-deschis);
+}
+.success p {
+  color: var(--culoare-fundal);
+  font-size: 0.9rem;
 }
 
 @media screen and (max-width: 1200px) {
@@ -131,6 +167,10 @@ header > .container-meniu {
       url("../imagini/interior05_wide_1200.avif") type("image/avif"),
       url("../imagini/interior05_wide_1200.png") type("image/png")
     );
+  }
+  .errors p,
+  .alerts p .success p {
+    padding: 0.3em 0.3em;
   }
 }
 

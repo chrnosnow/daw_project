@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="../resurse/css/nav1200.css" type="text/css" media="screen and (max-width:1200px)" />
 <link rel="stylesheet" href="../resurse/css/nav800.css" type="text/css" media="screen and
     (max-width:800px)" />
+<link rel="stylesheet" href="../resurse/css/search.css" type="text/css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
