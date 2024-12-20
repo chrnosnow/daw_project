@@ -8,14 +8,14 @@ if (is_get_req()) {
     $activation_code = sanitize_text($_GET['activation_code']);
 
     $err = [];
-    if (!isset($email) || empty($email) || !isset($activation_code) || empty($activation_code)) {
+    if (empty($email) ||  empty($activation_code)) {
         $errors['all_req_activation'] = 'Toate campurile sunt obligatorii in linkul de activare.';
     }
 
     if (!validate_email(trim($_GET['email']))) {
         $err['valid_email_activation'] = sprintf(DEFAULT_VALIDATION_ERRORS['email'], $email);
     }
-    print_r($err);
+
     if (empty($err)) {
         $user = find_unactivated_user($activation_code, $email);
 

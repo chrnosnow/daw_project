@@ -105,6 +105,7 @@ function redirect_to(string $url): void
 
 /**
  * Generate a random alphanumeric string
+ * 
  * @param mixed $length (prefferably even number; odd number will floor to even number)
  * @return string
  */
@@ -117,4 +118,23 @@ function randomNumber($length)
     $rnd = bin2hex($bytes);
 
     return $rnd;
+}
+
+/**
+ * Generate a random quote from a nested array by randomizing the index.
+ * The quote is fixed for a day.
+ * 
+ * @param array $quotes - nested array, e.g. $quotes[index]['quote'], $quotes[index]['author'], $quotes[index]['writing']
+ * @return mixed - a nested array containing $quotes[randomized_index], i.e. the information regarding the quote of the day
+ */
+function generate_random_quote(array $quotes)
+{
+    //generating seed in order to have the same quote during a day, even if the page is reloaded
+    $current_day = date('Ymd');
+    mt_srand($current_day);
+
+    //get random index based on the seed
+    $index = mt_rand(0, count($quotes) - 1);
+
+    return $quotes[$index];
 }

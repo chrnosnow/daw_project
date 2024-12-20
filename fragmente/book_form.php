@@ -10,7 +10,7 @@ foreach ($all_authors as $author) {
 ?>
 
 
-<div class="container mt-4">
+<div class="container mt-4 wrapper-book">
     <form action="../book/add_book.php" method="post">
         <div class="form-group">
             <label for="title">Titlu*</label>
@@ -54,7 +54,7 @@ foreach ($all_authors as $author) {
         <div class="form-group">
             <label for="new_authors">Sau adauga autori noi (prenume si nume, separate prin virgula):</label>
             <textarea class="form-control" id="new_authors" name="new_authors" rows="3"></textarea>
-            <small class="form-text text-muted">Exemple: Ioana Alexandra Popescu, Mario J.P. Vargas Llosa, Autor Necunoscut...</small>
+            <small class="form-text text-muted">Exemplu: Ioana Alexandra Popescu, Mario J.P. Vargas Llosa, Autor Necunoscut</small>
         </div>
         <button type="submit" class="btn btn-primary">Salveaza</button>
     </form>

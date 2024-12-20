@@ -8,11 +8,11 @@ $errors = [];
 
 // echo "akdfsjsdnfhi rlfioeargkjsfbdvjksfv";
 
-// if (is_get_req() && !empty($_GET['action'])) {
+// if (!empty($_GET['action'])) {
 
 // $action = sanitize_text($_GET['action']);
 
-// if ($action === 'create') {
+// if ($action === 'create' && is_post_req()) {
 $title = sanitize_text($_POST['title']);
 $edition = sanitize_text($_POST['edition']) ?? '';
 $isbn = sanitize_text($_POST['isbn']);
@@ -77,12 +77,12 @@ foreach ($author_ids as $author_id) {
 
 
 if (!empty($errors)) {
-    $_SESSION['errors_add_book'] = $errors;
+    $_SESSION['errors'] = $errors;
     redirect_to('../pagini/manage_book.php');
 }
 
 $success['book_success'] = "Adaugarea cartii noi s-a realizat cu succes.";
-$_SESSION['book_added'] = $success;
+$_SESSION['success'] = $success;
 
 
 // include '../fragmente/book_form.php';

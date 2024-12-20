@@ -3,7 +3,7 @@
 require __DIR__ . '/../lib/common.php';
 
 if (is_user_logged_in()) {
-    redirect_to('../index.php');
+    redirect_to('../pagini/profile.php');
 }
 
 $errors = [];
@@ -24,5 +24,5 @@ if (is_post_req() && isset($_POST['signin'])) {
     }
 
     //if login is successful
-    redirect_to('../index.php');
+    redirect_to('../pagini/profile.php');
 }

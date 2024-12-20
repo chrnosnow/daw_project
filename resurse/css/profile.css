@@ -1,0 +1,131 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+/* Meniu lateral */
+.side-bar {
+  width: 250px;
+  background-color: #f4f4f4;
+  padding: 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.side-bar #categ {
+  font-weight: 600;
+}
+.side-bar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.side-bar ul li {
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.side-bar ul li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.side-bar ul li ul {
+  margin-top: 5px;
+  padding-left: 12px;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.container-sidebar {
+  display: flex;
+  align-items: stretch;
+}
+/* Profil */
+.wrapper-user-account {
+  padding: 15px;
+  padding-left: calc(10 * var(--dim-spatiere));
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+
+  flex: 1;
+  background: transparent;
+}
+.wrapper-user-account .form-box {
+  width: 50%;
+  padding: var(--dim-spatiere);
+}
+.wrapper-user-account h2 {
+  font-size: 2em;
+  line-height: 4rem;
+  /* padding-top: var(--dim-spatiere); */
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  border-bottom: 2px solid var(--culoare-prim-albastru-inchis);
+  margin: 30px 0;
+  transition: all 0.5s ease;
+}
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: var(--culoare-prim-albastru-inchis);
+  font-weight: 500;
+  pointer-events: none;
+  cursor: text;
+  transition: 0.5s;
+}
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: var(--culoare-prim-albastru-inchis);
+  font-weight: 600;
+  padding: 0 35px 0 5px;
+}
+.input-box input:focus ~ label,
+.input-box input:not(:placeholder-shown) ~ label {
+  top: -5px;
+}
+.input-box:focus-within i {
+  color: var(--culoare-hover);
+}
+.input-box .icon {
+  position: absolute;
+  right: 8px;
+  font-size: 1.2em;
+  color: var(--culoare-prim-albastru-inchis);
+  line-height: 57px;
+}
+.input-box.email *,
+.input-box.card-no * {
+  color: grey;
+}
+.btn {
+  width: 100%;
+  height: 45px;
+  background: var(--culoare-prim-albastru-inchis);
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.5s;
+}
+.btn:hover {
+  background-color: var(--culoare-hover);
+}

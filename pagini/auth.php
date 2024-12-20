@@ -1,5 +1,57 @@
 <?php
 require __DIR__ . '/../lib/common.php';
+
+$quotes = [
+  [
+    'citat' =>  'Foaie verde di-on dudău,<br />
+                  Nimarui nu-i pare rău<br />
+                  Dupa dorul cia-l duc eu.<br />
+                  Nimarui nu-i ieste milă<br />
+                  Di-al meu trai fără hodină,<br />
+                  Că vărs sînge pentru țară<br />
+                  Și petrec o viaț-amară.<br />',
+    'autor' => 'Costan Vaman Lucan',
+    'opera' => 'Cântece cătunești din Război din anul 1914-15'
+  ],
+  [
+    'citat' =>  'Și aici <br />
+                  în iarba umedă <br />
+                  o jumătate de coajă <br />
+                  a unui ou de prihor <br />
+                  strălucește <br />
+                  albastru ca o stea nou-născută <br />
+                  fragilă ca o lume. <br />',
+    'autor' => 'Maria Popova',
+    'opera' => 'Vrajă împotriva indiferenței'
+  ],
+  [
+    'citat' =>  'Dar cel mai ciudat lucru era încă altceva: spirala cochiliei sale s-a încolăcit în direcția opusă față de ceilalți melci - a spiralat la stânga și nu la dreapta, în aceeași direcție în care se târăște Pământul în jurul Soarelui. Bătrânul ridică tandru melcul mic și se minună de el.',
+    'autor' => 'Maria Popova',
+    'opera' => 'Melcul cu inima dreaptă'
+  ],
+  [
+    'citat' =>  'Negreşit, oamenii sunt şi buni şi răi, dar e necesar să se precizeze în ce împrejurări. Trei nule puse înaintea cifrei una sau după ea, nu înseamnă acelaşi lucru.',
+    'autor' => 'Camil Petrescu',
+    'opera' => 'Ultima noapte de dragoste, întâia noapte de război'
+  ],
+  [
+    'citat' =>  'Dragostea mea nu-i nici rătăcire, nici zigzag de încântare supremă şi disperări fără fund. Iubesc cum respir: egal, iremediabil şi pentru totdeauna…',
+    'autor' => 'Cella Serghi',
+    'opera' => 'Cartea Mironei'
+  ],
+  [
+    'citat' =>  'Cred în liberul arbitru. Dacă câinele meu alege să poarte pica față de întreaga rasă umană, cu excepția mea, trebuie să aiba libertatea să o facă.',
+    'autor' => 'Diana Wynne Jones',
+    'opera' => 'Castelul din aer'
+  ],
+  [
+    'citat' =>  'Nu sunt o pasăre; și nicio plasă nu mă va prinde; Sunt o ființă umană liberă, cu voință independentă; pe care acum o voi exercita ca să te părăsesc. &#10075;Eu nu sunt un înger&#10076;, am afirmat; și nu voi fi unul până nu voi muri: voi fi eu însămi.',
+    'autor' => 'Charlotte Bronte',
+    'opera' => 'Jane Eyre'
+  ],
+];
+
+$todays_quote = generate_random_quote($quotes);
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +79,6 @@ require __DIR__ . '/../lib/common.php';
         </picture>
       </a>
     </div>
-
   </header>
   <main>
     <div class="wrapper">
@@ -131,6 +182,9 @@ require __DIR__ . '/../lib/common.php';
       <div class="wrapper-quote">
         <div class="quote-card">
           <blockquote>
+            <?php echo $todays_quote['citat'] ?>
+          </blockquote>
+          <!-- <blockquote>
             Foaie verde di-on dudău,<br />
             Nimarui nu-i pare rău<br />
             Dupa dorul cia-l duc eu.<br />
@@ -138,7 +192,7 @@ require __DIR__ . '/../lib/common.php';
             Di-al meu trai fără hodină,<br />
             Că vărs sînge pentru țară<br />
             Și petrec o viaț-amară.<br />
-          </blockquote>
+          </blockquote> -->
           <!-- <blockquote>
               Dar cel mai ciudat lucru era încă altceva: spirala cochiliei sale
               s-a încolăcit în direcția opusă față de ceilalți melci - a
@@ -146,8 +200,8 @@ require __DIR__ . '/../lib/common.php';
               se târăște Pământul în jurul Soarelui. Bătrânul ridică tandru
               melcul mic și se minună de el.
             </blockquote> -->
-          <b>Costan Vaman Lucan</b>
-          <cite>Cântece cătunești din Război din anul 1914-15</cite>
+          <b><?php echo $todays_quote['autor'] ?></b>
+          <cite><?php echo $todays_quote['opera'] ?></cite>
         </div>
       </div>
     </div>

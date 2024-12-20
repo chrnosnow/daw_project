@@ -42,8 +42,8 @@ function send_mail($email, $nume = '', $subject, $message, $alt_message = 'To vi
         $mail->Send();
         echo "Message Sent OK</p>\n";
     } catch (phpmailerException $e) {
-        echo $e->errorMessage(); //error from PHPMailer
+        $_SESSION['errors']['PHPMailer_err'] = 'A aparut o eroare de la PHPMailer: ' . $e->errorMessage(); //error from PHPMailer
     } catch (Exception $e) {
-        echo $e->getMessage(); //error from anything else!
+        $_SESSION['errors']['mail_err'] = 'A aparut o eroare la trimiterea email-ului:' . $e->getMessage(); //error from anything else!
     }
 }
