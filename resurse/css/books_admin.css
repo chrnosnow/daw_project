@@ -1,0 +1,28 @@
+.alphabet-filter {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.alphabet-filter a {
+  margin: 5px;
+  padding: 6px 8px;
+  text-decoration: none;
+  border: 1px solid var(--culoare-visiniu);
+  border-radius: 5px;
+  color: var(--culoare-visiniu);
+}
+.alphabet-filter a.active,
+.alphabet-filter a:hover {
+  background-color: var(--culoare-visiniu);
+  color: #feffff;
+}
+.btn {
+  width: auto;
+  height: auto;
+}
+.btn.edit {
+  background-color: var(--culoare-portocaliu);
+  margin-bottom: 2px;
+}

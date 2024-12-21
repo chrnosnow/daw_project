@@ -10,7 +10,7 @@ function getMenuByUserType($userType)
 {
     if ($userType === 'admin') {
         return [
-            'CARTI' => ['Adauga o carte' => '../pagini/manage_book.php', 'Modifica sau sterge o carte' => '../pagini/manage_book.php'],
+            'CARTI' => ['Adauga o carte' => '../pagini/add_book.php', 'Modifica sau sterge o carte' => '../pagini/manage_book.php'],
             'IMPRUMUTURI' => [],
             'PROFIL' => ['Date personale' => '../pagini/personal_info.php', 'Modifica parola' => '../pagini/change_password.php'],
             'Deconectare' => ['../pagini/logout.php']

@@ -5,37 +5,27 @@ require __DIR__ . '/../lib/common.php';
 <!DOCTYPE html>
 <html lang="ro">
 
-
-<?php
-view('head', ['title' => 'Gestiune carti']);
-require_once __DIR__ . '/../fragmente/header_user.php';
-?>
-
-
-<div class="wrapper">
+<head>
     <?php
-    require_once __DIR__ . "/../fragmente/sidebar_user.php";
+    view('head', ['title' => 'Modifica sau sterge o carte']);
     ?>
-    <div class="wrapper-user-account ">
-        <div class="title">
-            <h2>Adauga o carte</h2>
-        </div>
-        <div class="form-wrapper">
-            <?php
-            if (isset($_SESSION['errors'])) {
-                display_alert('errors');
-            }
-            if (isset($_SESSION['success'])) {
-                display_alert('success');
-            }
-            ?>
-            <?php
-            include __DIR__ . "/../fragmente/book_form.php";
-            ?>
+    <link rel="stylesheet" href="../resurse/css/books_admin.css" type="text/css">
+
+    <?php
+    require_once __DIR__ . '/../fragmente/header_user.php';
+    ?>
+    <div class="wrapper">
+        <?php
+        require_once __DIR__ . "/../fragmente/sidebar_user.php";
+        ?>
+        <div class="wrapper-user-account">
+            <div class="title">
+                <h2>Modifica sau sterge o carte</h2>
+            </div>
+            <?php include __DIR__ . "/../book/search_admin.php"; ?>
         </div>
     </div>
-</div>
-</main>
-</body>
+    </main>
+    </body>
 
 </html>
