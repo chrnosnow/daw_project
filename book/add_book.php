@@ -17,13 +17,21 @@ $title = sanitize_text($_POST['title']);
 $edition = sanitize_text($_POST['edition']) ?? '';
 $isbn = sanitize_text($_POST['isbn']);
 $publisher = sanitize_text($_POST['publisher']) ?? '';
-$year = validate_integer($_POST['public_yr']) ?? '';
+$year = $_POST['public_yr'] ?? '';
 $language = sanitize_text($_POST['lang']) ?? '';
 $author_ids = $_POST['author_ids'] ?? [];
 $new_authors = $_POST['new_authors'] ?? [];
 
 if (empty($title) || empty($isbn) || (empty($author_ids) && empty($new_authors))) {
     $errors['add_book_all_req'] = DEFAULT_VALIDATION_ERRORS['all_required'];
+}
+
+if (!validate_isbn_format($isbn)) {
+    $errors['isbn_format'] = "ISBN invalid.";
+}
+
+if (!validate_integer($publication_year) || strlen($publication_year) != 4) {
+    $errors['publication_year'] = "Anul de publicatie este invalid.";
 }
 
 // introducem cartea in baza de date

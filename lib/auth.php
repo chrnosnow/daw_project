@@ -125,7 +125,8 @@ function send_activation_email(string $email, string $name = '', string $activat
                 </tr>
                 <tr>
                   <td style='font-size: 1.2em'>
-                    <p>Bun gasit!</p><br />
+                    <p>Bun gasit, $name!</p>
+                    <br />
                     <p>
                       Multumim pentru inregistrarea pe site-ul Bibliotecii \"Mica
                       Bufnita a Atenei\".

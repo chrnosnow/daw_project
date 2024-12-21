@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../lib/common.php';
-require_once __DIR__ . '/../book/book_display.php';
+require_once __DIR__ . '/../book/book_info.php';
 ?>
 <!DOCTYPE html>
 <html lang="ro">
@@ -75,10 +75,10 @@ require_once __DIR__ . '/../book/book_display.php';
                             <td><?= htmlspecialchars($book['updated_at'] ?? '-') ?></td>
                         </tr>
                     </table>
-                    <div>
-                        <a href="edit_book.php?id=<?= $book['book_id'] ?>" class="btn btn-warning edit">Editează</a>
-                        <a href="delete_book.php?id=<?= $book['book_id'] ?>" class="btn btn-danger delete" onclick="return confirm('Ești sigur că vrei să ștergi această carte?')">Șterge</a>
-                    </div>
+                    <!-- <div>
+                        <a href="update_book.php?id=<?= $book['book_id'] ?>" class="btn btn-warning edit">Salveaza</a>
+                        <a href="delete_book.php?id=<?= $book['book_id'] ?>" class="btn btn-danger delete" onclick="return confirm('Esti sigur(a) ca vrei sa stergi aceasta carte?')">Sterge</a>
+                    </div> -->
                 </div>
             <?php } ?>
             </body>

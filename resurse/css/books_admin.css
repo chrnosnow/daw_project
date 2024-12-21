@@ -21,8 +21,15 @@
 .btn {
   width: auto;
   height: auto;
+  margin: 3px;
 }
-.btn.edit {
+.btn.edit,
+.btn.saveBook {
   background-color: var(--culoare-portocaliu);
-  margin-bottom: 2px;
+}
+.btn.btn-secondary {
+  color: #fff;
+}
+.btn.saveBook:hover {
+  color: #000;
 }
