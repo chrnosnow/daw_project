@@ -2,12 +2,13 @@
 require_once __DIR__ . '/../lib/common.php';
 require_once __DIR__ . '/../book/book_info.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="ro">
 
 <head>
     <?php
-    view('head', ['title' => $book_title ?? 'Detalii carte']);
+    view('head', ['title' => $book['title'] ?? 'Detalii carte']);
     ?>
     <link rel="stylesheet" href="../resurse/css/books_admin.css" type="text/css">
 
@@ -33,7 +34,8 @@ require_once __DIR__ . '/../book/book_info.php';
                 }
                 ?>
                 <div class="container mt-4 wrapper-book">
-                    <form action="" method="post">
+                    <form action="../book/update_book.php" method="post">
+                        <input type="hidden" name="book_id" value="<?= $book_id ?>">
                         <div class="form-group">
                             <label for="title">Titlu*</label>
                             <input type="text" class="form-control" id="title" name="title" value="<?= htmlspecialchars($book['title']) ?>">
@@ -62,8 +64,8 @@ require_once __DIR__ . '/../book/book_info.php';
                             <label for="author_ids">Autori (separati prin virgula)*</label>
                             <input type="text" class="form-control" id="authors" name="authors" value="<?= htmlspecialchars($book['authors']) ?>">
                         </div>
-                        <button type="submit" class="btn btn-primary saveBook">Salveaza</button>
-                        <a href="book_details.php?id=<?= $book_id ?>" class="btn btn-secondary">Anuleaza</a>
+                        <button type="submit" class="btn btn-primary" name="saveBook">Salveaza</button>
+                        <a href="book_details_admin.php?id=<?= $book_id ?>" class="btn btn-secondary">Anuleaza</a>
                     </form>
                 </div>
             </div>

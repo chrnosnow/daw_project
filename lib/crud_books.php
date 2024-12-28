@@ -54,26 +54,19 @@ function add_authors_to_book($author_id, $book_id)
 
 function get_book_by_id(int $book_id)
 {
-    $query = "
-    SELECT books.id AS book_id, books.title, books.isbn, books.publisher, books.publication_year, books.language, books.edition, books.created_at, books.updated_at,
-           GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors
+    $query = "SELECT books.id AS book_id, books.title, books.isbn, books.publisher, books.publication_year, books.language, books.edition, books.created_at, books.updated_at,GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors
     FROM books
     LEFT JOIN author_book ON books.id = author_book.book_id
     LEFT JOIN authors ON authors.id = author_book.author_id
     WHERE books.id = ?
-    GROUP BY books.id
-";
+    GROUP BY books.id";
     return execute_query_and_fetch($query, "i", [$book_id]);
 }
 
 function update_book($book_id, $title, $isbn, $publisher = '', $publication_year = '', $language = 'Romana', $edition = '')
 {
-    $update_query = "
-            UPDATE books
-            SET title = ?, isbn = ?, publisher = ?, publication_year = ?, language = ?, edition = ?, updated_at = CURRENT_TIMESTAMP
-            WHERE id = ?
-        ";
-    return execute_query($$update_query, "ssssssi", [
+    $update_query = "UPDATE books SET title = ?, isbn = ?, publisher = ?, publication_year = ?, language = ?, edition = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
+    return execute_query($update_query, "ssssssi", [
         $title,
         $isbn,
         $publisher,
@@ -82,4 +75,14 @@ function update_book($book_id, $title, $isbn, $publisher = '', $publication_year
         $edition,
         $book_id
     ]);
+}
+
+function delete_authors_from_book(int $book_id)
+{
+    return execute_query("DELETE FROM author_book WHERE book_id = ?", "i", [$book_id]);
+}
+
+function delete_book(int $book_id)
+{
+    return execute_query("DELETE FROM books WHERE id = ?", "i", [$book_id]);
 }

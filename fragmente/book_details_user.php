@@ -7,7 +7,7 @@ require_once __DIR__ . '/../book/book_info.php';
 
 <head>
     <?php
-    view('head', ['title' => $book_title ?? 'Detalii carte']);
+    view('head', ['title' => $book['title'] ?? 'Detalii carte']);
     ?>
     <link rel="stylesheet" href="../resurse/css/books_admin.css" type="text/css">
 
@@ -75,10 +75,6 @@ require_once __DIR__ . '/../book/book_info.php';
                             <td><?= htmlspecialchars($book['updated_at'] ?? '-') ?></td>
                         </tr>
                     </table>
-                    <!-- <div>
-                        <a href="update_book.php?id=<?= $book['book_id'] ?>" class="btn btn-warning edit">Salveaza</a>
-                        <a href="delete_book.php?id=<?= $book['book_id'] ?>" class="btn btn-danger delete" onclick="return confirm('Esti sigur(a) ca vrei sa stergi aceasta carte?')">Sterge</a>
-                    </div> -->
                 </div>
             <?php } ?>
             </body>

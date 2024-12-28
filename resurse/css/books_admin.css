@@ -24,12 +24,16 @@
   margin: 3px;
 }
 .btn.edit,
-.btn.saveBook {
+.btn[name="saveBook"] {
   background-color: var(--culoare-portocaliu);
 }
 .btn.btn-secondary {
   color: #fff;
 }
-.btn.saveBook:hover {
+.btn[name="saveBook"]:hover {
   color: #000;
+}
+td > .btn.edit:visited,
+td > .btn.delete:visited {
+  color: #fff;
 }

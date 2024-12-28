@@ -61,8 +61,8 @@ function validate_isbn_format(string $isbn)
 {
     // regex for ISBN-10 and ISBN-13
     // $pattern = "/^[0-9]+[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9]*[- ]*[xX0-9]$/";
-    $pattern = "/^[0-9]{9}[xX0-9]([0-9]{3})?$/";
+    $pattern = "/[0-9]{9}[xX0-9]([0-9]{3})?$/";
     $only_numbers = str_replace('-', '', $isbn);
 
-    return preg_match($pattern, $only_numbers) === 0;
+    return preg_match($pattern, $only_numbers) === 1;
 }
