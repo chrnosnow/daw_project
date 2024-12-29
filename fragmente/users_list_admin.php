@@ -5,37 +5,39 @@
             <?= $letter ?>
         </a>
     <?php endforeach; ?>
-    <a href="manage_book.php" class="<?= empty($selected_letter) ? 'active' : '' ?>">Toate</a>
+    <a href="manage_users.php" class="<?= empty($selected_letter) ? 'active' : '' ?>">Toti</a>
 </div>
 
-<!-- Lista cartilor -->
+<!-- Lista utilizatorilor -->
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Titlu</th>
-            <th>ISBN</th>
-            <th>Autori</th>
-            <th>Actiuni</th>
+            <th>Nume utilizator</th>
+            <th>Email</th>
+            <th>Numar permis</th>
+            <th>Data crearii</th>
+            <th>Data modificarii</th>
+            <th>Actiune</th>
         </tr>
     </thead>
     <tbody>
-        <?php if (!empty($books)): ?>
-            <?php foreach ($books as $book): ?>
+        <?php if (!empty($users)): ?>
+            <?php foreach ($users as $user): ?>
                 <tr>
-                    <td><a href="../fragmente/book_details_admin.php?id=<?= $book['book_id'] ?>">
-                            <?= htmlspecialchars($book['title']) ?></a></td>
-                    <td><?= htmlspecialchars($book['isbn']) ?></td>
-                    <td><?= htmlspecialchars($book['authors']) ?></td>
+                    <td><?= htmlspecialchars($user['username']) ?></td>
+                    <td><?= htmlspecialchars($user['email']) ?></td>
+                    <td><?= htmlspecialchars($user['card_no']) ?></td>
+                    <td><?= htmlspecialchars($user['created_at']) ?></td>
+                    <td><?= htmlspecialchars($user['updated_at']) ?></td>
                     <td>
-                        <a href="../fragmente/book_details_admin.php?id=<?= $book['book_id'] ?>" class="btn btn-warning btn-sm edit">Modifica</a>
-                        <a href="../book/delete_book.php?id=<?= $book['book_id'] ?>" class="btn btn-danger btn-sm delete" onclick="return confirm('Esti sigur(a) ca vrei sa stergi aceasta carte?')">Sterge</a>
+                        <a href="../admin/delete_user.php?id=<?= $user['user_id'] ?>" class="btn btn-danger btn-sm delete" onclick="return confirm('Esti sigur(a) ca vrei sa stergi acest utilizator?')">Sterge</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="4">
-                    <p class="text-center">Nu s-au gasit carti pentru filtrul selectat.</p>
+                <td colspan="6">
+                    <p class="text-center">Nu s-au gasit utilizatori pentru filtrul selectat.</p>
                 </td>
             </tr>
         <?php endif; ?>

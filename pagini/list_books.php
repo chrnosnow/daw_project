@@ -9,12 +9,9 @@ require __DIR__ . '/../lib/common.php';
     <?php view('head', ['title' => 'Rezultatele cautarii'])
     ?>
 
-
-    <meta name="keywords" content="biblioteca, atena, mica bufnita, autentificare, utilizator" />
+    <meta name="keywords" content="biblioteca, atena, mica bufnita, carti, catalog" />
     <meta name="description"
-        content='Vrei sa ai acces la cartile Bibliotecii "Mica bufnita a Atenei" din Iasi? Hai sa-ti faci un cont de utilizator!' />
-
-    <link rel="stylesheet" href="../resurse/css/authentication.css" type="text/css" />
+        content='Cartile din catalogul Bibliotecii "Mica bufnita a Atenei"' />
 </head>
 
 <body>

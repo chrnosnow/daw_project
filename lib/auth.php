@@ -297,3 +297,9 @@ function delete_passw(string $activation_code)
   $query = 'DELETE FROM password_resets WHERE activation_code = ?';
   return execute_query($query, "s", [$activation_code]);
 }
+
+function get_user_by_id(string $user_id)
+{
+  $query = 'SELECT * FROM users WHERE id = ?';
+  return execute_query_and_fetch($query, "i", [$user_id]);
+}
