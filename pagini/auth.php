@@ -67,6 +67,11 @@ $todays_quote = generate_random_quote($quotes);
     content='Vrei sa ai acces la cartile Bibliotecii "Mica bufnita a Atenei" din Iasi? Hai sa-ti faci un cont de utilizator!' />
 
   <link rel="stylesheet" href="../resurse/css/authentication.css" type="text/css" />
+  <style>
+    .site-logo {
+      width: 50vw;
+    }
+  </style>
 </head>
 
 <body>
@@ -184,22 +189,6 @@ $todays_quote = generate_random_quote($quotes);
           <blockquote>
             <?php echo $todays_quote['citat'] ?>
           </blockquote>
-          <!-- <blockquote>
-            Foaie verde di-on dudău,<br />
-            Nimarui nu-i pare rău<br />
-            Dupa dorul cia-l duc eu.<br />
-            Nimarui nu-i ieste milă<br />
-            Di-al meu trai fără hodină,<br />
-            Că vărs sînge pentru țară<br />
-            Și petrec o viaț-amară.<br />
-          </blockquote> -->
-          <!-- <blockquote>
-              Dar cel mai ciudat lucru era încă altceva: spirala cochiliei sale
-              s-a încolăcit în direcția opusă față de ceilalți melci - a
-              spiralat la stânga și nu la dreapta, în aceeași direcție în care
-              se târăște Pământul în jurul Soarelui. Bătrânul ridică tandru
-              melcul mic și se minună de el.
-            </blockquote> -->
           <b><?php echo $todays_quote['autor'] ?></b>
           <cite><?php echo $todays_quote['opera'] ?></cite>
         </div>

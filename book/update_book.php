@@ -5,7 +5,7 @@ $success = [];
 $errors = [];
 
 if (is_post_req() && isset($_POST['saveBook'])) {
-    echo "sunt aici";
+
     $book_id = $_POST['book_id'];
     $title = sanitize_text($_POST['title']);
     $edition = sanitize_text($_POST['edition']) ?? '';

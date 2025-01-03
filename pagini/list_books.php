@@ -12,6 +12,7 @@ require __DIR__ . '/../lib/common.php';
     <meta name="keywords" content="biblioteca, atena, mica bufnita, carti, catalog" />
     <meta name="description"
         content='Cartile din catalogul Bibliotecii "Mica bufnita a Atenei"' />
+    <link rel="stylesheet" href="../resurse/css/books_admin.css" type="text/css">
 </head>
 
 <body>

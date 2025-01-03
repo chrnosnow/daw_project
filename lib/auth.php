@@ -40,7 +40,7 @@ function register_user(string $email, string $username, string $password, bool $
 }
 
 
-function generate_card_number()
+function    generate_card_number()
 {
   $card_number = 'MBA-' . strtoupper(randomNumber(6));
   $query = 'SELECT card_no FROM users WHERE card_no = UPPER(?)';
@@ -87,7 +87,8 @@ function login_user(string $username, string $password)
       'id' => $user[0]['id'],
       'username' => $user[0]['username'],
       'email' => $user[0]['email'],
-      'card_no' => $user[0]['card_no']
+      'card_no' => $user[0]['card_no'],
+      'is_admin' => $user[0]['is_admin']
     ];
     return true;
   }
@@ -191,6 +192,11 @@ function activate_user(int $user_id)
 function is_user_logged_in()
 {
   return isset($_SESSION['user']);
+}
+
+function is_admin()
+{
+  return is_user_logged_in() && ($_SESSION['user']['is_admin'] === 1);
 }
 
 function logout()

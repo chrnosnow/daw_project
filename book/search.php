@@ -24,7 +24,7 @@ if (is_get_req() && !empty($_GET['search'])) {
         // folosim group_concat pt a crea lista de autori unde exista carti cu mai multi autori
         $query = "
             SELECT books.id AS book_id, books.title, books.isbn, 
-                   GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors
+                   GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors, books.no_of_copies
             FROM books
             LEFT JOIN author_book ON books.id = author_book.book_id
             LEFT JOIN authors ON authors.id = author_book.author_id

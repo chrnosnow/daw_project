@@ -7,7 +7,7 @@ require __DIR__ . '/../lib/common.php';
 
 <head>
     <?php
-    view('head', ['title' => 'Modifica sau sterge o carte']);
+    view('head', ['title' => 'Gestioneaza o carte']);
     ?>
     <link rel="stylesheet" href="../resurse/css/books_admin.css" type="text/css">
 
@@ -29,7 +29,7 @@ require_once __DIR__ . '/../fragmente/header_user.php';
     ?>
     <div class="wrapper-user-account">
         <div class="title">
-            <h2>Modifica sau sterge o carte</h2>
+            <h2>Gestioneaza o carte</h2>
         </div>
         <?php
         if (isset($_SESSION['errors'])) {

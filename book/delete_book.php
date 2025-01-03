@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../lib/common.php';
-include_once __DIR__ . '/book_info.php';
+// include_once __DIR__ . '/book_info.php';
 
 $success = [];
 $errors = [];

@@ -1,18 +1,26 @@
+.site-logo {
+  width: 10vw;
+  margin-top: var(--dim-spatiere);
+}
 .card {
   margin-bottom: 20px;
 }
-
 .card-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
 .card-title {
   font-size: 1.25rem;
   font-weight: bold;
 }
-
 .pagination {
   justify-content: center;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .site-logo {
+    width: 20vw;
+  }
 }

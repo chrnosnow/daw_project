@@ -3,6 +3,7 @@
 const DEFAULT_VALIDATION_ERRORS = [
     'required' => '%s este obligatoriu.',
     'email' => 'Adresa de email %s este invalida.',
+    'card_no' => 'Permisul %s este invalid.',
     'between' => '%s trebuie sa aiba intre  %d si %d caractere.',
     'alphanumeric' => '%s trebuie sa contina doar litere si cifre.',
     'same' => '%s si %s trebuie sa se potriveasca.',

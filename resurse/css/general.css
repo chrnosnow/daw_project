@@ -19,13 +19,13 @@ body {
   --culoare-visiniu: #602605;
   --dim-spatiere: 10px;
 
-  --culoare-border: #f79f6d70;
-  --culoare-border-alt: #f79f6d60;
-  --culoare-border-iframe: #f38f55;
-  --culoare-header: #79b70a60;
-  --culoare-footer: #b8704650;
-  --culoare-header-1: #602605;
-  --culoare-link-vizitat: #b87046;
+  /* --culoare-border: #f79f6d70; */
+  /* --culoare-border-alt: #f79f6d60; */
+  /* --culoare-border-iframe: #f38f55; */
+  /* --culoare-header: #79b70a60; */
+  /* --culoare-footer: #b8704650; */
+  /* --culoare-header-1: #602605; */
+  /* --culoare-link-vizitat: #b87046; */
 
   background-color: var(--culoare-fundal);
   padding-left: var(--dim-spatiere);

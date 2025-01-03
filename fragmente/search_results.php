@@ -19,14 +19,19 @@
                     <div class="col-md-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($books[$j]['title']) ?></h5>
+                                <h5 class="card-title"><a href="../fragmente/book_details_user.php?id=<?= $books[$j]['book_id'] ?>"><?= htmlspecialchars($books[$j]['title']) ?></a></h5>
                                 <p class="card-text"><strong>ISBN:</strong> <?= htmlspecialchars($books[$j]['isbn']) ?></p>
                                 <p class="card-text"><strong>Autori:</strong> <?= htmlspecialchars($books[$j]['authors']) ?></p>
+                                <?php if (is_user_logged_in()): ?>
+                                    <p class="card-text"><strong>Numar exemplare disponibile:</strong> <?= htmlspecialchars($books[$j]['no_of_copies']) ?></p>
+                                <?php endif; ?>
                             </div>
-                            <div class="card-footer">
-                                <a href="edit_book.php?id=<?= $books[$j]['book_id'] ?>" class="btn btn-warning btn-sm">Editeaza</a>
-                                <a href="delete_book.php?id=<?= $books[$j]['book_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Esti sigur ca vrei sa stergi aceasta carte?')">Sterge</a>
-                            </div>
+                            <?php if (is_admin()): ?>
+                                <div class="card-footer">
+                                    <a href="edit_book.php?id=<?= $books[$j]['book_id'] ?>" class="btn btn-warning btn-sm edit">Editeaza</a>
+                                    <a href="delete_book.php?id=<?= $books[$j]['book_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Esti sigur ca vrei sa stergi aceasta carte?')">Sterge</a>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <?php
@@ -54,7 +59,7 @@
 
                     <?php if ($current_page < $total_pages): ?>
                         <li class="page-item">
-                            <a class="page-link" href="?page=<?= $current_page + 1 ?>">Inainte</a>
+                            <a class="page-link" href="?search=<?= urlencode($search_term) ?>&page=<?= $current_page + 1 ?>">Inainte</a>
                         </li>
                     <?php endif; ?>
                 </ul>

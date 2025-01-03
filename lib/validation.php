@@ -66,3 +66,9 @@ function validate_isbn_format(string $isbn)
 
     return preg_match($pattern, $only_numbers) === 1;
 }
+
+function validate_card_no(string $card_no)
+{
+    $pattern = "/MBA-[0-9A-Z]{6}$/";
+    return preg_match($pattern, $card_no) === 1;
+}

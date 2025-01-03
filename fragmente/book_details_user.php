@@ -67,12 +67,8 @@ require_once __DIR__ . '/../book/book_info.php';
                             <td><?= htmlspecialchars($book['language'] ?? '-') ?></td>
                         </tr>
                         <tr>
-                            <th>Data crearii</th>
-                            <td><?= htmlspecialchars($book['created_at'] ?? '-') ?></td>
-                        </tr>
-                        <tr>
-                            <th>Data modificarii</th>
-                            <td><?= htmlspecialchars($book['updated_at'] ?? '-') ?></td>
+                            <th>Numar exemplare disponibile</th>
+                            <td><?= htmlspecialchars($book['no_of_copies'] ?? '-') ?></td>
                         </tr>
                     </table>
                 </div>
