@@ -46,8 +46,16 @@ if (is_post_req() && isset($_POST['lendUser'])) {
         }
         $_SESSION['borrowing_user']['borrowed_count'] = $borrowed_count;
 
-        //TODO: verify fees
+        //verificare datorii
+        //TODO: de adaugat ca la return books, caci aici nu sunt date actualizate la zi pt penalitatile
+        $late_fee_query = "SELECT NVL(SUM(late_fee), 0) AS total_fee FROM users_fees WHERE user_id = ?";
+        $total_late_fee = execute_query_and_fetch($late_fee_query, 'i', [$user['id']])[0]['total_fee'];
 
+        if ($total_late_fee > 0) {
+            $errors['late_fee'] = 'Utilizatorul are datorii in valoare de ' . number_format($total_late_fee, 2) . ' lei.';
+        } else {
+            $alerts['no_fees'] = 'Utilizatorul nu are datorii.';
+        }
 
         if (!empty($alerts)) {
             $_SESSION['alerts'] = $alerts;
@@ -92,7 +100,7 @@ if (is_post_req() && isset($_POST['lendBook'])) {
                     $errors['update_no_of_copies'] = "Nu s-a putut modifica numarul de exemplare.";
                 }
 
-                $borrowed_count++;
+                $_SESSION['borrowing_user']['borrowed_count'] = $borrowed_count++;
             } else {
                 $errors['lending_book'] = "Nu s-a putut acorda imprumutul.";
             }

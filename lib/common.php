@@ -14,3 +14,4 @@ require_once __DIR__ . '/errors.php';
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/mail.php';
 require_once __DIR__ . '/crud_books.php';
+require_once __DIR__ . '/borrowings.php';
