@@ -77,7 +77,7 @@ $todays_quote = generate_random_quote($quotes);
 <body>
   <header>
     <div class="site-logo">
-      <a href="../" rel="home">
+      <a href="./index.php" rel="home">
         <picture class="header-logo">
           <source srcset="../resurse/imagini/logo_mba_800.avif" media="(max-width:800px)" />
           <img alt="Biblioteca Mica bufnita a Atenei" src="../resurse/imagini/logo_mba.avif" />

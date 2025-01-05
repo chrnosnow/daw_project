@@ -12,6 +12,7 @@ require_once __DIR__ . '/functions.php';
 require_once __DIR__ . '/validation.php';
 require_once __DIR__ . '/errors.php';
 require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/access_control.php';
 require_once __DIR__ . '/mail.php';
 require_once __DIR__ . '/crud_books.php';
 require_once __DIR__ . '/borrowings.php';

@@ -1,5 +1,12 @@
 <?php
 require_once __DIR__ . '/../lib/common.php';
+
+require_role(true);
+
+// verifica daca timpul sesiunii a expirat
+check_session_expiry();
+// actualizeaza ultima activitate
+$_SESSION['last_activity'] = time();
 ?>
 
 <!DOCTYPE html>

@@ -2,10 +2,6 @@
 
 require __DIR__ . '/../lib/common.php';
 
-if (is_user_logged_in()) {
-    redirect_to('../pagini/profile.php');
-}
-
 $errors = [];
 
 if (is_post_req() && isset($_POST['signin'])) {
@@ -19,10 +15,22 @@ if (is_post_req() && isset($_POST['signin'])) {
 
     if (!empty($errors)) {
         $_SESSION['errors_login'] = $errors;
-        header('Location: ../pagini/auth.php?form=login');
-        exit;
+        redirect_to('../pagini/auth.php?form=login');
     }
 
     //if login is successful
+    // set time-limited session
+    $_SESSION['last_activity'] = time(); // start session
+
+    if (is_admin() === true) {
+        redirect_to('../pagini/profile_admin.php');
+    } else {
+        redirect_to('../pagini/profile.php');
+    }
+}
+
+if (is_admin()) {
+    redirect_to('../pagini/profile_admin.php');
+} elseif (is_user_logged_in()) {
     redirect_to('../pagini/profile.php');
 }

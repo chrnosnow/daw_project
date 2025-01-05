@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../lib/common.php';
 
-require_role(true);
+require_role(false);
 
 // verifica daca timpul sesiunii a expirat
 check_session_expiry();
@@ -14,16 +14,10 @@ $_SESSION['last_activity'] = time();
 
 <head>
     <?php
-    view('head', ['title' => 'Gestioneaza o carte']);
+    view('head', ['title' => 'Carti imprumutate']);
     ?>
     <link rel="stylesheet" href="../resurse/css/books_admin.css" type="text/css">
 
-    <style>
-        .errors,
-        .success {
-            width: 50%;
-        }
-    </style>
 </head>
 
 <?php
@@ -36,17 +30,22 @@ require_once __DIR__ . '/../fragmente/header_user.php';
     ?>
     <div class="wrapper-user-account">
         <div class="title">
-            <h2>Gestioneaza o carte</h2>
+            <h2>Carti imprumutate</h2>
         </div>
+
         <?php
         if (isset($_SESSION['errors'])) {
             display_alert('errors');
+        }
+        if (isset($_SESSION['alerts'])) {
+            display_alert('alerts');
         }
         if (isset($_SESSION['success'])) {
             display_alert('success');
         }
         ?>
-        <?php include __DIR__ . "/../book/search_admin.php"; ?>
+        <?php include __DIR__ . "/../book/user_books.php"; ?>
+
     </div>
 </div>
 </main>

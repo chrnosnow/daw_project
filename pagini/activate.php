@@ -2,6 +2,7 @@
 
 require __DIR__ . '/../lib/common.php';
 
+
 if (is_get_req()) {
     $email = filter_input(INPUT_GET, 'email', FILTER_SANITIZE_EMAIL);
 

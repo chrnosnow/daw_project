@@ -1,16 +1,21 @@
 <?php
 require __DIR__ . '/../lib/common.php';
+
+require_role(true);
+
+// verifica daca timpul sesiunii a expirat
+check_session_expiry();
+// actualizeaza ultima activitate
+$_SESSION['last_activity'] = time();
 ?>
 
 <!DOCTYPE html>
 <html lang="ro">
 
-
 <?php
 view('head', ['title' => 'Gestiune carti']);
 require_once __DIR__ . '/../fragmente/header_user.php';
 ?>
-
 
 <div class="wrapper">
     <?php

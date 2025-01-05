@@ -137,3 +137,25 @@ function generate_random_quote(array $quotes)
 
     return $quotes[$index];
 }
+
+function get_menu_by_user_type(bool $is_admin)
+{
+    if ($is_admin === true) {
+        return [
+            'CARTI' => ['Adauga o carte' => '../pagini/add_book.php', 'Gestioneaza o carte' => '../pagini/manage_book.php'],
+            'IMPRUMUTURI' => ['Acorda un imprumut' => '../pagini/borrow_book.php', 'Toate imprumuturile' => '../pagini/all_borrowed_books.php'],
+            'RETURNARI' => ['Returneaza o carte' => '../pagini/return_book.php', 'Istoric returnari' => '../pagini/return_history.php', 'Istoric penalizari intarziere' => '../pagini/late_fee_history.php'],
+            'UTILIZATORI' => ['Gestioneaza un utilizator' => '../pagini/manage_users.php'],
+            'PROFIL' => ['Cont administrator' => '../pagini/profile_admin.php', 'Date personale' => '../pagini/personal_info.php', 'Modifica parola' => '../pagini/change_password.php'],
+            'Deconectare' => '../pagini/logout.php'
+        ];
+    } elseif ($is_admin === false) {
+        return [
+            'CARTI' => ['Imprumuturi' => '../pagini/user_borrowed_books.php'],
+            'PROFIL' => ['Contul meu' => '../pagini/profile.php', 'Date personale' => '../pagini/personal_info.php', 'Modifica parola' => '../pagini/change_password.php'],
+            'Deconectare' => '../pagini/logout.php'
+        ];
+    }
+
+    return [];
+}

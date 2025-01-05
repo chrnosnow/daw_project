@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 
+const PENALTY_PER_DAY = 1.50;
+
 /**
  * Summary of get_user_summary
  * @param int $user_id

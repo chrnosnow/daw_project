@@ -40,7 +40,7 @@ function register_user(string $email, string $username, string $password, bool $
 }
 
 
-function    generate_card_number()
+function generate_card_number()
 {
   $card_number = 'MBA-' . strtoupper(randomNumber(6));
   $query = 'SELECT card_no FROM users WHERE card_no = UPPER(?)';
@@ -88,7 +88,7 @@ function login_user(string $username, string $password)
       'username' => $user[0]['username'],
       'email' => $user[0]['email'],
       'card_no' => $user[0]['card_no'],
-      'is_admin' => $user[0]['is_admin']
+      'is_admin' => (bool) $user[0]['is_admin']
     ];
     return true;
   }
@@ -196,33 +196,22 @@ function is_user_logged_in()
 
 function is_admin()
 {
-  return is_user_logged_in() && ($_SESSION['user']['is_admin'] === 1);
+  return is_user_logged_in() && ($_SESSION['user']['is_admin'] === true);
 }
+
 
 function logout()
 {
   if (is_user_logged_in()) {
+    header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1
+    header("Pragma: no-cache"); // HTTP 1.0
+    header("Expires: 0"); // Proxies
+
     unset($_SESSION['user']);
     session_destroy();
     redirect_to('../index.php');
   }
 }
-
-// function update_user_details(int $id, $username, $email)
-// {
-//   if (empty($username) && empty($email)) return false;
-
-//   if (empty($username)) {
-//     $query = 'UPDATE users SET email = ?, updated_at = current_timestamp where id = ?';
-//     return execute_query($query, "si", [$email, $id]);
-//   } elseif (empty($email)) {
-//     $query = 'UPDATE users SET username = ?, updated_at = current_timestamp where id = ?';
-//     return execute_query($query, "si", [$username, $id]);
-//   }
-
-//   $query = 'UPDATE users SET username = ?, email = ?, updated_at = current_timestamp where id = ?';
-//   return execute_query($query, "ssi", [$username, $email, $id]);
-// }
 
 function update_username(int $id, $username)
 {

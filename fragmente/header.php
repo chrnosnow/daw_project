@@ -3,16 +3,24 @@
         <div class="inside-header">
             <div class="linkuri-sus">
                 <ul>
-                    <li><a href="user/auth.php">Cont utilizator</a></li>
-                    <li><a href="">Obține un permis</a></li>
+                    <?php
+                    if (is_user_logged_in()) {
+                    ?>
+                        <li><a href="./logout.php">Deconectare</a></li>
+                    <?php
+                    } else {
+                    ?>
+                        <li><a href="./auth.php">Cont utilizator</a></li>
+                    <?php } ?>
+                    <li><a href="">Obtine un permis</a></li>
                     <li><a href="">Contact</a></li>
                 </ul>
             </div>
             <div class="site-logo">
-                <a href="/" rel="home">
+                <a href="index.php" rel="home">
                     <picture class="header-logo">
-                        <source srcset="./resurse/imagini/logo_mba_800.avif" media="(max-width:800px)" />
-                        <img alt="Biblioteca Mica bufnita a Atenei" src="./resurse/imagini/logo_mba.avif" />
+                        <source srcset="../resurse/imagini/logo_mba_800.avif" media="(max-width:800px)" />
+                        <img alt="Biblioteca Mica bufnita a Atenei" src="../resurse/imagini/logo_mba.avif" />
                     </picture>
                 </a>
             </div>
@@ -46,7 +54,7 @@
                             </ul>
                         </li>
                         <li class="ls-meniu bara-meniu">
-                            <a href="/inregistrare">INREGISTRARE BIBLIOTECA</a>
+                            <a href="/inregistrare">INREGISTRARE</a>
                         </li>
                         <li>
                             <div class="drop-down ls-meniu">DESPRE</div>

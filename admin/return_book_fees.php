@@ -3,7 +3,7 @@ require_once __DIR__ . '/../lib/common.php';
 
 const BORROWED_BOOKS_LIMIT = 5;
 const LENDING_DAYS = 14;
-const PENALTY_PER_DAY = 1.50;
+
 $success = [];
 $alerts = [];
 $errors = [];

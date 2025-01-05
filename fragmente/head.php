@@ -1,4 +1,4 @@
-<title><?= $title ?? 'Mica bufnita a Atenei' ?></title>
+<title><?= $title ?? 'Mica Bufnita a Atenei' ?></title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="author" content="Irina Chihaitei" />
