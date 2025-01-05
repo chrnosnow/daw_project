@@ -1,9 +1,10 @@
 <?php
+require __DIR__ . '/../admin/return_book_fees.php';
 $user = $_SESSION['borrowing_user'] ?? null;
 ?>
 <div class="container mt-4 wrapper-book">
     <h3>Introdu datele despre utilizator</h3>
-    <form action="../admin/return_book_fees.php" method="post">
+    <form action="" method="post">
         <?php if ($user) { ?>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -28,18 +29,22 @@ $user = $_SESSION['borrowing_user'] ?? null;
 </div>
 
 <?php if (!empty($user)): ?>
+    <form action="" method="post">
+        <input type="submit" class="btn btn-primary" name="refreshUser" value="Actualizeaza informatii"></input>
+    </form>
+
     <div class="late-fees">
         <h3>Sumar utilizator</h3>
         <?php if (!empty($user['borrowed_count'])): ?>
-            <p>Carti imprumutate: <?= $books_count ?>.</p>
+            <p>Carti imprumutate: <?= $user['borrowed_count'] ?>.</p>
         <?php endif; ?>
-        <p>Datorii: <strong><span style="font-size: 2rem;"><?= number_format($total_late_fee, 2) ?></span></strong> lei.</p>
+        <p>Datorii: <strong><span style="font-size: 2rem;"><?= number_format($user['late_fee'], 2) ?></span></strong> lei.</p>
     </div>
     <div class="available-books">
         <div>
             <h3>Lista cartilor de returnat</h3>
         </div>
-        <form action="../admin/return_book_fees.php" method="post">
+        <form action="" method="post">
             <div class="form-group">
                 <table class="table table-bordered">
                     <thead>
@@ -57,7 +62,7 @@ $user = $_SESSION['borrowing_user'] ?? null;
                         <?php if (!empty($books_fees)): ?>
                             <?php foreach ($books_fees as $row): ?>
                                 <tr>
-                                    <td><input type="checkbox" name="book_ids[]" value="<?= $row['book_id'] ?>"></td>
+                                    <td><input type="checkbox" name="books_ids[]" value="<?= $row['book_id'] ?>"></td>
                                     <td><?= htmlspecialchars($row['title']) ?></td>
                                     <td><?= htmlspecialchars($row['isbn']) ?></td>
                                     <td><?= htmlspecialchars($row['authors']) ?></td>

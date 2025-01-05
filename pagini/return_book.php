@@ -21,11 +21,20 @@ require_once __DIR__ . '/../lib/common.php';
             color: grey;
         }
 
-        .btn[name='lendCancel'] {
+        .btn[name='refreshUser'] {
+            margin-bottom: 1.5rem;
+            background-color: var(--culoare-verde-deschis);
+        }
+
+        .btn[name='refreshUser']:hover {
+            background-color: var(--culoare-hover);
+        }
+
+        .btn[name='returnCancel'] {
             background-color: var(--culoare-portocaliu);
         }
 
-        .btn[name='lendCancel']:hover {
+        .btn[name='returnCancel']:hover {
             background-color: var(--culoare-hover);
         }
 

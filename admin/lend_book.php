@@ -35,26 +35,23 @@ if (is_post_req() && isset($_POST['lendUser'])) {
         $user = $user[0];
         $_SESSION['borrowing_user'] = $user;
 
-        //verificare limita carti imprumutate
-        $borrowed_count_query = "SELECT COUNT(*) AS borrowed_count FROM borrowed_books WHERE user_id = ? AND status = 'borrowed'";
-        $borrowed_count = execute_query_and_fetch($borrowed_count_query, "i", [$user['id']])[0]['borrowed_count'];
+        // get $books, $books_count, $books_fees, $total_late_fee
+        $summary_errors = get_user_summary($user['id']);
+        $errors = array_merge($errors, $summary_errors);
 
-        if ($borrowed_count >= BORROWED_BOOKS_LIMIT) {
+        //verificare limita carti imprumutate
+        if ($books_count >= BORROWED_BOOKS_LIMIT) {
             $errors['borrow_limit'] = "Utilizatorul a atins deja limita de " . BORROWED_BOOKS_LIMIT . " carti imprumutate.";
         } else {
-            $alerts['borrowed_books_count'] = "Utilizatorul are imprumutate " . $borrowed_count . " carti. Mai poate imprumuta inca " . BORROWED_BOOKS_LIMIT - $borrowed_count . " carti.";
+            $alerts['borrowed_books_count'] = "Utilizatorul are imprumutate " . $$books_count . " carti. Mai poate imprumuta inca " . BORROWED_BOOKS_LIMIT - $books_count . " carti.";
         }
-        $_SESSION['borrowing_user']['borrowed_count'] = $borrowed_count;
 
         //verificare datorii
-        //TODO: de adaugat ca la return books, caci aici nu sunt date actualizate la zi pt penalitatile
-        $late_fee_query = "SELECT NVL(SUM(late_fee), 0) AS total_fee FROM users_fees WHERE user_id = ?";
-        $total_late_fee = execute_query_and_fetch($late_fee_query, 'i', [$user['id']])[0]['total_fee'];
-
         if ($total_late_fee > 0) {
             $errors['late_fee'] = 'Utilizatorul are datorii in valoare de ' . number_format($total_late_fee, 2) . ' lei.';
         } else {
             $alerts['no_fees'] = 'Utilizatorul nu are datorii.';
+            $_SESSION['borrowing_user']['late_fee'] = $total_late_fee;
         }
 
         if (!empty($alerts)) {

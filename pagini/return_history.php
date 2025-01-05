@@ -7,7 +7,7 @@ require __DIR__ . '/../lib/common.php';
 
 <head>
     <?php
-    view('head', ['title' => 'Toate imprumuturile']);
+    view('head', ['title' => 'Istoric carti returnate']);
     ?>
     <link rel="stylesheet" href="../resurse/css/books_admin.css" type="text/css">
 
@@ -23,7 +23,6 @@ require __DIR__ . '/../lib/common.php';
             margin-right: 0;
 
         }
-
 
         .search-bar-user form {
             display: flex;
@@ -59,13 +58,13 @@ require_once __DIR__ . '/../fragmente/header_user.php';
     ?>
     <div class="wrapper-user-account">
         <div class="title">
-            <h2>Toate imprumuturile</h2>
+            <h2>Istoricul cartilor returnate</h2>
         </div>
         <!-- bara cautare detalii imprumuturi-->
         <div class="search-bar search-bar-user container">
             <form action="" method="get" class="mb-3">
                 <div class="form-group">
-                    <input type="text" class="form-control search-box search-box-user" name="search" placeholder="Cauta detalii imprumut...">
+                    <input type="text" class="form-control search-box search-box-user" name="search" placeholder="Cauta detalii retur...">
                 </div>
                 <button type="submit" class="btn btn-primary search-btn-user">Cauta</i>
                 </button>
@@ -83,7 +82,7 @@ require_once __DIR__ . '/../fragmente/header_user.php';
             display_alert('success');
         }
         ?>
-        <?php include __DIR__ . "/../admin/pagination_all_borrowed_books.php"; ?>
+        <?php include __DIR__ . "/../admin/return_books_history.php"; ?>
     </div>
 </div>
 </main>
