@@ -72,8 +72,13 @@ a:visited {
   font-weight: bold;
 }
 
+.g-recaptcha {
+  margin: 1rem 0;
+}
+
 footer {
   font-size: small;
+  background-color: var(--culoare-crem-deschis);
 }
 
 @media screen and (max-width: 1200px) {

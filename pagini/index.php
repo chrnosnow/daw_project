@@ -1,4 +1,5 @@
 <?php
+define('ALLOWED_ACCESS', true);
 require __DIR__ . '/../lib/common.php';
 ?>
 
@@ -33,10 +34,6 @@ require __DIR__ . '/../lib/common.php';
             font-size: 28px;
             padding-left: 0;
             align-items: center;
-        }
-
-        footer {
-            background-color: var(--culoare-crem-deschis);
         }
     </style>
 </head>

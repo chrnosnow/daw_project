@@ -1,4 +1,5 @@
 <?php
+define('ALLOWED_ACCESS', true);
 require __DIR__ . '/../lib/common.php';
 
 $quotes = [
@@ -106,21 +107,22 @@ $todays_quote = generate_random_quote($quotes);
             display_alert('registration');
           }
           ?>
-          <form action="../user/login.php" method="post">
+          <form id="form" action="../user/login.php" method="post" autocomplete="off">
             <div class="input-box">
               <span class="icon"><i class="fa-solid fa-user"></i></span>
               <input type="text" placeholder=" " name="uname" />
-              <label>Nume utilizator</label>
+              <label>Nume utilizator*</label>
             </div>
             <div class="input-box">
               <span class="icon"><i class="fa-solid fa-lock"></i></span>
               <input type="password" placeholder=" " name="pass" />
-              <label>Parola</label>
+              <label>Parola*</label>
             </div>
             <!-- <div class="remember-forgot">
               <label><input type="checkbox" />Tine-ma minte</label>
               <a href="#">Ai uitat parola?</a>
             </div> -->
+            <div class="g-recaptcha" data-sitekey="6LcJwK8qAAAAAPI7kG1_uzec48Ong5rTHkWQMzsb"></div>
             <input type="submit" class="btn" name="signin" value="Accesare cont"></input>
             <div class="login-register">
               <p>
@@ -145,7 +147,7 @@ $todays_quote = generate_random_quote($quotes);
             display_alert('alerts');
           }
           ?>
-          <form action="../user/register.php" method="post" autocomplete="off">
+          <form id="form" class="register-form" action="../user/register.php" method="post" autocomplete="off">
             <div class="input-box">
               <span class="icon"><i class="fa-solid fa-user-tag"></i></span>
               <input type="text" name="uname" placeholder=" " />
@@ -173,6 +175,7 @@ $todays_quote = generate_random_quote($quotes);
               <label><input type="checkbox" name="gdpr" />* Sunt de acord cu <a href="politica-de-confidentialitate.php"><b>Politica de confidentialitate</b></a>
               </label>
             </div>
+            <div class="g-recaptcha" data-sitekey="6LcJwK8qAAAAAPI7kG1_uzec48Ong5rTHkWQMzsb"></div>
 
             <input type="submit" class="btn" name="signup" value="Creeaza cont"></input>
             <div class="login-register">

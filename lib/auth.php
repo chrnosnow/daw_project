@@ -209,7 +209,7 @@ function logout()
 
     unset($_SESSION['user']);
     session_destroy();
-    redirect_to('../index.php');
+    redirect_to('../pagini/index.php');
   }
 }
 

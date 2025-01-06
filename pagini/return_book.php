@@ -1,4 +1,5 @@
 <?php
+define('ALLOWED_ACCESS', true);
 require_once __DIR__ . '/../lib/common.php';
 
 require_role(true);

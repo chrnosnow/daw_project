@@ -1,24 +1,23 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 
-const SESSION_LIFETIME = 30 * 60; // in secunde 
+const SESSION_LIFETIME = 120 * 60; // in secunde 
 
-function require_role(bool $is_admin_required)
+function require_role($allowed_roles)
 {
-    // verifica daca utilizatorul este autentificat
     if (!isset($_SESSION['user']['is_admin'])) {
         redirect_to('../pagini/auth.php');
     }
 
-    // verifica rolul utilizatorului
-    if ($is_admin_required && $_SESSION['user']['is_admin'] === false) {
-        // acces refuzat pentru utilizatori obisnuiti
-        redirect_to('../pagini/access_denied.php');
+    $roles = [];
+    if ($_SESSION['user']['is_admin']) {
+        $roles[] = 'admin';
+    } elseif (!$_SESSION['user']['is_admin']) {
+        $roles[] = 'user';
     }
 
-    if (!$is_admin_required && $_SESSION['user']['is_admin'] === true) {
-        // acces refuzat pentru administratori
-        redirect_to('../pagini/access_denied.php');
+    if (!in_array($roles[0], $allowed_roles)) {
+        redirect_to("../pagini/access_denied.php");
     }
 }
 

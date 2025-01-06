@@ -41,7 +41,10 @@ header {
 }
 .wrapper-user-account .form-box {
   width: 60%;
-  padding: 40px;
+  padding: 1.3rem;
+}
+.register-form {
+  margin-bottom: 4rem;
 }
 .wrapper-user-account .form-box h2 {
   font-size: 2em;
@@ -49,6 +52,7 @@ header {
   color: var(--culoare-prim-albastru-inchis);
   text-align: center;
   line-height: 6rem;
+  margin-bottom: 2rem;
 }
 .hidden {
   display: none;
@@ -146,7 +150,7 @@ header {
   color: var(--culoare-prim-albastru-inchis);
   text-align: center;
   font-weight: 500;
-  margin: 25px 10px;
+  margin: 1.5rem 1rem;
 }
 .login-register p a {
   color: var(--culoare-prim-albastru-inchis);

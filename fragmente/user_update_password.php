@@ -12,7 +12,7 @@
     }
     ?>
 
-    <form action="../user/update.php" method="post" autocomplete="off">
+    <form id="form" action="../user/update.php" method="post" autocomplete="off">
         <div class="input-box">
             <span class="icon"><i class="fa-solid fa-lock"></i></span>
             <input type="password" name="current_pass" placeholder=" " />

@@ -13,7 +13,7 @@
         <?php if (!empty($books_fees)): ?>
             <?php foreach ($books_fees as $book): ?>
                 <tr>
-                    <td><a href="../fragmente/book_details_user.php?id=<?= $book['book_id'] ?>">
+                    <td><a href="../pagini/book_details.php?id=<?= $book['book_id'] ?>">
                             <?= htmlspecialchars($book['title']) ?></a></td>
                     <td><?= htmlspecialchars($book['isbn']) ?></td>
                     <td><?= htmlspecialchars($book['authors']) ?></td>
@@ -24,7 +24,7 @@
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="5">
+                <td colspan="6">
                     <p class="text-center">Nu s-au gasit carti imprumutate.</p>
                 </td>
             </tr>

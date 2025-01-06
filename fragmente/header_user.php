@@ -20,8 +20,8 @@
       </div>
       <div class="menu">
         <a href="../user/login.php"><i class="fa-solid fa-user"></i></a>
-        <a href="../index.php">Acasa</a>
-        <a href="#">Contact</a>
+        <a href="./index.php">Acasa</a>
+        <a href="./contact_us.php">Contact</a>
         <a href="#">Program</a>
       </div>
     </div>

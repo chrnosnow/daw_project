@@ -1,4 +1,5 @@
 <?php
+define('ALLOWED_ACCESS', true);
 require __DIR__ . '/../lib/common.php';
 ?>
 
@@ -14,6 +15,10 @@ require __DIR__ . '/../lib/common.php';
         a.btn {
             color: white;
             width: 50vw;
+        }
+
+        footer {
+            background-color: var(--culoare-crem-deschis);
         }
     </style>
 
@@ -33,12 +38,12 @@ require_once __DIR__ . '/../fragmente/header.php';
             <p>Nu aveti permisiunea sa accesati aceasta pagina.</p>
         </div>
         <a href="./auth.php" class="btn btn-warning btn-sm">Autentificare</a>
-
-
-
     </div>
 </div>
 </main>
 </body>
+<?php
+require_once __DIR__ . '/../fragmente/footer.php';
+?>
 
 </html>

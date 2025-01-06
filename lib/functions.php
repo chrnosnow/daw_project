@@ -159,3 +159,18 @@ function get_menu_by_user_type(bool $is_admin)
 
     return [];
 }
+
+function verify_captcha($recaptcha)
+{
+    if (!isset($recaptcha) && empty($recaptcha)) {
+        return false;
+    }
+
+    $secret_key = '6LcJwK8qAAAAAArOrprSwqZiDeuzl-X-qq0hgw7q';
+
+    // reCAPTCHA response verification
+    $verify_captcha = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $recaptcha);
+
+    // Decode reCAPTCHA response (=> a nested array on success=true: [['success' => true],['challenge_ts'],['hostname']])
+    return json_decode($verify_captcha);
+}

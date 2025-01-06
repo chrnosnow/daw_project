@@ -48,6 +48,13 @@ if (is_post_req() && isset($_POST['signup'])) {
         $errors['uniq_user'] = sprintf(DEFAULT_VALIDATION_ERRORS['unique'], 'Utilizatorul');
     }
 
+    //reCAPTCHA checkbox validation
+    $recaptcha = $_POST['g-recaptcha-response'];
+    $verify_response = verify_captcha($recaptcha);
+    if (!$verify_response->success) {
+        $errors['captcha_verify'] = 'Te rugam sa faci verificarea CAPTCHA.';
+    }
+
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
         redirect_to('../pagini/auth.php?form=register');
@@ -59,6 +66,7 @@ if (is_post_req() && isset($_POST['signup'])) {
         $_SESSION['alerts'] = $alerts;
 
         send_activation_email($email, $username, $activation_code);
+        $_POST = [];
 
         redirect_to('../pagini/auth.php?form=register');
     }

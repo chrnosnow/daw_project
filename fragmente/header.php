@@ -6,6 +6,7 @@
                     <?php
                     if (is_user_logged_in()) {
                     ?>
+                        <li><a href="../user/login.php"><i class="fa-solid fa-user"></i></a></li>
                         <li><a href="./logout.php">Deconectare</a></li>
                     <?php
                     } else {
@@ -13,7 +14,7 @@
                         <li><a href="./auth.php">Cont utilizator</a></li>
                     <?php } ?>
                     <li><a href="">Obtine un permis</a></li>
-                    <li><a href="">Contact</a></li>
+                    <li><a href="./contact_us.php">Contact</a></li>
                 </ul>
             </div>
             <div class="site-logo">

@@ -9,7 +9,7 @@
     }
     ?>
 
-    <form action="../user/update.php" method="post" autocomplete="off">
+    <form id="form" action="../user/update.php" method="post" autocomplete="off">
         <div class="input-box">
             <span class="icon"><i class="fa-solid fa-user-tag"></i></span>
             <input type="text" name="uname" placeholder=" " value="<?php echo $_SESSION['user']['username'] ?? '' ?>" />
