@@ -11,7 +11,10 @@
     </thead>
     <tbody>
         <?php if (!empty($books_fees)): ?>
-            <?php foreach ($books_fees as $book): ?>
+            <?php foreach ($books_fees as $book):
+                if ($book['days_late'] < 1) {
+                    continue;
+                } ?>
                 <tr>
                     <td><a href="../pagini/book_details.php?id=<?= $book['book_id'] ?>" target="_blank">
                             <?= htmlspecialchars($book['title']) ?></a></td>
@@ -22,6 +25,10 @@
                     <td><?= number_format($book['late_fee'], 2) ?></td>
                 </tr>
             <?php endforeach; ?>
+            <tr style="font-weight: 600;">
+                <td colspan="5">TOTAL</td>
+                <td><?= number_format($total_late_fee, 2) ?></td>
+            </tr>
         <?php else: ?>
             <tr>
                 <td colspan="6">
@@ -31,6 +38,9 @@
         <?php endif; ?>
     </tbody>
 </table>
+<div>
+    <a href="../pagini/save_user_fees.php?saveAs=pdf" class="btn btn-sm savePdf">Salveaza ca pdf</a>
+</div>
 </div>
 </body>
 

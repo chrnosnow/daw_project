@@ -18,7 +18,20 @@ $_SESSION['last_activity'] = time();
     view('head', ['title' => 'Carti imprumutate']);
     ?>
     <link rel="stylesheet" href="../resurse/css/books_admin.css" type="text/css">
+    <style>
+        .btn.savePdf {
+            background: var(--culoare-prim-albastru-inchis);
+            color: white;
+        }
 
+        .btn:hover {
+            background: var(--culoare-hover);
+        }
+
+        .a:visited {
+            color: white;
+        }
+    </style>
 </head>
 
 <?php
