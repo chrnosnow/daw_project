@@ -13,7 +13,7 @@
         <?php if (!empty($books_fees)): ?>
             <?php foreach ($books_fees as $book): ?>
                 <tr>
-                    <td><a href="../pagini/book_details.php?id=<?= $book['book_id'] ?>">
+                    <td><a href="../pagini/book_details.php?id=<?= $book['book_id'] ?>" target="_blank">
                             <?= htmlspecialchars($book['title']) ?></a></td>
                     <td><?= htmlspecialchars($book['isbn']) ?></td>
                     <td><?= htmlspecialchars($book['authors']) ?></td>

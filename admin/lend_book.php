@@ -43,7 +43,7 @@ if (is_post_req() && isset($_POST['lendUser'])) {
         if ($books_count >= BORROWED_BOOKS_LIMIT) {
             $errors['borrow_limit'] = "Utilizatorul a atins deja limita de " . BORROWED_BOOKS_LIMIT . " carti imprumutate.";
         } else {
-            $alerts['borrowed_books_count'] = "Utilizatorul are imprumutate " . $$books_count . " carti. Mai poate imprumuta inca " . BORROWED_BOOKS_LIMIT - $books_count . " carti.";
+            $alerts['borrowed_books_count'] = "Utilizatorul are imprumutate " . $books_count . " carti. Mai poate imprumuta inca " . BORROWED_BOOKS_LIMIT - $books_count . " carti.";
         }
 
         //verificare datorii

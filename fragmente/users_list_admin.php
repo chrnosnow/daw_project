@@ -5,13 +5,14 @@
             <?= $letter ?>
         </a>
     <?php endforeach; ?>
-    <a href="manage_users.php" class="<?= empty($selected_letter) ? 'active' : '' ?>">Toti</a>
+    <a href="../pagini/manage_users.php" class="<?= empty($selected_letter) ? 'active' : '' ?>">Toti</a>
 </div>
 
 <!-- Lista utilizatorilor -->
 <table class="table table-bordered">
     <thead>
         <tr>
+            <th>Tip utilizator</th>
             <th>Nume utilizator</th>
             <th>Email</th>
             <th>Numar permis</th>
@@ -24,13 +25,14 @@
         <?php if (!empty($users)): ?>
             <?php foreach ($users as $user): ?>
                 <tr>
+                    <td><?= $user['is_admin'] ? 'Bibliotecar' : 'Utilizator' ?></td>
                     <td><?= htmlspecialchars($user['username']) ?></td>
                     <td><?= htmlspecialchars($user['email']) ?></td>
                     <td><?= htmlspecialchars($user['card_no']) ?></td>
                     <td><?= htmlspecialchars($user['created_at']) ?></td>
                     <td><?= htmlspecialchars($user['updated_at']) ?></td>
                     <td>
-                        <a href="../admin/delete_user.php?id=<?= $user['user_id'] ?>" class="btn btn-danger btn-sm delete" onclick="return confirm('Esti sigur(a) ca vrei sa stergi acest utilizator?')">Sterge</a>
+                        <a href="../pagini/delete_user.php?id=<?= $user['user_id'] ?>" class="btn btn-danger btn-sm delete" onclick="return confirm('Esti sigur(a) ca vrei sa stergi acest utilizator?')">Sterge</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

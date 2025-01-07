@@ -2,36 +2,39 @@
 
 require_once __DIR__ . '/../lib/common.php';
 
+$action = $_GET['action'] ?? 'list';
 
-// folosim paginatie pentru afisarea rezultatelor
-$books = [];
-$search_term = '';
+if ($action === 'list') {
 
-// Configurare paginatie
-$results_per_page = 3;
-$current_page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
-$offset = ($current_page - 1) * $results_per_page;
+    // folosim paginatie pentru afisarea rezultatelor
+    $books = [];
+    $search_term = '';
 
-// Obtinem litera selectată din URL
-$selected_letter = $_GET['letter'] ?? '';
+    // Configurare paginatie
+    $results_per_page = 3;
+    $current_page = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
+    $offset = ($current_page - 1) * $results_per_page;
 
-$where_clause = '';
-$params = [];
-$types = '';
+    // Obtinem litera selectată din URL
+    $selected_letter = $_GET['letter'] ?? '';
 
-if (!empty($selected_letter) && preg_match('/^[A-Za-z]$/', $selected_letter)) {
-    $where_clause = "WHERE books.title LIKE ?";
-    $params[] = $selected_letter . '%';
-    $types .= 's';
-}
+    $where_clause = '';
+    $params = [];
+    $types = '';
 
-// Obtinem numarul total de carti filtrate
-$total_books_query = "SELECT COUNT(*) AS total FROM books $where_clause";
-$total_books = execute_query_and_fetch($total_books_query, $types, $params)[0]['total'];
-$total_pages = ceil($total_books / $results_per_page);
+    if (!empty($selected_letter) && preg_match('/^[A-Za-z]$/', $selected_letter)) {
+        $where_clause = "WHERE books.title LIKE ?";
+        $params[] = $selected_letter . '%';
+        $types .= 's';
+    }
 
-// Obtinem cartile pentru pagina curenta
-$query = "
+    // Obtinem numarul total de carti filtrate
+    $total_books_query = "SELECT COUNT(*) AS total FROM books $where_clause";
+    $total_books = execute_query_and_fetch($total_books_query, $types, $params)[0]['total'];
+    $total_pages = ceil($total_books / $results_per_page);
+
+    // Obtinem cartile pentru pagina curenta
+    $query = "
     SELECT books.id AS book_id, books.title, books.isbn, 
            GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors
     FROM books
@@ -43,10 +46,11 @@ $query = "
     LIMIT ? OFFSET ?
 ";
 
-$params[] = $results_per_page;
-$params[] = $offset;
-$types .= 'ii';
+    $params[] = $results_per_page;
+    $params[] = $offset;
+    $types .= 'ii';
 
-$books = execute_query_and_fetch($query, $types, $params);
+    $books = execute_query_and_fetch($query, $types, $params);
 
-include __DIR__ . "/../fragmente/book_list_admin.php";
+    include __DIR__ . "/../fragmente/book_list_admin.php";
+}

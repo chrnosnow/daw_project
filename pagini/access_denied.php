@@ -12,6 +12,10 @@ require __DIR__ . '/../lib/common.php';
     ?>
     <link rel="stylesheet" href="../resurse/css/books_admin.css" type="text/css">
     <style>
+        /* .wrapper {
+            height: 40vh;
+        } */
+
         a.btn {
             color: white;
             width: 50vw;

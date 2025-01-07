@@ -6,7 +6,7 @@
                 <?= $letter ?>
             </a>
         <?php endforeach; ?>
-        <a href="../pagini/all_borrowed_books.php" class="<?= empty($selected_letter) ? 'active' : '' ?>">Toate</a>
+        <a href="../pagini/late_fee_history.php" class="<?= empty($selected_letter) ? 'active' : '' ?>">Toate</a>
     </div>
 
     <div class="form-group">

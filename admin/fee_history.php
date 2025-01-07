@@ -30,7 +30,7 @@ if (!empty($search_term)) {
                         OR UPPER(fees_list.isbn) LIKE UPPER(?)
                         OR UPPER(fees_list.email) LIKE UPPER(?)
                         OR UPPER(fees_list.card_no) LIKE UPPER(?)
-                        OR UPPER(fees_list.status) = UPPER(?)
+                        OR UPPER(fees_list.payment_status) = UPPER(?)
                         OR UPPER(fees_list.updated_at) LIKE UPPER(?)";
     for ($i = 0; $i < 6; $i++) {
         $params[] = $search_term_sql;
@@ -46,7 +46,7 @@ if (!empty($selected_letter) && !empty($search_term)) {
     $where_clause .= "WHERE $where_clause_search";
 }
 
-// actualizam penalizarile de intarziere
+// var_dump($where_clause);
 
 
 // Obtinem numarul total de inregistrari filtrate
@@ -63,6 +63,7 @@ $total_books_query = "
     FROM ($fees_list_subquery) AS fees_list
     $where_clause
 ";
+
 $total_books = execute_query_and_fetch($total_books_query, $types, $params)[0]['total'];
 $total_pages = ceil($total_books / $results_per_page);
 

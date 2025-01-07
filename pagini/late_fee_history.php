@@ -2,6 +2,8 @@
 define('ALLOWED_ACCESS', true);
 require __DIR__ . '/../lib/common.php';
 
+require_role(['admin']);
+
 // verifica daca timpul sesiunii a expirat
 check_session_expiry();
 // actualizeaza ultima activitate

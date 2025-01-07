@@ -2,7 +2,7 @@
 define('ALLOWED_ACCESS', true);
 require_once __DIR__ . '/../lib/common.php';
 
-require_role(true);
+require_role(['admin']);
 
 // verifica daca timpul sesiunii a expirat
 check_session_expiry();

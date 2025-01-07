@@ -19,6 +19,19 @@ require_once __DIR__ . '/mail.php';
 require_once __DIR__ . '/crud_books.php';
 require_once __DIR__ . '/borrowings.php';
 
+
+//interzicere acces pentru fisiere care nu sunt publice
 if (!defined('ALLOWED_ACCESS')) {
-    redirect_to("../pagini/access_denied.php");
+    if (empty($_SESSION['allow_processing']) && empty($_POST['token_processing'])) {
+        redirect_to("../pagini/access_denied.php");
+    }
+}
+
+// verificare pentru procesare valida
+if (isset($_POST['token_processing'])) {
+    if (empty($_SESSION['form_token']) || $_POST['token_processing'] !== $_SESSION['form_token']) {
+        redirect_to("../pagini/access_denied.php");
+    }
+    // eliminam token-ul dupa utilizare pentru a preveni reutilizarea
+    unset($_SESSION['form_token']);
 }

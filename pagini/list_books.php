@@ -19,10 +19,12 @@ $_SESSION['last_activity'] = time();
     <meta name="description"
         content='Cartile din catalogul Bibliotecii "Mica bufnita a Atenei"' />
     <link rel="stylesheet" href="../resurse/css/books_admin.css" type="text/css">
+
     <style>
         .container {
             margin-bottom: 4rem;
-            ;
+            padding: 15px;
+            padding-left: calc(10 * var(--dim-spatiere));
         }
     </style>
 

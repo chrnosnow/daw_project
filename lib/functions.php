@@ -108,7 +108,7 @@ function redirect_to(string $url): void
  * @param mixed $length (prefferably even number; odd number will floor to even number)
  * @return string
  */
-function randomNumber($length)
+function generate_random_number($length)
 {
     //half the length because each byte is 
     //represented by two hexadecimal characters

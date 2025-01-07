@@ -67,10 +67,10 @@ if (is_post_req() && isset($_POST['saveBook'])) {
 
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
-        redirect_to('../fragmente/book_details_admin.php?id=' . $book_id);
+        redirect_to('../pagini/update_book.php?id=' . $book_id);
     }
 
     $success['update_book'] = "Detaliile despre carte au fost modificate cu succes.";
     $_SESSION['success'] = $success;
-    redirect_to('../fragmente/book_details_admin.php?id=' . $book_id);
+    redirect_to('../pagini/update_book.php?id=' . $book_id);
 }

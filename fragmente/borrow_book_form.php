@@ -3,7 +3,8 @@ $user = $_SESSION['borrowing_user'] ?? null;
 ?>
 <div class="container mt-4 wrapper-book">
     <h3>Pasul 1 - Verificare utilizator</h3>
-    <form action="../admin/lend_book.php" method="post">
+    <form action="../admin/lend_book.php" method="post" autocomplete="off">
+        <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
         <?php if ($user) { ?>
             <div class="form-group">
                 <label for="email">Email*</label>
@@ -45,6 +46,8 @@ $user = $_SESSION['borrowing_user'] ?? null;
 
     <!-- Lista cartilor -->
     <form action="../admin/lend_book.php" method="post">
+        <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
+
         <div class="form-group">
             <table class="table table-bordered">
                 <thead>
@@ -106,6 +109,9 @@ $user = $_SESSION['borrowing_user'] ?? null;
 
     <div class="cancel-borrow">
         <p>Apasati butonul <strong>Anuleaza</strong> pentru eliminarea detaliilor despre utilizator.</p>
-        <form action="../admin/lend_book.php" method="post"> <input type="submit" class="btn btn-primary" name="lendCancel" value="Anuleaza"></input></form>
+        <form action="../admin/lend_book.php" method="post">
+            <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
+            <input type="submit" class="btn btn-primary" name="lendCancel" value="Anuleaza"></input>
+        </form>
     </div>
 </div>

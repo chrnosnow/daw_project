@@ -43,10 +43,10 @@ $total_pages = ceil($total_users / $results_per_page);
 
 // Obtinem utilizatorii pentru pagina curenta
 $query = "
-    SELECT id AS user_id, username, email, card_no, created_at, updated_at
+    SELECT id AS user_id, username, email, card_no, is_admin, created_at, updated_at
     FROM users
     $where_clause
-    ORDER BY username
+    ORDER BY is_admin DESC, username ASC
     LIMIT ? OFFSET ?
 ";
 

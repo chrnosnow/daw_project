@@ -5,6 +5,8 @@ $user = $_SESSION['borrowing_user'] ?? null;
 <div class="container mt-4 wrapper-book">
     <h3>Introdu datele despre utilizator</h3>
     <form action="" method="post">
+        <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
+
         <?php if ($user) { ?>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -30,6 +32,8 @@ $user = $_SESSION['borrowing_user'] ?? null;
 
 <?php if (!empty($user)): ?>
     <form action="" method="post">
+        <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
+
         <input type="submit" class="btn btn-primary" name="refreshUser" value="Actualizeaza informatii"></input>
     </form>
 
@@ -86,7 +90,10 @@ $user = $_SESSION['borrowing_user'] ?? null;
 
         <div class="cancel-return">
             <p>Apasati butonul <strong>Anuleaza</strong> pentru eliminarea detaliilor despre utilizator.</p>
-            <form action="../admin/return_book_fees.php" method="post"> <input type="submit" class="btn btn-primary" name="returnCancel" value="Anuleaza"></input></form>
+            <form action="../admin/return_book_fees.php" method="post">
+                <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
+                <input type="submit" class="btn btn-primary" name="returnCancel" value="Anuleaza"></input>
+            </form>
         </div>
     </div>
 <?php endif; ?>

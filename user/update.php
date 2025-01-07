@@ -51,7 +51,9 @@ if (is_post_req() && isset($_POST['saveDetails'])) {
     $_SESSION['user']['username'] = $new_username[0]['username'];
 
     redirect_to('../pagini/personal_info.php');
-} elseif (is_post_req() && isset($_POST['savePassw'])) {
+}
+
+if (is_post_req() && isset($_POST['savePassw'])) {
 
     $user_passw = execute_query_and_fetch("SELECT password FROM users WHERE id = ?", "i", [$id]);
     if (empty($user_passw)) {
@@ -98,8 +100,6 @@ if (is_post_req() && isset($_POST['saveDetails'])) {
 
         redirect_to('../pagini/change_password.php');
     }
-} else {
-    redirect_to("../pagini/access_denied.php");
 }
 
 $_POST = [];

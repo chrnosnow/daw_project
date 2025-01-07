@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../lib/common.php';
+
 $all_authors = execute_query_and_fetch("SELECT * FROM authors ORDER BY last_name"); //$all_authors[index][author_details]
 
 $first_letter_and_authors = [];
@@ -11,7 +12,8 @@ foreach ($all_authors as $author) {
 
 
 <div class="container mt-4 wrapper-book">
-    <form action="../book/add_book.php" method="post">
+    <form id="form" action="../book/add_book.php" method="post">
+        <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
         <div class="form-group">
             <label for="title">Titlu*</label>
             <input type="text" class="form-control" id="title" name="title">
@@ -29,12 +31,16 @@ foreach ($all_authors as $author) {
             <input type="text" class="form-control" id="publisher" name="publisher">
         </div>
         <div class="form-group">
-            <label for="public_yr">An aparitie</label>
+            <label for="public_yr">An de publicatie</label>
             <input type="text" class="form-control" id="public_yr" name="public_yr">
         </div>
         <div class="form-group">
             <label for="lang">Limba</label>
             <input type="text" class="form-control" id="lang" name="lang">
+        </div>
+        <div class="form-group">
+            <label for="no_of_copies">Numar exemplare</label>
+            <input type="text" class="form-control" id="no_of_copies" name="no_of_copies">
         </div>
         <div class="form-group">
             <label for="author_ids">Autori*</label>
@@ -56,6 +62,6 @@ foreach ($all_authors as $author) {
             <textarea class="form-control" id="new_authors" name="new_authors" rows="3"></textarea>
             <small class="form-text text-muted">Exemplu: Ioana Alexandra Popescu, Mario J.P. Vargas Llosa, Autor Necunoscut</small>
         </div>
-        <button type="submit" class="btn btn-primary">Salveaza</button>
+        <button type="submit" class="btn btn-primary" name="saveBook">Salveaza</button>
     </form>
 </div>

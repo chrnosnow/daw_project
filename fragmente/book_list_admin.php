@@ -22,13 +22,13 @@
         <?php if (!empty($books)): ?>
             <?php foreach ($books as $book): ?>
                 <tr>
-                    <td><a href="../fragmente/book_details_admin.php?id=<?= $book['book_id'] ?>">
+                    <td><a href="../pagini/book_details.php?id=<?= $book['book_id'] ?>" target="_blank">
                             <?= htmlspecialchars($book['title']) ?></a></td>
                     <td><?= htmlspecialchars($book['isbn']) ?></td>
                     <td><?= htmlspecialchars($book['authors']) ?></td>
                     <td>
-                        <a href="../fragmente/book_details_admin.php?id=<?= $book['book_id'] ?>" class="btn btn-warning btn-sm edit">Modifica</a>
-                        <a href="../book/delete_book.php?id=<?= $book['book_id'] ?>" class="btn btn-danger btn-sm delete" onclick="return confirm('Esti sigur(a) ca vrei sa stergi aceasta carte?')">Sterge</a>
+                        <a href="../pagini/update_book.php?id=<?= $book['book_id'] ?>" class="btn btn-warning btn-sm edit">Modifica</a>
+                        <a href="../pagini/delete_book.php?id=<?= $book['book_id'] ?>" class="btn btn-danger btn-sm delete" onclick="return confirm('Esti sigur(a) ca vrei sa stergi aceasta carte?')">Sterge</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

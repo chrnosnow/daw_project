@@ -1,16 +1,16 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 
-function add_book(string $title, string $edition = '', string $isbn, string $publisher, string $year = '', $language = "Romana")
+function add_book(string $title, string $edition = '', string $isbn, string $publisher, string $year = '', $language = "Romana", $no_of_copies)
 {
     if (empty($title) || empty($isbn)) {
         return false;
     }
 
     return execute_query(
-        "INSERT INTO books(title, edition, isbn, publisher, publication_year, language) VALUES (?, ?, ?, ?, ?, ?)",
-        "ssssis",
-        [$title, $edition, $isbn, $publisher, $year, $language]
+        "INSERT INTO books(title, edition, isbn, publisher, publication_year, language, no_of_copies) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        "ssssisi",
+        [$title, $edition, $isbn, $publisher, $year, $language, $no_of_copies]
     );
 }
 
@@ -61,6 +61,20 @@ function get_book_by_id(int $book_id)
     WHERE books.id = ?
     GROUP BY books.id";
     return execute_query_and_fetch($query, "i", [$book_id]);
+}
+
+function get_book_by_title_and_isbn(string $title, string $isbn)
+{
+    $query = "
+        SELECT books.id AS book_id, books.title, books.isbn, books.publisher, books.publication_year, books.language, books.edition, books.created_at, books.updated_at,
+            GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors, books.no_of_copies
+        FROM books
+        LEFT JOIN author_book ON books.id = author_book.book_id
+        LEFT JOIN authors ON authors.id = author_book.author_id
+        WHERE books.title = ? AND books.isbn = ?
+        GROUP BY books.id
+    ";
+    return execute_query_and_fetch($query, "ss", [$title, $isbn]);
 }
 
 function update_book($book_id, $title, $isbn, $publisher = '', $publication_year = '', $language = 'Romana', $edition = '')

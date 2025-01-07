@@ -30,3 +30,13 @@ function check_session_expiry()
     }
     $_SESSION['last_activity'] = time();
 }
+
+
+//generare token pentru acces temporar la fisierul de procesare a informatiilor din formular
+function generate_form_token()
+{
+    if (empty($_SESSION['form_token'])) {
+        $_SESSION['form_token'] = generate_random_number(32);
+    }
+    return $_SESSION['form_token'];
+}

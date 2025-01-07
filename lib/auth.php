@@ -42,7 +42,7 @@ function register_user(string $email, string $username, string $password, bool $
 
 function generate_card_number()
 {
-  $card_number = 'MBA-' . strtoupper(randomNumber(6));
+  $card_number = 'MBA-' . strtoupper(generate_random_number(6));
   $query = 'SELECT card_no FROM users WHERE card_no = UPPER(?)';
   $param = [$card_number];
   $card_no_from_db = execute_query_and_fetch($query, "s", $param);
@@ -98,7 +98,7 @@ function login_user(string $username, string $password)
 
 function generate_activation_code()
 {
-  return randomNumber(16);
+  return generate_random_number(16);
 }
 
 

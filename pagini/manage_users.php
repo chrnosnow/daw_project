@@ -2,7 +2,7 @@
 define('ALLOWED_ACCESS', true);
 require __DIR__ . '/../lib/common.php';
 
-require_role(true);
+require_role(['admin']);
 
 // verifica daca timpul sesiunii a expirat
 check_session_expiry();
@@ -32,7 +32,6 @@ $_SESSION['last_activity'] = time();
             margin-right: 0;
 
         }
-
 
         .search-bar-user form {
             display: flex;
