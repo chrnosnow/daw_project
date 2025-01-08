@@ -85,9 +85,8 @@ caption {
 footer {
   font-size: small;
   color: var(--culoare-fundal-secundara);
-  background-color: var(
-    --culoare-prim-albastru-inchis
-  ); /*var(--culoare-crem-deschis);*/
+  background-color: var(--culoare-prim-albastru-inchis);
+  padding-left: 0.5rem;
 }
 footer a,
 footer a:visited {
@@ -95,6 +94,18 @@ footer a:visited {
 }
 footer a:before {
   color: var(--culoare-fundal-secundara);
+}
+#cookie-banner {
+  font-size: small;
+  color: var(--culoare-fundal-secundara);
+  padding-left: 0.5rem;
+  width: 30vw;
+  text-align: center;
+  border: solid 2px var(--culoare-crem-deschis);
+  z-index: 100;
+  position: fixed;
+  bottom: 0;
+  right: 25px;
 }
 
 @media screen and (max-width: 1200px) {

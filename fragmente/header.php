@@ -70,4 +70,37 @@
             <p id="watermark" style="display: none">Chihaitei<br />Irina</p>
         </div>
     </header>
+    <?php if ($show_banner): ?>
+        <div id="container-banner">
+
+            <p id="cookie-banner">
+                Acesta este un proiect scolar.<span id="mesaj-cookies">
+                    Acceptati cookie-urile de pe site?
+                    <button id="ok_cookies">Ok</button></span>
+            </p>
+        </div>
+    <?php endif; ?>
+    <script>
+        // cookies
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!document.cookie.split('; ').find(row => row.startsWith('cookies_accepted='))) {
+                document.getElementById("cookie-banner").style.display = 'block';
+            }
+
+            document.getElementById("ok_cookies").addEventListener('click', function() {
+                fetch('../lib/accept_cookies.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            document.getElementById("cookie-banner").style.display = 'none';
+                        }
+                    });
+            });
+        });
+    </script>
     <main>

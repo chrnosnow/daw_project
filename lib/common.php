@@ -19,6 +19,7 @@ require_once __DIR__ . '/mail.php';
 require_once __DIR__ . '/crud_books.php';
 require_once __DIR__ . '/borrowings.php';
 require_once __DIR__ . '/crud_analytics.php';
+require_once __DIR__ . '/accept_cookies.php';
 require_once __DIR__ . '/../other/site_analytics.php';
 
 
