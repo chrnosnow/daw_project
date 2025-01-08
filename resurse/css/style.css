@@ -129,6 +129,20 @@ header > .container-meniu {
   color: var(--culoare-fundal);
   font-size: 0.9rem;
 }
+.book_details {
+  display: flex;
+  flex-direction: row;
+}
+.book_img {
+  margin-top: 1.5rem;
+}
+.book_img a:before {
+  content: none;
+}
+#default_cover {
+  width: 250px;
+  height: auto;
+}
 
 @media screen and (max-width: 1200px) {
   .inside-header {
@@ -172,6 +186,10 @@ header > .container-meniu {
   .alerts p .success p {
     padding: 0.3em 0.3em;
   }
+  #default_cover {
+    width: 170px;
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -201,5 +219,12 @@ header > .container-meniu {
       url("../imagini/interior05_wide_800.avif") type("image/avif"),
       url("../imagini/interior05_wide_800.png") type("image/png")
     );
+  }
+  .book_details {
+    display: block;
+  }
+  #default_cover {
+    width: 100px;
+    height: auto;
   }
 }

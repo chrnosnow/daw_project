@@ -5,12 +5,14 @@ require_once __DIR__ . '/../lib/common.php';
 
 <div class="container mt-4 wrapper-book">
     <form id="form" action="../contact/verify_recaptcha.php" method="post" autocomplete="off">
+        <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
+
         <div class="form-group">
-            <label for="uname">Username*</label>
+            <label for="uname">Nume/Utilizator</label>
             <input type="text" class="form-control" id="uname" name="uname">
         </div>
         <div class="form-group">
-            <label for="email">Email*</label>
+            <label for="email">Email</label>
             <input type="text" class="form-control" id="email" name="email">
         </div>
         <div class="form-group">

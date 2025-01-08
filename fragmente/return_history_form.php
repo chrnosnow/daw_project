@@ -38,7 +38,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5">
+                        <td colspan="7">
                             <p class="text-center">Nu s-au gasit carti pentru filtrul selectat.</p>
                         </td>
                     </tr>

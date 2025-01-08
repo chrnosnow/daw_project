@@ -81,7 +81,7 @@ function login_user(string $username, string $password)
   $user = find_user_by_uname($username);
   if ($user && is_user_active($user) && password_verify($password, $user[0]['password'])) {
     //prevent session fixation attack
-    session_regenerate_id();
+    session_regenerate_id(true);
     //set user details in the session
     $_SESSION['user'] = [
       'id' => $user[0]['id'],
@@ -297,4 +297,10 @@ function get_user_by_id(string $user_id)
 {
   $query = 'SELECT * FROM users WHERE id = ?';
   return execute_query_and_fetch($query, "i", [$user_id]);
+}
+
+function get_user_by_email(string $email)
+{
+  $query = 'SELECT * FROM users WHERE email = ? AND active = 1';
+  return execute_query_and_fetch($query, "s", [$email]);
 }

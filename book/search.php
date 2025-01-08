@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../lib/common.php';
 
+$errors = [];
 
 // folosim paginatie pentru afisarea rezultatelor
 $books = [];
@@ -16,13 +17,14 @@ if (is_get_req() && !empty($_GET['search'])) {
 
     $search_term = sanitize_text($_GET['search']);
 
-
     if (!empty($search_term)) {
+        if ($search_term === 'all') {
+            $books = get_all_books();
+        } else {
+            $search_term_sql = "%$search_term%";
 
-        $search_term_sql = "%$search_term%";
-
-        // folosim group_concat pt a crea lista de autori unde exista carti cu mai multi autori
-        $query = "
+            // folosim group_concat pt a crea lista de autori unde exista carti cu mai multi autori
+            $query = "
             SELECT books.id AS book_id, books.title, books.isbn, 
                    GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors, books.no_of_copies
             FROM books
@@ -35,15 +37,19 @@ if (is_get_req() && !empty($_GET['search'])) {
             GROUP BY books.id
             ORDER BY books.title;
         ";
-        $params = [$search_term_sql, $search_term_sql, $search_term_sql, $search_term_sql];
-        $books = execute_query_and_fetch($query, "ssss", $params);
+            $params = [$search_term_sql, $search_term_sql, $search_term_sql, $search_term_sql];
+            $books = execute_query_and_fetch($query, "ssss", $params);
+        }
     }
 
     if (empty($books)) {
         $_SESSION['errors_search'] = array("search_result" => "Nu s-au gasit rezultate pentru cautarea ta.");
     }
+} else {
+    $errors['search_term_req'] = "Introdu un cuvant de cautare";
 }
-
+// echo "gsldboglrn";
+$_SESSION['errors'] = $errors;
 //numarul total de carti rezultate
 $total_books = count($books);
 $total_pages = ceil($total_books / $results_per_page);

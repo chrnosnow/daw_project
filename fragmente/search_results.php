@@ -26,12 +26,6 @@
                                     <p class="card-text"><strong>Numar exemplare disponibile:</strong> <?= htmlspecialchars($books[$j]['no_of_copies']) ?></p>
                                 <?php endif; ?>
                             </div>
-                            <?php if (is_admin()): ?>
-                                <div class="card-footer">
-                                    <a href="edit_book.php?id=<?= $books[$j]['book_id'] ?>" class="btn btn-warning btn-sm edit">Editeaza</a>
-                                    <a href="delete_book.php?id=<?= $books[$j]['book_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Esti sigur ca vrei sa stergi aceasta carte?')">Sterge</a>
-                                </div>
-                            <?php endif; ?>
                         </div>
                     </div>
                     <?php

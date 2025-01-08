@@ -75,10 +75,26 @@ a:visited {
 .g-recaptcha {
   margin: 1rem 0;
 }
-
+caption {
+  caption-side: top;
+  text-align: left;
+  padding-bottom: 1rem;
+  font-weight: bold;
+  color: var(--culoare-portocaliu);
+}
 footer {
   font-size: small;
-  background-color: var(--culoare-crem-deschis);
+  color: var(--culoare-fundal-secundara);
+  background-color: var(
+    --culoare-prim-albastru-inchis
+  ); /*var(--culoare-crem-deschis);*/
+}
+footer a,
+footer a:visited {
+  color: var(--culoare-fundal-secundara);
+}
+footer a:before {
+  color: var(--culoare-fundal-secundara);
 }
 
 @media screen and (max-width: 1200px) {

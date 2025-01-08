@@ -52,6 +52,20 @@ function add_authors_to_book($author_id, $book_id)
     );
 }
 
+function get_all_books()
+{
+    $query = "
+         SELECT books.id AS book_id, books.title, books.isbn, 
+            GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors, books.no_of_copies
+        FROM books
+        LEFT JOIN author_book ON books.id = author_book.book_id
+        LEFT JOIN authors ON authors.id = author_book.author_id
+        GROUP BY books.id
+        ORDER BY books.title;
+    ";
+    return execute_query_and_fetch($query);
+}
+
 function get_book_by_id(int $book_id)
 {
     $query = "SELECT books.id AS book_id, books.title, books.isbn, books.publisher, books.publication_year, books.language, books.edition, books.created_at, books.updated_at,GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors, books.no_of_copies

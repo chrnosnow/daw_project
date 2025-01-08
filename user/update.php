@@ -103,4 +103,4 @@ if (is_post_req() && isset($_POST['savePassw'])) {
 }
 
 $_POST = [];
-session_regenerate_id(true);
+// session_regenerate_id(true);

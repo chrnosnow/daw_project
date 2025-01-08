@@ -13,7 +13,7 @@
                     ?>
                         <li><a href="./auth.php">Cont utilizator</a></li>
                     <?php } ?>
-                    <li><a href="">Obtine un permis</a></li>
+                    <li><a href="./books_catalog.php?search=all">Catalog carti</a></li>
                     <li><a href="./contact_us.php">Contact</a></li>
                 </ul>
             </div>

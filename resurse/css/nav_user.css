@@ -11,6 +11,7 @@
 }
 .top-bar .site-logo {
   flex: 1;
+  margin-top: 0;
 }
 .top-bar .site-logo,
 .top-bar .site-logo img {

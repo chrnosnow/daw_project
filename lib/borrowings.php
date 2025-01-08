@@ -72,15 +72,7 @@ function get_user_summary(int $user_id)
         ];
     }
 
-    //total sum of penalties for the user
-    $total_late_fee = get_total_fee_by_user($user_id);
-    if ($total_late_fee === false) {
-        $errors['total_late_fee'] = "Suma totala a penalitatilor de intarziere nu a putut fi calculata.";
-    } else {
-        $total_late_fee = $total_late_fee[0]['total_fee'];
-        $_SESSION['borrowing_user']['late_fee'] = $total_late_fee;
-    }
-
+    $total_late_fee = array_sum(array_column($books_fees, 'late_fee')) ?? 0;
     return $errors;
 }
 

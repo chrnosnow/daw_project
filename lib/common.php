@@ -18,6 +18,9 @@ require_once __DIR__ . '/access_control.php';
 require_once __DIR__ . '/mail.php';
 require_once __DIR__ . '/crud_books.php';
 require_once __DIR__ . '/borrowings.php';
+require_once __DIR__ . '/crud_analytics.php';
+require_once __DIR__ . '/../other/site_analytics.php';
+
 
 
 //interzicere acces pentru fisiere care nu sunt publice
@@ -34,4 +37,30 @@ if (isset($_POST['token_processing'])) {
     }
     // eliminam token-ul dupa utilizare pentru a preveni reutilizarea
     unset($_SESSION['form_token']);
+}
+
+// conditii pentru regenerarea ID-ului sesiunii
+$should_regenerate = false;
+
+// 1. Regenerare periodica
+if (!isset($_SESSION['last_regeneration_time']) || time() - $_SESSION['last_regeneration_time'] > 15 * 60) {
+    $should_regenerate = true;
+}
+
+// 2. Regenerare pentru actiuni sensibile (login, activare cont, schimbare parola)
+if (
+    isset($_POST['signin']) || isset($_POST['saveDetails']) ||
+    isset($_GET['activation_code'])
+) {
+    $should_regenerate = true;
+}
+
+// regenerare ID sesiune
+if ($should_regenerate) {
+    if (session_id() !== '') {
+        $_SESSION['previous_session_id'] = session_id();
+    }
+
+    session_regenerate_id(true);
+    $_SESSION['last_regeneration_time'] = time();
 }

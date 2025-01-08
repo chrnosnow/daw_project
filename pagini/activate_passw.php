@@ -38,7 +38,7 @@ if (is_get_req()) {
             // session_destroy();
             // redirect_to('../pagini/auth.php?form=login');
 
-            session_regenerate_id(true);
+            // session_regenerate_id(true);
             redirect_to('../pagini/change_password.php');
         }
     }
