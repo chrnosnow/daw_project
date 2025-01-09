@@ -29,7 +29,31 @@ if (!empty($book)) {
     $query_url = $base_url . "?isbn=" . $isbn;
 
     $response = file_get_contents($query_url); // => json
-    /*
+
+    if ($response === false) {
+        $errors = "Nu s-a putut accesa API-ul Open Library.";
+    }
+
+    $data = json_decode($response, true); // => array
+
+    if (isset($data['docs']) && !empty($data['docs'])) {
+
+        $book_ol = $data['docs'][0];
+
+        $ol_id = $book_ol['cover_edition_key'] ?? '';
+        $ratings = [
+            "ratings_average" => $book_ol['ratings_average'] ?? 0,
+            "ratings_count" => $book_ol['ratings_count'] ?? '',
+        ];
+    }
+}
+
+if (!empty($errors)) {
+    $_SESSION['errors'] = $errors;
+}
+
+
+/*
 {
     "numFound": 1,
     "start": 0,
@@ -250,25 +274,3 @@ if (!empty($book)) {
     "offset": null
 } 
 */
-
-    if ($response === false) {
-        $errors = "Nu s-a putut accesa API-ul Open Library.";
-    }
-
-    $data = json_decode($response, true); // => array
-
-    if (isset($data['docs']) && !empty($data['docs'])) {
-
-        $book_ol = $data['docs'][0];
-
-        $ol_id = $book_ol['cover_edition_key'] ?? '';
-        $ratings = [
-            "ratings_average" => $book_ol['ratings_average'] ?? 0,
-            "ratings_count" => $book_ol['ratings_count'] ?? '',
-        ];
-    }
-}
-
-if (!empty($errors)) {
-    $_SESSION['errors'] = $errors;
-}

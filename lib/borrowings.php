@@ -170,10 +170,3 @@ function update_book_no_of_copies(int $book_id)
     ";
     return execute_query($update_query, 'i', [$book_id]);
 }
-
-
-// function update_all_late_fees_amount(){
-//     $update_query = "
-//         UPDATE
-//     ";
-// }

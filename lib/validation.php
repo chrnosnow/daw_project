@@ -10,11 +10,6 @@ function validate_email(string $email)
     return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
 }
 
-// function is_unique(string $elem, array $existing_elems)
-// {
-//     return !in_array($elem, $existing_elems, true);
-// }
-
 function is_required(string $data)
 {
     return isset($data) && trim($data) !== '';

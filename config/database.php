@@ -11,8 +11,7 @@ function db(): mysqli
     if (!$conn) {
         @$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     }
-    // echo is_null($conn) ? "conn is null\n" : "conn is not null\n";
-    // echo var_dump($conn);
+
     return $conn;
 }
 

@@ -10,20 +10,11 @@
     </address>
     <small id="copyright-footer">Copyright &copy;
         <time datetime="2024-10-31 15:18">joi, 31 octombrie 2024</time></small>
-    <!-- <div id="container-banner">
-        <p id="cookie-banner">
-            Acesta este un proiect scolar.<span id="mesaj-cookies">
-                Acceptati cookie-urile de pe site?
-                <button id="ok_cookies">Ok</button></span>
-        </p>
-    </div> -->
 </footer>
 <script>
     // Resetează formularul la încărcarea paginii
     window.addEventListener('pageshow', function(event) {
-        // if (event.persisted) { // Detectează dacă pagina este încărcată din cache
         document.getElementById('form').reset();
-        // }
     });
 </script>
 </body>
