@@ -1,7 +1,24 @@
 
-/module
 test.php
 p.txt
+
+/root/module/phpmailer/language
+/root/module/phpmailer/class.pop3.php
+/root/module/phpmailer/class.smtp.php
+/root/module/phpmailer/LICENSE
+/root/module/phpmailer/mail_cod.php
+/root/module/phpmailer/mail_config.php
+
+/root/module/fpdf/doc
+/root/module/fpdf/makefont
+/root/module/fpdf/tutorial
+/root/module/fpdf/changelog.htm
+/root/module/fpdf/FAQ.htm
+/root/module/fpdf/fpdf.css
+/root/module/fpdf/install.txt
+/root/module/fpdf/license.txt
+
+
 
 
 
