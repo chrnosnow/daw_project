@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../lib/common.php";
+require_once __DIR__ . "/../pagini/common.php";
 
 $user_type = $_SESSION['user']['is_admin'] ?? 'guest';
 $menu = get_menu_by_user_type($user_type);

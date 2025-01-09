@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../lib/common.php';
+require __DIR__ . '/../pagini/common.php';
 
 $success = [];
 $errors = [];

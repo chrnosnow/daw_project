@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../module/fpdf/fpdf.php';
-// require __DIR__ . '/../lib/common.php';
+
 
 const FONT_SIZE_SMALL = 10;
 const FONT_SIZE_NORMAL = 12;

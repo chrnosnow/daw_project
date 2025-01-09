@@ -10,16 +10,16 @@ header("Expires: 0"); // Dezactivează cache-ul pentru proxy-uri; Setează timpu
 
 require_once __DIR__ . '/../config/mail_config.php';
 require_once __DIR__ . '/../config/database.php';
-require_once __DIR__ . '/functions.php';
-require_once __DIR__ . '/validation.php';
-require_once __DIR__ . '/errors.php';
-require_once __DIR__ . '/auth.php';
-require_once __DIR__ . '/access_control.php';
-require_once __DIR__ . '/mail.php';
-require_once __DIR__ . '/crud_books.php';
-require_once __DIR__ . '/borrowings.php';
-require_once __DIR__ . '/crud_analytics.php';
-require_once __DIR__ . '/accept_cookies.php';
+require_once __DIR__ . '/../lib/functions.php';
+require_once __DIR__ . '/../lib/validation.php';
+require_once __DIR__ . '/../lib/errors.php';
+require_once __DIR__ . '/../lib/auth.php';
+require_once __DIR__ . '/../lib/access_control.php';
+require_once __DIR__ . '/../lib/mail.php';
+require_once __DIR__ . '/../lib/crud_books.php';
+require_once __DIR__ . '/../lib/borrowings.php';
+require_once __DIR__ . '/../lib/crud_analytics.php';
+require_once __DIR__ . '/../lib/accept_cookies.php';
 require_once __DIR__ . '/../other/site_analytics.php';
 
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../lib/common.php';
+require_once __DIR__ . '/../pagini/common.php';
 
 
 $user = $_SESSION['user'];

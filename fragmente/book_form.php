@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../lib/common.php';
+require_once __DIR__ . '/../pagini/common.php';
 
 $all_authors = execute_query_and_fetch("SELECT * FROM authors ORDER BY last_name"); //$all_authors[index][author_details]
 

@@ -1,6 +1,6 @@
 <?php
 define('ALLOWED_ACCESS', true);
-require_once __DIR__ . '/../lib/common.php';
+require_once __DIR__ . '/../pagini/common.php';
 require_once __DIR__ . '/../book/book_info.php';
 
 require_role(['admin']);
