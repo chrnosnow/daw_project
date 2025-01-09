@@ -15,7 +15,7 @@ const MAIL_HOST = 'smtp.gmail.com';
  *  to your email account.
  *  Note: The email address has to belong to the above MAIL_HOST.
  */
-const MAIL_USERNAME = getenv('MAIL_USERNAME');
+define('MAIL_USERNAME', getenv('MAIL_USERNAME'));
 
 /**
  *  Set the password you use to log-in to the above email account.
@@ -23,13 +23,13 @@ const MAIL_USERNAME = getenv('MAIL_USERNAME');
  *  to turn on 2 factor authentication and create an App password 
  *  and use it here instead of your password. 
  */
-const MAIL_PASSWORD = getenv('MAIL_PASSWORD');
+define('MAIL_PASSWORD', getenv('MAIL_PASSWORD'));
 // Define the email address from which the email is sent.
-const SEND_FROM = getenv('SEND_FROM');
+define('SEND_FROM', getenv('SEND_FROM'));
 // Define the name of the website from which the email is sent.
 const SEND_FROM_NAME = 'Biblioteca "Mica Bufnita a Atenei"';
 // Define the reply-to address.
-const REPLY_TO = getenv('REPLY_TO');
+define('REPLY_TO', getenv('REPLY_TO'));
 // Define the reply-to name.
 const REPLY_TO_NAME = 'Biblioteca "Mica Bufnita a Atenei"';
 
