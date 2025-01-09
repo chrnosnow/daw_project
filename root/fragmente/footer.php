@@ -1,6 +1,6 @@
 </main>
 <footer id="footer">
-    <a href="../pagini/index.php" id="link-inceput-footer">Acasa</a>
+    <a href="../index.php" id="link-inceput-footer">Acasa</a>
     <address id="adresa-footer">
         Bulevardul Colinelor Intortocheate, nr. 7, Iasi, Romania<br />
         <a href="https://maps.app.goo.gl/LSpKgaf9L1aU4NM87" target="_blank">Google Maps</a><br />

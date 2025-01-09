@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-title" content="Mica Bufnita" />
 <link rel="manifest" href="../resurse/favicon/site.webmanifest" />
 
-<link rel="stylesheet" href="./resurse/css/reset.css" type="text/css" />
+<link rel="stylesheet" href="../resurse/css/reset.css" type="text/css" />
 <link rel="stylesheet" href="../resurse/css/customizare-bootstrap.css" type="text/css">
 <link rel="stylesheet" href="../resurse/css/general.css" type="text/css" />
 <link rel="stylesheet" href="../resurse/css/style.css" type="text/css" />

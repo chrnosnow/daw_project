@@ -2,7 +2,7 @@
   <header>
     <div class="top-bar">
       <div class="site-logo">
-        <a href="../pagini/index.php" rel="home">
+        <a href="../index.php" rel="home">
           <picture class="header-logo">
             <source srcset="../resurse/imagini/logo_mba_800.avif" media="(max-width:800px)" />
             <img alt="Biblioteca Mica bufnita a Atenei" src="../resurse/imagini/logo_mba.avif" />
@@ -20,7 +20,7 @@
       </div>
       <div class="menu">
         <a href="../user/login.php"><i class="fa-solid fa-user"></i></a>
-        <a href="../pagini/index.php">Acasa</a>
+        <a href="../index.php">Acasa</a>
         <a href="../pagini/books_catalog.php?search=all">Catalog carti</a>
         <a href="../pagini/contact_us.php">Contact</a>
 

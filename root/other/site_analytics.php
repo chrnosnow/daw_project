@@ -4,9 +4,6 @@ require_once __DIR__ . '/../lib/common.php';
 $success = [];
 $errors = [];
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
 $ip_address = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $user_agent = $_SERVER['HTTP_USER_AGENT'] ?? 'unknown';

@@ -42,5 +42,5 @@ if (is_post_req() && isset($_POST['signin'])) {
         redirect_to('../pagini/profile.php');
     }
 } else {
-    redirect_to("./index.php");
+    redirect_to("../index.php");
 }

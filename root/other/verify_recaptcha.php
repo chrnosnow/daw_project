@@ -85,5 +85,5 @@ if (is_post_req() && isset($_POST['submit'])) {
 
   redirect_to('../pagini/contact_us.php');
 } else {
-  redirect_to("../pagini/index.php");
+  redirect_to("../index.php");
 }
