@@ -1,9 +1,14 @@
 <?php
 
-const DB_HOST = 'localhost';
-const DB_USER = 'root';
-const DB_PASS = '';
-const DB_NAME = 'daw_project';
+// const DB_HOST = 'localhost';
+// const DB_USER = 'root';
+// const DB_PASS = '';
+// const DB_NAME = 'daw_project';
+
+const DB_HOST = getenv('MYSQLHOST');
+const DB_USER = getenv('MYSQLUSER');
+const DB_PASS = getenv('MYSQLPASSWORD');
+const DB_NAME = getenv('MYSQLDATABASE');
 
 function db(): mysqli
 {

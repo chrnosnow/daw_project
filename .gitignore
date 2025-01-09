@@ -2,12 +2,6 @@
 test.php
 p.txt
 
-/root/module/phpmailer/language
-/root/module/phpmailer/class.pop3.php
-/root/module/phpmailer/class.smtp.php
-/root/module/phpmailer/LICENSE
-/root/module/phpmailer/mail_cod.php
-/root/module/phpmailer/mail_config.php
 
 /root/module/fpdf/doc
 /root/module/fpdf/makefont
