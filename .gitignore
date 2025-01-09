@@ -1,7 +1,14 @@
 
+/module
+pagini/test.php
 p.txt
+config/mail_config.php
+index.html
 /incercari
-
-root/module
-root/pagini/test.php
-root/config/mail_config.php
+index.html
+idx.php
+book/search_gol.php
+sign-in-up.html
+index.html
+index.html
+sign-in-up.html
