@@ -148,6 +148,7 @@ $todays_quote = generate_random_quote($quotes);
           }
           ?>
           <form id="form" class="register-form" action="../user/register.php" method="post" autocomplete="off">
+            <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
             <div class="input-box">
               <span class="icon"><i class="fa-solid fa-user-tag"></i></span>
               <input type="text" name="uname" placeholder=" " />
