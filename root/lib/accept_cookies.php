@@ -5,7 +5,7 @@
 // header('Content-Type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // seteaza cookie-ul cand utilizatorul accepta
-    setcookie('cookies_accepted', '1', time() + (60 * 60 * 24), "/");
+    setcookie('cookies_accepted', '1', time() + (20), "/"); // add seconds
     // echo json_encode(['status' => 'success']);
     // exit;
 }
