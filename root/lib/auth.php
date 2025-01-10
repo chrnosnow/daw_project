@@ -213,7 +213,7 @@ function logout()
   }
 }
 
-function update_username(int $id, $username)
+function update_username(int $id, string $username)
 {
   if (empty($username)) return false;
 
@@ -221,7 +221,7 @@ function update_username(int $id, $username)
   return execute_query($query, "si", [$username, $id]);
 }
 
-function send_email_change_passw(string $email, string $name = '', string $activation_code)
+function send_email_change_passw(string $email, string $name, string $activation_code)
 {
   $activation_link = WEBSITE_URL . '/pagini/activate_passw.php?email=' . $email . '&activation_code=' . $activation_code;
   $subject = 'Confirmare schimbare parola';

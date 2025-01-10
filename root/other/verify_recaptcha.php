@@ -33,7 +33,7 @@ if (is_post_req() && isset($_POST['submit'])) {
   if ($verify_response->success) {
     $subject = "Formular contact: " . $subject;
     $message_to_admin = "Nume: " . $name . "<br>Email: " . $email . "<br>Mesaj: " . $message_to_admin;
-    send_mail('morosanu.irina@gmail.com', '', $subject, $message_to_admin);
+    send_mail(SEND_FROM, '', $subject, $message_to_admin);
     if (empty($_SESSION['errors']['PHPMailer_err']) && empty($_SESSION['errors']['mail_err'])) {
       $sbj = "Am primit mesajul tau";
       $message_to_user = "

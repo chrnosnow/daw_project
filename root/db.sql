@@ -13,7 +13,7 @@ CREATE TABLE users
     active            tinyint(1)            DEFAULT 0,
     activation_code   varchar(255) NOT NULL,
     activation_expiry datetime     NOT NULL,
-    activated_at      datetime              DEFAULT NULL,
+    activated_at      datetime     ,
     created_at        timestamp    NOT NULL DEFAULT current_timestamp(),
     updated_at        datetime              DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -29,16 +29,8 @@ CREATE TABLE password_resets
     activation_code   varchar(255) NOT NULL,
     activation_expiry datetime     NOT NULL,
     created_at        timestamp    NOT NULL DEFAULT current_timestamp(),
-    CONSTRAINT FK_user_passw FOREIGN KEY (user_id) REFERENCES users(id)
+    CONSTRAINT FK_user_passw FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-ALTER TABLE password_resets
-DROP CONSTRAINT FK_user_passw;
-
-ALTER TABLE password_resets
-ADD CONSTRAINT FK_user_passw
-FOREIGN key (user_id)
-REFERENCES users(id)
-ON DELETE CASCADE;
 
 
 
@@ -62,18 +54,14 @@ CREATE TABLE books
     title             varchar(100) NOT NULL,
     edition           varchar(20)  ,
     isbn              varchar(25)  NOT NULL,
-    publisher         varchar(255) NOT NULL,   
+    publisher         varchar(255) ,   
     publication_year  int          ,
     language          varchar(20)           DEFAULT 'Romana',
+    no_of_copies      int,
     created_at        timestamp    NOT NULL DEFAULT current_timestamp(),
-    updated_at        datetime              DEFAULT current_timestamp() ON UPDATE current_timestamp()
+    updated_at        datetime              DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+    CONSTRAINT unique_book UNIQUE (title, isbn)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-ALTER TABLE books
-ADD CONSTRAINT unique_book UNIQUE (title, isbn);
- 
-ALTER TABLE books
-ADD no_of_copies int after language;
 
 
 
@@ -82,27 +70,10 @@ CREATE TABLE author_book
     id                int  NOT NULL auto_increment PRIMARY KEY,
     author_id         int,
     book_id           int,
-    CONSTRAINT FK_author_book FOREIGN KEY (author_id) REFERENCES authors(id),
-    CONSTRAINT FK_book_author FOREIGN KEY (book_id) REFERENCES books(id)
+    CONSTRAINT FK_author_book FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE,
+    CONSTRAINT FK_book_author FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE author_book
-DROP CONSTRAINT FK_author_book;
-
-ALTER TABLE author_book
-ADD CONSTRAINT FK_author_book
-FOREIGN key (author_id)
-REFERENCES authors(id)
-ON DELETE CASCADE;
-
-ALTER TABLE author_book
-DROP CONSTRAINT FK_book_author;
-
-ALTER TABLE author_book
-ADD CONSTRAINT FK_book_author
-FOREIGN key (book_id)
-REFERENCES books(id)
-ON DELETE CASCADE;
 
 
 

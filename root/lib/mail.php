@@ -3,7 +3,7 @@ require_once __DIR__ . '/../config/mail_config.php';
 require_once __DIR__ . '/../module/phpmailer/class.phpmailer.php';
 
 
-function send_mail($email, $nume = '', $subject, $message, $alt_message = 'To view this post you need a compatible HTML viewer!')
+function send_mail($email, $nume, $subject, $message, $alt_message = 'To view this post you need a compatible HTML viewer!')
 {
     $mail = new PHPMailer(true);
 
