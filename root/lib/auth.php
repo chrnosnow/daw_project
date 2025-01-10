@@ -102,7 +102,7 @@ function generate_activation_code()
 }
 
 
-function send_activation_email(string $email, string $name = '', string $activation_code)
+function send_activation_email(string $email, string $name, string $activation_code)
 {
   $activation_link = WEBSITE_URL . '/pagini/activate.php?email=' . $email . '&activation_code=' . $activation_code;
   $subject = 'Activare cont';

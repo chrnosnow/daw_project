@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 
-function add_book(string $title, string $edition, string $isbn, string $publisher, string $year, $language = "Romana", $no_of_copies)
+function add_book(string $title, string $edition, string $isbn, string $publisher, string $year, $language, $no_of_copies)
 {
     if (empty($title) || empty($isbn)) {
         return false;
