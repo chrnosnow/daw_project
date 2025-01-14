@@ -1,5 +1,7 @@
 <?php
 define('ALLOWED_ACCESS', true);
+
+
 require __DIR__ . '/../lib/common.php';
 
 $quotes = [
@@ -191,10 +193,10 @@ $todays_quote = generate_random_quote($quotes);
       <div class="wrapper-quote">
         <div class="quote-card">
           <blockquote>
-            <?php echo $todays_quote['citat'] ?>
+            <?= $todays_quote['citat'] ?>
           </blockquote>
-          <b><?php echo $todays_quote['autor'] ?></b>
-          <cite><?php echo $todays_quote['opera'] ?></cite>
+          <b><?= $todays_quote['autor'] ?></b>
+          <cite><?= $todays_quote['opera'] ?></cite>
         </div>
       </div>
     </div>

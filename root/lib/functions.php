@@ -174,3 +174,23 @@ function verify_captcha($recaptcha)
     // Decode reCAPTCHA response (=> a nested array on success=true: [['success' => true],['challenge_ts'],['hostname']])
     return json_decode($verify_captcha);
 }
+
+
+function fetchFullHtml($url)
+{
+    $errors = [];
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36');
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Accept-Language: en-US,en;q=0.9',
+        'Connection: keep-alive'
+    ]);
+    $html = curl_exec($ch);
+    if (curl_errno($ch)) {
+        return false;
+    }
+    curl_close($ch);
+    return $html;
+}

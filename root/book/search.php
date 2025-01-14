@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../lib/common.php';
 
+
 $errors = [];
 
 // folosim paginatie pentru afisarea rezultatelor
@@ -48,7 +49,7 @@ if (is_get_req() && !empty($_GET['search'])) {
 } else {
     $errors['search_term_req'] = "Introdu un cuvant de cautare";
 }
-// echo "gsldboglrn";
+
 $_SESSION['errors'] = $errors;
 //numarul total de carti rezultate
 $total_books = count($books);

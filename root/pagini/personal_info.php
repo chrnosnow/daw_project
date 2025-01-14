@@ -1,5 +1,7 @@
 <?php
 define('ALLOWED_ACCESS', true);
+
+
 require_once __DIR__ . '/../lib/common.php';
 
 require_role(['admin', 'user']);
@@ -40,17 +42,17 @@ require_once __DIR__ . '/../fragmente/header_user.php';
                 <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
                 <div class="input-box">
                     <span class="icon"><i class="fa-solid fa-user-tag"></i></span>
-                    <input type="text" name="uname" placeholder=" " value="<?php echo $_SESSION['user']['username'] ?? '' ?>" />
+                    <input type="text" name="uname" placeholder=" " value="<?= $_SESSION['user']['username'] ?? '' ?>" />
                     <label>Nume utilizator</label>
                 </div>
                 <div class="input-box email">
                     <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                    <input type="email" name="email" placeholder=" " value="<?php echo $_SESSION['user']['email'] ?? '' ?>" disabled />
+                    <input type="email" name="email" placeholder=" " value="<?= $_SESSION['user']['email'] ?? '' ?>" disabled />
                     <label>Email</label>
                 </div>
                 <div class="input-box card-no">
                     <span class="icon"><i class="fa-solid fa-address-card"></i></span>
-                    <input type="text" name="card-no" placeholder=" " value="<?php echo $_SESSION['user']['card_no'] ?? '' ?>" disabled />
+                    <input type="text" name="card-no" placeholder=" " value="<?= $_SESSION['user']['card_no'] ?? '' ?>" disabled />
                     <label>Permis nr.</label>
                 </div>
                 <input type="submit" class="btn" name="saveDetails" value="Salveaza"></input>

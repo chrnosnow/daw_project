@@ -1,5 +1,7 @@
 <?php
 define('ALLOWED_ACCESS', true);
+
+
 require_once __DIR__ . '/../lib/common.php';
 
 require_role(['admin']);
@@ -14,7 +16,8 @@ $total_visits = get_total_visits()[0]['total_visits'] ?? $errors['total_visits']
 
 $unique_visitors = get_total_unique_visitors()[0]['unique_visitors'] ?? $errors['unique_visitors'] = "A aparut o eroare la interogarea numarului de utilizatori unici.";
 
-$unique_ip = get_unique_ip_list()[0] ?? $errors['unique_visitors'] = "A aparut o eroare la interogarea IP-urilor.";
+$unique_ip = array_column(get_unique_ip_list(), 'ip_address') ?? $errors['ip_address'] = "A aparut o eroare la interogarea IP-urilor.";
+
 
 // Configurare paginatie
 $results_per_page = 6;
@@ -27,8 +30,6 @@ $total_pages = ceil($num / $results_per_page);
 
 //Obtinem pagina curenta a listei de carti filtrare
 $visits_per_page = get_visits_per_page($results_per_page, $offset);
-var_dump(empty($offset));
-var_dump($results_per_page);
 
 if (!empty($errors)) {
     $_SESSION['errors'] = $errors;
@@ -42,6 +43,14 @@ if (!empty($errors)) {
 view('head', ['title' => 'Profil administrator']);
 require_once __DIR__ . '/../fragmente/header_user.php';
 ?>
+<style>
+    img.responsive_graph {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
 <div class="wrapper">
     <?php
     require_once __DIR__ . "/../fragmente/sidebar_user.php";
@@ -74,9 +83,7 @@ require_once __DIR__ . '/../fragmente/header_user.php';
                         <td><?= htmlspecialchars($total_visits) ?? '-' ?></td>
                         <td><?= htmlspecialchars($unique_visitors) ?? '-' ?></td>
                         <td>
-                            <?php foreach ($unique_ip as $uip): ?>
-                                <?= htmlspecialchars($uip) ?? '-' ?>
-                            <?php endforeach; ?>
+                            <?= "<ul><li>" . implode('</li><li>', $unique_ip) . "</li></ul>" ?>
                         </td>
                     </tr>
                 <?php else: ?>
@@ -136,7 +143,24 @@ require_once __DIR__ . '/../fragmente/header_user.php';
                 <?php endif; ?>
             </ul>
         </nav>
+        <?php if (!empty($total_visits_per_page)): ?>
+            <div class="wrapper_graph" style="margin: 3rem 0;">
+                <h4>Numar vizite per pagina (sub forma de grafic)</h4>
+                <div class="graph">
+                    <img src="../fragmente/graph_visits.php" alt="visits per page graph" class="responsive_graph">
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if (!empty(get_accesses_per_ip())): ?>
+            <div class="wrapper_graph" style="margin: 2rem 0;">
+                <h4>Numar accesari site per IP</h4>
+                <div class="graph">
+                    <img src="../fragmente/graph_ip.php" alt="number of site accesses per IP graph" class="responsive_graph">
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
+
 
 </div>
 </main>

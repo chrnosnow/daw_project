@@ -39,8 +39,8 @@ function send_mail($email, $nume, $subject, $message, $alt_message = 'To view th
         $mail->AddEmbeddedImage("../resurse/imagini/logo_mba.jpg", "mba-logo", "logo_mba.jpg");
         //plain text alternative for when HTML content is not supported
         $mail->AltBody = $alt_message;
+
         $mail->Send();
-        echo "Message Sent OK</p>\n";
     } catch (phpmailerException $e) {
         $_SESSION['errors']['PHPMailer_err'] = 'A aparut o eroare de la PHPMailer: ' . $e->errorMessage(); //error from PHPMailer
     } catch (Exception $e) {

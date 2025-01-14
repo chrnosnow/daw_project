@@ -1,3 +1,9 @@
+<?php
+require_once __DIR__ . '/../lib/common.php';
+require_role(['admin']);
+
+?>
+
 <!-- Filtrare alfabetica -->
 <div class="alphabet-filter">
     <?php foreach (range('A', 'Z') as $letter): ?>

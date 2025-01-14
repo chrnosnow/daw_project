@@ -69,10 +69,9 @@ if (is_post_req() && isset($_POST['submit'])) {
         ";
       $alt_message = "Salutare, {$name}!\nMultumim pentru mesajul tau. Te vom contacta cat de curand.\n\nNumai bine,\nEchipa MBA";
       send_mail($email, $name, $sbj, $message_to_user, $alt_message);
+      $success['mail_sent'] = "Mesajul a fost transmis cu succes.";
+      $_SESSION['success'] = $success;
     }
-
-    $success['mail_sent'] = "Mesajul a fost transmis cu succes.";
-    $_SESSION['success'] = $success;
     $_POST = [];
   } else {
     $errors['captcha_verify'] = 'Te rugam sa faci verificarea CAPTCHA.';

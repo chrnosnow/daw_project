@@ -6,6 +6,7 @@ $book = [];
 $ratings = [];
 $ol_id = '';
 $errors = [];
+$id_goodreads = '';
 
 if (!empty($book_id)) {
 
@@ -20,31 +21,65 @@ if (!empty($book_id)) {
     $errors['book_id'] = "ID-ul cartii nu este valid.";
 }
 
-//book ratings parser from Open Library
+//book ratings parser from Goodreads by using Open Library API
 if (!empty($book)) {
+    // get Goodreads id book by using Open Library API
     $base_url = "https://openlibrary.org/search.json";
-    //termen de identificare al cartii, e.g. isbn
+    // book identifier, e.g. isbn
     $isbn = str_replace('-', '', $book['isbn']);
 
     $query_url = $base_url . "?isbn=" . $isbn;
 
-    $response = file_get_contents($query_url); // => json
+    $response = fetchFullHtml($query_url); // => json
 
     if ($response === false) {
-        $errors = "Nu s-a putut accesa API-ul Open Library.";
-    }
+        $errors['parser_open_library'] = "Nu s-a putut accesa API-ul Open Library.";
+    } else {
+        $data = json_decode($response, true); // => array
 
-    $data = json_decode($response, true); // => array
+        if (isset($data['docs']) && !empty($data['docs'])) {
 
-    if (isset($data['docs']) && !empty($data['docs'])) {
+            $book_ol = $data['docs'][0];
 
-        $book_ol = $data['docs'][0];
+            $ol_id = $book_ol['cover_edition_key'] ?? $book_ol['edition_key'][0];
 
-        $ol_id = $book_ol['cover_edition_key'] ?? '';
-        $ratings = [
-            "ratings_average" => $book_ol['ratings_average'] ?? 0,
-            "ratings_count" => $book_ol['ratings_count'] ?? '',
-        ];
+            $id_goodreads = $data['docs'][0]['id_goodreads'][0];
+            // $ratings = [
+            //     "ratings_average" => $book_ol['ratings_average'] ?? 0,
+            //     "ratings_count" => $book_ol['ratings_count'] ?? '',
+            // ];
+
+            // get rating data from Goodreads
+            if (!empty($id_goodreads)) {
+                $search_url = 'https://www.goodreads.com/book/show/' . $id_goodreads;
+                $html = fetchFullHtml($search_url);
+
+                if ($html === false) {
+                    $errors['parser_goodreads'] = "Nu s-a putut accesa pagina de cautare.";
+                }
+
+                // get rating
+                $rating_start = strpos($html,  'class="RatingStatistics__rating"');
+                $rating_fragment = substr($html, $rating_start, 100);
+                $parts = explode('>', $rating_fragment); // Împarte pe baza ">"
+                $rating = trim(strip_tags($parts[1]));
+
+                // get reviews count
+                $review_count_start = strpos($html, 'data-testid="reviewsCount"');
+                if ($review_count_start !== false) {
+                    $review_count_fragment = substr($html, $review_count_start, 100);
+                    $parts = explode('>', $review_count_fragment);
+                    $review_count = trim(strip_tags($parts[1]));
+                }
+
+                if (!empty($rating)) {
+                    $ratings = [
+                        'ratings_average' => $rating,
+                        'review_count' => $review_count,
+                    ];
+                }
+            }
+        }
     }
 }
 

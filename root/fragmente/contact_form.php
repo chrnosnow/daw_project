@@ -1,5 +1,8 @@
 <?php
 require_once __DIR__ . '/../lib/common.php';
+if (is_user_logged_in()) {
+    $user = $_SESSION['user'];
+}
 ?>
 
 
@@ -9,11 +12,11 @@ require_once __DIR__ . '/../lib/common.php';
 
         <div class="form-group">
             <label for="uname">Nume/Utilizator</label>
-            <input type="text" class="form-control" id="uname" name="uname">
+            <input type="text" class="form-control" id="uname" name="uname" value="<?= $user['username'] ?? '' ?>">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" name="email">
+            <input type="text" class="form-control" id="email" name="email" value="<?= $user['email'] ?? '' ?>">
         </div>
         <div class="form-group">
             <label for="subject">Subiect</label>

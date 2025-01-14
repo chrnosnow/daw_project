@@ -84,16 +84,17 @@ function get_borrowed_books_by_user(int $user_id)
 
     $borrowed_books_query = "
         SELECT borrowed_books.id as borrowing_id, borrowed_books.book_id as book_id, books.title, books.isbn, 
-            GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors, borrowed_books.user_id, borrowed_books.borrowed_at, borrowed_books.due_date
+            GROUP_CONCAT(CONCAT(authors.first_name, ' ', authors.last_name) SEPARATOR ', ') AS authors, min(borrowed_books.user_id), borrowed_books.borrowed_at, borrowed_books.due_date
         FROM borrowed_books
         LEFT JOIN books ON books.id = borrowed_books.book_id
         LEFT JOIN author_book ON books.id = author_book.book_id
         LEFT JOIN authors ON authors.id = author_book.author_id
         LEFT JOIN users ON borrowed_books.user_id = users.id
         WHERE borrowed_books.status = 'borrowed' AND borrowed_books.user_id = ?
-        GROUP BY borrowed_books.book_id
+        GROUP BY borrowed_books.id, borrowed_books.book_id, books.title, books.isbn, borrowed_books.borrowed_at, borrowed_books.due_date
         ORDER BY books.title ASC
     ";
+
     return execute_query_and_fetch($borrowed_books_query, 'i', [$user_id]);
 }
 

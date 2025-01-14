@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../lib/common.php';
 
-
 $success = [];
 $errors = [];
 
@@ -35,6 +34,7 @@ if (is_post_req() && isset($_POST['saveBook'])) {
 
     if (empty($errors)) {
         //verificam daca exista cartea, dupa titlu si isbn
+        $isbn = str_replace('-', '', $isbn);
         $existing_book = get_book_by_title_and_isbn($title, $isbn);
         if (empty($existing_book)) {
             // introducem cartea in baza de date

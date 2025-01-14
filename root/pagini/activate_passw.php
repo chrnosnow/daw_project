@@ -1,5 +1,6 @@
 <?php
 define('ALLOWED_ACCESS', true);
+
 require __DIR__ . '/../lib/common.php';
 
 
@@ -20,9 +21,7 @@ if (is_get_req()) {
 
     if (empty($err)) {
         $user = find_unactivated_password($activation_code, $email); // $user[0] {['user_id], ['new_password'],['expired']}
-        var_dump($user);
-        echo "<br>";
-        echo "<br>";
+
         if ($user && activate_change_password($user[0]['user_id'], $user[0]['new_password'])) {
             if (!delete_passw($activation_code)) {
                 $err['del_passw'] = 'Parola nu a fost stearsa';

@@ -11,14 +11,14 @@ $menu = get_menu_by_user_type($user_type);
             <?php foreach ($menu as $category => $subItems): ?>
                 <li id="categ">
                     <?php if (!is_array($subItems)): ?>
-                        <a id="categ" href="<?php echo $subItems ?>"><?php echo $category; ?></a>
+                        <a id="categ" href="<?= $subItems ?>"><?= $category; ?></a>
                     <?php else: ?>
-                        <?php echo $category; ?>
+                        <?= $category; ?>
                     <?php endif; ?>
                     <?php if (is_array($subItems)): ?>
                         <ul>
                             <?php foreach ($subItems as $subItem => $link): ?>
-                                <li><a href="<?php echo $link ?>"><?php echo $subItem; ?></a></li>
+                                <li><a href="<?= $link ?>"><?= $subItem; ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>

@@ -1,7 +1,11 @@
 <div class="container mt-4">
-    <?php if (!empty($_GET['search'])): ?>
+
+    <?php if ($_GET['search'] === 'all'): ?>
+        <h1>Catalog carti</h1>
+    <?php else: ?>
         <h1>Rezultatele cautarii</h1>
     <?php endif; ?>
+
     <form method="get" class="mb-3">
         <div class="form-group">
             <input type="text" class="form-control" name="search" placeholder="Cauta in catalog...">

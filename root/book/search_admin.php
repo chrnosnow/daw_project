@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../lib/common.php';
+require_role(['admin']);
 
 $action = $_GET['action'] ?? 'list';
 

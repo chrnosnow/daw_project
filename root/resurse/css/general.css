@@ -97,7 +97,7 @@ footer a:before {
 }
 #cookie-banner {
   font-size: small;
-  color: var(--culoare-fundal-secundara);
+  color: var(--culoare-portocaliu);
   padding-left: 0.5rem;
   width: 30vw;
   text-align: center;

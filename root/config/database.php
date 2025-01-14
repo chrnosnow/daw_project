@@ -1,14 +1,14 @@
 <?php
 
-// const DB_HOST = 'localhost';
-// const DB_USER = 'root';
-// const DB_PASS = '';
-// const DB_NAME = 'daw_project';
+const DB_HOST = 'localhost';
+const DB_USER = 'root';
+const DB_PASS = '';
+const DB_NAME = 'daw_project';
 
-define('DB_HOST', getenv('MYSQLHOST'));
-define('DB_USER', getenv('MYSQLUSER'));
-define('DB_PASS', getenv('MYSQLPASSWORD'));
-define('DB_NAME', getenv('MYSQLDATABASE'));
+// define('DB_HOST', getenv('MYSQLHOST'));
+// define('DB_USER', getenv('MYSQLUSER'));
+// define('DB_PASS', getenv('MYSQLPASSWORD'));
+// define('DB_NAME', getenv('MYSQLDATABASE'));
 // echo 'getenv("MYSQLHOST"): ' . DB_HOST . ', ' . DB_USER;
 
 function db(): mysqli

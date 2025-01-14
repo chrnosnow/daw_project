@@ -38,6 +38,7 @@ function get_visits_per_page($limit = 0, $offset = 0)
                 END AS full_url,
                 COUNT(*) AS visits
             FROM analytics
+            WHERE page_url LIKE '%/pagini%'
             GROUP BY full_url
             ORDER BY visits DESC
             LIMIT 20
@@ -52,10 +53,23 @@ function get_visits_per_page($limit = 0, $offset = 0)
                 END AS full_url,
                 COUNT(*) AS visits
             FROM analytics
+            WHERE page_url LIKE '%/pagini%'
             GROUP BY full_url
             ORDER BY visits DESC
             LIMIT ? OFFSET ?
         ";
         return execute_query_and_fetch($query, 'ii', [$limit, $offset]);
     }
+}
+
+function get_accesses_per_ip()
+{
+    $query = "
+        SELECT ip_address, COUNT(page_url) AS accessed_no
+        FROM analytics
+        GROUP BY ip_address
+        ORDER BY COUNT(page_url) DESC
+        LIMIT 10
+    ";
+    return execute_query_and_fetch($query);
 }

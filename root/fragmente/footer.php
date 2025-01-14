@@ -12,11 +12,9 @@
         <time datetime="2024-10-31 15:18">joi, 31 octombrie 2024</time></small>
 </footer>
 <script>
-    // Resetează formularul la încărcarea paginii
+    // Resetează formularul la incarcarea paginii
     window.addEventListener('pageshow', function(event) {
         document.getElementById('form').reset();
     });
 </script>
 </body>
-
-</html>

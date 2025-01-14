@@ -1,5 +1,7 @@
 <?php
 define('ALLOWED_ACCESS', true);
+
+
 require_once __DIR__ . '/../lib/common.php';
 require_once __DIR__ . '/../book/book_info.php';
 ?>
@@ -34,7 +36,7 @@ require_once __DIR__ . '/../book/book_info.php';
             if (isset($_SESSION['errors'])) {
                 display_alert('errors');
             } else {
-                include __DIR__ . '/../fragmente/book_details_user.php';
+                include __DIR__ . '/../fragmente/book_info.php';
             }
             ?>
         </div>
