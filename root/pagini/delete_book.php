@@ -24,7 +24,7 @@ if (is_get_req() && isset($_GET['id'])) {
     } else {
         $errors['book_id'] = "Identificatorul cartii nu este valid.";
     }
-    print_r($errors);
+
     if (empty($errors)) {
         // borrowed book cannot be deleted
         if (empty(get_book_by_id($book_id))) {

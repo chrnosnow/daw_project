@@ -46,9 +46,6 @@ if (!empty($selected_letter) && !empty($search_term)) {
     $where_clause .= "WHERE $where_clause_search";
 }
 
-// var_dump($where_clause);
-
-
 // Obtinem numarul total de inregistrari filtrate
 $fees_list_subquery = "
     SELECT users_fees.id, books.id AS book_id, books.title, books.isbn, users.email, users.card_no,
