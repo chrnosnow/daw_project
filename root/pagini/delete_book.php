@@ -24,19 +24,30 @@ if (is_get_req() && isset($_GET['id'])) {
     } else {
         $errors['book_id'] = "Identificatorul cartii nu este valid.";
     }
+    print_r($errors);
+    if (empty($errors)) {
+        // borrowed book cannot be deleted
+        if (empty(get_book_by_id($book_id))) {
+            //delete author-book relation
+            if (!delete_authors_from_book($book_id)) {
+                $errors['delete_author_from_book'] = 'A aparut o eroare la stergerea autorului.';
+            }
+            //delete book
+            if (delete_book($book_id)) {
+                $_SESSION['errors'] = $errors;
 
-    //delete author-book relation
-    if (!delete_authors_from_book($book_id)) {
-        $errors['delete_author_from_book'] = 'A aparut o eroare la stergerea autorului.';
+                $success['delete_book'] = 'Cartea a fost stearsa cu succes.';
+                $_SESSION['success'] = $success;
+                redirect_to('../pagini/manage_book.php');
+            } else {
+                $errors['delete_book'] = 'A aparut o eroare la stergerea cartii.';
+            }
+        } else {
+            $errors['delete_book_borrowed'] = 'Cartea este imprumutata!';
+        }
     }
-    //delete book
-    if (!delete_book($book_id)) {
-        $errors['delete_book'] = 'A aparut o eroare la stergerea cartii.';
-    }
+
     $_SESSION['errors'] = $errors;
-
-    $success['delete_book'] = 'Cartea a fost stearsa cu succes.';
-    $_SESSION['success'] = $success;
     redirect_to('../pagini/manage_book.php');
 } else {
     redirect_to('../pagini/access_denied.php');

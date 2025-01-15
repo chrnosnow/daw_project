@@ -82,6 +82,7 @@ class UserFeeListPDF extends FPDF
         $this->SetTextColor($this->WHITE[0], $this->WHITE[1], $this->WHITE[1]); // White text
         $this->SetDrawColor($this->DARK_BLUE[0], $this->DARK_BLUE[1], $this->DARK_BLUE[2]); //border
         // $this->SetLineWidth(0.5);
+
         $this->SetFont('AvenisSemibold', '', $this->FONT_SIZE_SMALL);
         foreach ($header as $key => $col) {
             $this->Cell($widths[$key], $lineHeight, $col, 0, 0, 'C', true);
@@ -172,7 +173,7 @@ class UserFeeListPDF extends FPDF
         // Table Footer (Total)
         $currentY = $startY + $lineHeight * $end;
         $this->SetXY($startX, $currentY); //mutam cursorul la capatul ultimelor randuri din tabel
-        $this->SetFont('AvenisSemibold', '', $this->FONT_SIZE_SMALL);
+        $this->SetFont('AvenisSemibold', '', $this->FONT_SIZE_SMALL + 2);
         $this->SetFillColor($this->DARK_BLUE[0], $this->DARK_BLUE[1], $this->DARK_BLUE[2]);
         $this->SetTextColor($this->WHITE[0], $this->WHITE[1], $this->WHITE[2]);
         $this->SetDrawColor($this->DARK_BLUE[0], $this->DARK_BLUE[1], $this->DARK_BLUE[2]);

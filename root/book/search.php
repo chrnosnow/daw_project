@@ -33,13 +33,12 @@ if (is_get_req() && !empty($_GET['search'])) {
             LEFT JOIN authors ON authors.id = author_book.author_id
             WHERE UPPER(books.title) LIKE UPPER(?) 
                OR UPPER(books.isbn) LIKE UPPER(?)
-               OR UPPER(authors.first_name) LIKE UPPER(?)
-               OR UPPER(authors.last_name) LIKE UPPER(?)
-            GROUP BY books.id
+               OR CONCAT(UPPER(authors.first_name), ' ', UPPER(authors.last_name)) LIKE UPPER(?)
+            GROUP BY books.id  
             ORDER BY books.title;
         ";
-            $params = [$search_term_sql, $search_term_sql, $search_term_sql, $search_term_sql];
-            $books = execute_query_and_fetch($query, "ssss", $params);
+            $params = [$search_term_sql, $search_term_sql, $search_term_sql];
+            $books = execute_query_and_fetch($query, "sss", $params);
         }
     }
 

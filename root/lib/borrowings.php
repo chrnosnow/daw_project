@@ -171,3 +171,13 @@ function update_book_no_of_copies(int $book_id)
     ";
     return execute_query($update_query, 'i', [$book_id]);
 }
+
+function get_borrowed_book_by_id(int $book_id)
+{
+    $get_query = "
+        SELECT *
+        FROM borrowed_books
+        WHERE book_id = ? AND status = 'borrowed'
+    ";
+    return execute_query_and_fetch($get_query, 'i', [$book_id]);
+}

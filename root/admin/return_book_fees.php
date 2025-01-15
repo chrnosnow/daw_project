@@ -11,6 +11,10 @@ $errors = [];
 if (is_post_req() && isset($_POST['refreshUser'])) {
     $user = $_SESSION['borrowing_user'];
     $summary_errors = get_user_summary($user['id']);
+    $user['late_fee'] = $total_late_fee;
+    $user['borrowed_count'] = $books_count;
+    $user['books_fees'] = $books_fees;
+    $_SESSION['borrowing_user'] = $user;
     $errors = array_merge($errors, $summary_errors);
 }
 
@@ -39,9 +43,11 @@ if (is_post_req() && isset($_POST['returnUser'])) {
         $errors['invalid_user'] = "Utilizatorul nu a fost gasit.";
     } else {
         $user = $user[0];
-        $_SESSION['borrowing_user'] = $user;
-
         $summary_errors = get_user_summary($user['id']);
+        $user['late_fee'] = $total_late_fee;
+        $user['borrowed_count'] = $books_count;
+        $user['books_fees'] = $books_fees;
+        $_SESSION['borrowing_user'] = $user;
         $errors = array_merge($errors, $summary_errors);
     }
 }
@@ -79,6 +85,10 @@ if (is_post_req() && isset($_POST['returnBook'])) {
         $_SESSION['success'] = $success;
         //reactualizare a listei de carti si a penalitatilor de intarziere
         $summary_errors = get_user_summary($user['id']);
+        $user['late_fee'] = $total_late_fee;
+        $user['borrowed_count'] = $books_count;
+        $user['books_fees'] = $books_fees;
+        $_SESSION['borrowing_user'] = $user;
         $errors = array_merge($errors, $summary_errors);
     }
 }
@@ -95,3 +105,5 @@ if (!empty($errors)) {
 if (!empty($alerts)) {
     $_SESSION['alerts'] = $alerts;
 }
+
+redirect_to('../pagini/return_book.php');

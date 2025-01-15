@@ -22,11 +22,6 @@ if (is_post_req() && isset($_POST['submit'])) {
     $errors['valid_email'] = sprintf(DEFAULT_VALIDATION_ERRORS['email'], $email);
   }
 
-  $user = get_user_by_email($email);
-  if (empty($user)) {
-    $errors['find_user'] = "Utilizatorul nu a putut fi gasit.";
-  }
-
   //reCAPTCHA checkbox validation
   $recaptcha = $_POST['g-recaptcha-response'];
   $verify_response = verify_captcha($recaptcha);

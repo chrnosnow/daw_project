@@ -11,10 +11,7 @@
     </thead>
     <tbody>
         <?php if (!empty($books_fees)): ?>
-            <?php foreach ($books_fees as $book):
-                if ($book['days_late'] < 1) {
-                    continue;
-                } ?>
+            <?php foreach ($books_fees as $book): ?>
                 <tr>
                     <td><a href="../pagini/book_details.php?id=<?= $book['book_id'] ?>" target="_blank">
                             <?= htmlspecialchars($book['title']) ?></a></td>
@@ -39,7 +36,7 @@
     </tbody>
 </table>
 <div>
-    <a href="../pagini/save_user_fees.php?saveAs=pdf" class="btn btn-sm savePdf">Salveaza ca pdf</a>
+    <a href="../pagini/save_user_fees.php?saveAs=pdf" target="_blank" class="btn btn-sm savePdf">Salveaza ca pdf</a>
 </div>
 </div>
 </body>

@@ -91,16 +91,17 @@ function get_book_by_title_and_isbn(string $title, string $isbn)
     return execute_query_and_fetch($query, "ss", [$title, $isbn]);
 }
 
-function update_book($book_id, $title, $isbn, $publisher = '', $publication_year = '', $language = 'Romana', $edition = '')
+function update_book($book_id, $title, $isbn, $publisher = '', $publication_year = '', $language = 'Romana', $edition = '', $no_of_copies = 0)
 {
-    $update_query = "UPDATE books SET title = ?, isbn = ?, publisher = ?, publication_year = ?, language = ?, edition = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
-    return execute_query($update_query, "ssssssi", [
+    $update_query = "UPDATE books SET title = ?, isbn = ?, publisher = ?, publication_year = ?, language = ?, edition = ?, no_of_copies = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
+    return execute_query($update_query, "ssssssii", [
         $title,
         $isbn,
         $publisher,
         $publication_year,
         $language,
         $edition,
+        $no_of_copies,
         $book_id
     ]);
 }

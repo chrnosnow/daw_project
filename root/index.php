@@ -186,13 +186,14 @@ require __DIR__ . '/lib/common.php';
     </small>
     <?php if ($show_banner): ?>
         <div id="container-banner">
-            <p id="cookie-banner">
-                Acesta este un proiect scolar.
-                <span id="mesaj-cookies">
-                    Acceptati cookie-urile de pe site?
-                    <button id="ok_cookies">Ok</button>
-                </span>
-            </p>
+            <form action="../lib/accept_cookies.php" method="POST">
+                <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
+                <p id="cookie-banner">
+                    Acesta este un proiect scolar.<span id="mesaj-cookies">
+                        Acceptati cookie-urile de pe site?
+                        <button id="ok_cookies" name="ok_cookies">Ok</button></span>
+                </p>
+            </form>
         </div>
     <?php endif; ?>
 </footer>

@@ -48,13 +48,13 @@ $_SESSION['last_activity'] = time();
             background-color: var(--culoare-hover);
         }
 
-        .cancel-borrow {
+        .cancel-return {
             color: brown;
             margin-top: 2rem;
             margin-bottom: 0.5rem;
         }
 
-        .cancel-borrow p {
+        .cancel-return p {
             margin-bottom: 0.5rem;
         }
     </style>

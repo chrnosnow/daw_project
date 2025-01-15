@@ -72,6 +72,10 @@ $_SESSION['last_activity'] = time();
                             <input type="text" class="form-control" id="lang" name="lang" value="<?= htmlspecialchars($book['language']) ?? '-' ?>">
                         </div>
                         <div class="form-group">
+                            <label for="lang">Numar exemplare</label>
+                            <input type="text" class="form-control" id="no_of_copies" name="no_of_copies" value="<?= number_format($book['no_of_copies']) ?? '-' ?>">
+                        </div>
+                        <div class="form-group">
                             <label for="author_ids">Autori (separati prin virgula)*</label>
                             <input type="text" class="form-control" id="authors" name="authors" value="<?= htmlspecialchars($book['authors']) ?>">
                         </div>

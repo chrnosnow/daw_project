@@ -14,6 +14,7 @@ if (is_post_req() && isset($_POST['saveBook'])) {
     $public_yr = $_POST['public_yr'];
     $language = sanitize_text($_POST['lang']) ?? '';
     $authors = trim($_POST['authors']);
+    $no_of_copies = empty($_POST['no_of_copies']) ? 0 : $_POST['no_of_copies'];
 
     if (empty($title) || empty($isbn) || empty($authors)) {
         $errors['update_book_required'] = sprintf(DEFAULT_VALIDATION_ERRORS['required'], "Campul *");
@@ -23,13 +24,17 @@ if (is_post_req() && isset($_POST['saveBook'])) {
         $errors['isbn_format'] = "ISBN invalid.";
     }
 
-    if (!validate_integer($public_yr) || strlen($public_yr) != 4) {
+    if (!validate_integer($public_yr) || strlen($public_yr) != 4 || (int) $year > date('Y') || (int)$year < 0) {
         $errors['book_publication_year'] = "Anul de publicatie este invalid.";
+    }
+
+    if (!validate_integer($no_of_copies) || (int)$no_of_copies < 0) {
+        $errors['no_of_copies'] = "Numarul de exemplare este invalid.";
     }
 
     if (empty($errors)) {
         //update book
-        if (!update_book($book_id, $title, $isbn, $publisher, $public_yr, $language, $edition)) {
+        if (!update_book($book_id, $title, $isbn, $publisher, $public_yr, $language, $edition, $no_of_copies)) {
             $errors['update_book'] = "Nu s-au putut actualiza detaliile despre carte.";
         }
 

@@ -5,7 +5,6 @@ define('DB_USER', getenv('MYSQLUSER'));
 define('DB_PASS', getenv('MYSQLPASSWORD'));
 define('DB_NAME', getenv('MYSQLDATABASE'));
 
-
 function db(): mysqli
 {
     static $conn;

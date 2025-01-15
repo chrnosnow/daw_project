@@ -1,10 +1,9 @@
 <?php
-require __DIR__ . '/../admin/return_book_fees.php';
 $user = $_SESSION['borrowing_user'] ?? null;
 ?>
 <div class="container mt-4 wrapper-book">
     <h3>Introdu datele despre utilizator</h3>
-    <form action="" method="post">
+    <form action="../admin/return_book_fees.php" method="post">
         <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
 
         <?php if ($user) { ?>
@@ -31,7 +30,7 @@ $user = $_SESSION['borrowing_user'] ?? null;
 </div>
 
 <?php if (!empty($user)): ?>
-    <form action="" method="post">
+    <form action="../admin/return_book_fees.php" method="post">
         <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
 
         <input type="submit" class="btn btn-primary" name="refreshUser" value="Actualizeaza informatii"></input>
@@ -48,7 +47,8 @@ $user = $_SESSION['borrowing_user'] ?? null;
         <div>
             <h3>Lista cartilor de returnat</h3>
         </div>
-        <form action="" method="post">
+        <form action="../admin/return_book_fees.php" method="post">
+            <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
             <div class="form-group">
                 <table class="table table-bordered">
                     <thead>
@@ -63,8 +63,8 @@ $user = $_SESSION['borrowing_user'] ?? null;
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (!empty($books_fees)): ?>
-                            <?php foreach ($books_fees as $row): ?>
+                        <?php if (!empty($user['books_fees'])): ?>
+                            <?php foreach ($user['books_fees'] as $index => $row): ?>
                                 <tr>
                                     <td><input type="checkbox" name="books_ids[]" value="<?= $row['book_id'] ?>"></td>
                                     <td><?= htmlspecialchars($row['title']) ?></td>

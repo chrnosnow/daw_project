@@ -34,20 +34,14 @@ if (is_get_req() && !empty($save_type)) {
         $fee_pdf->CreateTableHeader($header, $widths, 19, 109, 10);
         $table_data = []; // borrowed books that produced late fee
         foreach ($books_fees as $i => $arr) {
-            if ($arr['late_fee'] > 0) {
-                $table_data[] = [$arr['title'] . ", " . $arr['isbn'] . ", " . $arr['authors'], substr($arr['due_date'], 0, 10), $arr['days_late'], $arr['late_fee']];
-            }
+            // if ($arr['late_fee'] > 0) {
+            $table_data[] = [$arr['title'] . ", " . $arr['isbn'] . ", " . $arr['authors'], substr($arr['due_date'], 0, 10), $arr['days_late'], $arr['late_fee']];
+            // }
         }
         $alignCellPositions = ['C', 'L', 'C', 'C', 'C'];
         $fee_pdf->FillTable($table_data, $widths, 20, 120, 5, $alignCellPositions);
         $message = "Va rugam sa achitati penalitatile de intarziere pentru a beneficia din nou de serviciile noastre de imprumut a cartilor.";
         $fee_pdf->writeMessageAlert([20, -70], array_sum($widths), $message);
-        // $fee_pdf->SetY(230);
-        // $fee_pdf->AddFont('AvenisSemibold', '', 'Avenis-Semibold.php');
-        // $fee_pdf->SetFont('AvenisSemibold', '', 13);
-        // $fee_pdf->SetTextColor(26, 46, 73);
-        // $fee_pdf->MultiCell(0, 5, "Va rugam sa achitati penalitatile de intarziere pentru a beneficia din nou de serviciile noastre de imprumut a cartilor.", 0, 'C');
-
         $current_time = new DateTime('now', new DateTimeZone('Europe/Bucharest'));
         $fee_pdf->Output('I', "penalizari-" . $user['card_no'] . "-" . $current_time->format('Ymd') . ".pdf");
     }
