@@ -8,7 +8,7 @@
  *  If you you want to send emails from your website 
  *  the syntax is `mail.your-domain.com`.
  */
-
+const MAIL_HOST = 'smtp.gmail.com';
 /**
  *  Set the email address that you use to log-in 
  *  to your email account.
