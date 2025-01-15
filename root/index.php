@@ -186,7 +186,7 @@ require __DIR__ . '/lib/common.php';
     </small>
     <?php if ($show_banner): ?>
         <div id="container-banner">
-            <form action="../lib/accept_cookies.php" method="POST">
+            <form action="./lib/accept_cookies.php" method="POST">
                 <input type="hidden" name="token_processing" value="<?= generate_form_token() ?>">
                 <p id="cookie-banner">
                     Acesta este un proiect scolar.<span id="mesaj-cookies">
@@ -219,17 +219,19 @@ require __DIR__ . '/lib/common.php';
             // Când utilizatorul apasă "Accept"
             acceptButton.addEventListener('click', function() {
                 fetch('./lib/accept_cookies.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: new URLSearchParams({
+                        ok_cookies: '1'
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            cookieBanner.style.display = 'none';
-                        }
-                    });
+                })
+                then(() => {
+                    document.getElementById("cookie-banner").style.display = 'none';
+                }).catch(error => {
+                    console.error('Eroare:', error);
+                });
             });
         }
     });

@@ -91,17 +91,19 @@
 
             document.getElementById("ok_cookies").addEventListener('click', function() {
                 fetch('../lib/accept_cookies.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: new URLSearchParams({
+                        ok_cookies: '1'
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            document.getElementById("cookie-banner").style.display = 'none';
-                        }
-                    });
+                })
+                then(() => {
+                    document.getElementById("cookie-banner").style.display = 'none';
+                }).catch(error => {
+                    console.error('Eroare:', error);
+                });
             });
         });
     </script>
