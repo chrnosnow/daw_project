@@ -35,9 +35,8 @@ require_once __DIR__ . '/../book/book_info.php';
             <?php
             if (isset($_SESSION['errors'])) {
                 display_alert('errors');
-            } else {
-                include __DIR__ . '/../fragmente/book_info.php';
             }
+            include __DIR__ . '/../fragmente/book_info.php';
             ?>
         </div>
     </div>
