@@ -27,7 +27,7 @@ if (is_get_req() && isset($_GET['id'])) {
 
     if (empty($errors)) {
         // borrowed book cannot be deleted
-        if (empty(get_book_by_id($book_id))) {
+        if (empty(get_borrowed_book_by_id($book_id))) {
             //delete author-book relation
             if (!delete_authors_from_book($book_id)) {
                 $errors['delete_author_from_book'] = 'A aparut o eroare la stergerea autorului.';

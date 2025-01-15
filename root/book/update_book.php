@@ -24,7 +24,7 @@ if (is_post_req() && isset($_POST['saveBook'])) {
         $errors['isbn_format'] = "ISBN invalid.";
     }
 
-    if (!validate_integer($public_yr) || strlen($public_yr) != 4 || (int) $year > date('Y') || (int)$year < 0) {
+    if (!validate_integer($public_yr) || strlen($public_yr) != 4 || (int) $public_yr > date('Y') || (int)$public_yr < 0) {
         $errors['book_publication_year'] = "Anul de publicatie este invalid.";
     }
 

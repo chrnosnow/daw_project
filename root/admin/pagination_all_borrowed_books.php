@@ -55,7 +55,8 @@ $book_list_subquery = "
     LEFT JOIN authors ON authors.id = author_book.author_id
     LEFT JOIN users ON borrowed_books.user_id = users.id
     WHERE borrowed_books.status = 'borrowed'
-    GROUP BY borrowed_books.book_id, borrowed_books.user_id
+    GROUP BY books.id, borrowed_books.book_id, borrowed_books.user_id, borrowed_books.borrowed_at, borrowed_books.due_date, users.email, 
+        users.card_no, books.title, books.isbn
     ORDER BY books.title ASC
 ";
 $total_books_query = "
