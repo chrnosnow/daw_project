@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 
-const SESSION_LIFETIME = 120 * 60; // in secunde 
+const SESSION_LIFETIME = 20 * 60; // in secunde 
 
 function require_role($allowed_roles)
 {
