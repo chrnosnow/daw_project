@@ -128,7 +128,7 @@ require __DIR__ . '/lib/common.php';
                             </ul>
                         </li>
                         <li class="ls-meniu bara-meniu">
-                            <a href="#">INREGISTRARE</a>
+                            <a href="./pagini/auth.php?form=register">INREGISTRARE</a>
                         </li>
                         <li>
                             <div class="drop-down ls-meniu">DESPRE</div>
