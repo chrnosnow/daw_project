@@ -55,7 +55,7 @@
                             </ul>
                         </li>
                         <li class="ls-meniu bara-meniu">
-                            <a href="./pagini/auth.php?form=register">INREGISTRARE</a>
+                            <a href="./auth.php?form=register">INREGISTRARE</a>
                         </li>
                         <li>
                             <div class="drop-down ls-meniu">DESPRE</div>
